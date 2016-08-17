@@ -168,6 +168,7 @@
 <![endif]-->
 <script type="text/javascript">
 	$(function(){
+		
 		/*회원가입*/
 		$("#join-btn").on("click",function(){
 			var email = $("#join-email").val();
@@ -190,6 +191,28 @@
 				}
 			})
 		})
+		
+		/*로그인*/
+		$("#index-login").on("click", function(){
+			$.ajax({
+				url:"login",
+				type:"post",
+				dataType:"text",
+				data:{"username":$("#form-username").val(), "userpass":$("#form-password").val()},
+				success:function(data){
+					alert(data);
+					if(data==="success"){
+						/* location.href="main"; */
+					}else{
+						alert("ID와 PASS를 확인해 주십시오.");						
+					}
+				},
+				error:function(){
+					console.log("로그인 에러");
+				}
+			})
+		})
+		
 	})
 </script>
 </html>

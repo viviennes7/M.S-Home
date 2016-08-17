@@ -156,7 +156,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email" value="viviennes7@naver.com">
+                                                <input type="email" id="setting-email" class="form-control" placeholder="Email" value="viviennes7@naver.com">
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +165,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="김민수">
+                                                <input type="text" id="setting-name" class="form-control" placeholder="Company" value="김민수">
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>BirthDate</label>
-                                                <input type="date" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                                <input type="date" id="setting-birth" class="form-control" placeholder="Home Address" value="2016-07-01">
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +183,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <textarea rows="5" id="setting-intro" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                             </div>
                                         </div>
                                     </div>

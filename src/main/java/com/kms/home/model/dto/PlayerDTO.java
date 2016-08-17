@@ -9,6 +9,11 @@ public class PlayerDTO {
 	
 	public PlayerDTO() {}
 	
+	public PlayerDTO(String id, String password){
+		this.id = id;
+		this.password = password;
+	}
+	
 	public PlayerDTO( String name, String id, String password, String birthdate) {
 		this.name = name;
 		this.id = id;
