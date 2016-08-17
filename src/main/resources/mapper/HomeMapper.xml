@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kms.home.model.dao.MSDao">
+
+<resultMap type="playerDTO" id="player">
+	<id column="player_sq" property="playSq"/>
+	<result column="player_name" property="name"/>
+	<result column="player_id" property="id"/>
+	<result column="player_password" property="password"/>
+	<result column="player_birthdate" property="birthdate"/>
+</resultMap>
+
+<insert id="join" parameterType="playerDTO" >
+	insert into player values(player_sq.nextval, #{name}, #{id}, #{password}, #{birthdate} )
+</insert>
+
+<select id="login" parameterType="playerDTO" resultMap="player">
+	select * from player where player_id=$(id) and player_password=$(password)
+</select>
+</mapper>
