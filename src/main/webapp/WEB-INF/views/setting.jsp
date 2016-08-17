@@ -151,12 +151,29 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form id="setting-form">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" id="setting-email" class="form-control" placeholder="Email" value="viviennes7@naver.com">
+                                                <label>Email address</label>
+                                                <input type="email" name="id" class="form-control" placeholder="Email" value="${Player.id}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" id="setting-password" name="password" class="form-control" placeholder="Password" value="${Player.password}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Confirm</label>
+                                                <input type="password" id="setting-confirm" class="form-control" placeholder="Confirm" value="${Player.password}">
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +182,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" id="setting-name" class="form-control" placeholder="Company" value="김민수">
+                                                <input type="text" name="name" id="setting-name" class="form-control" placeholder="Company" value="${Player.name}">
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +191,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>BirthDate</label>
-                                                <input type="date" id="setting-birth" class="form-control" placeholder="Home Address" value="2016-07-01">
+                                                <input type="date" name="birthdate" class="form-control" placeholder="Home Address" value="${Player.birthdate}">
                                             </div>
                                         </div>
                                     </div>
@@ -183,12 +200,12 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" id="setting-intro" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <textarea rows="5" name="introduction" id="setting-intro" class="form-control" placeholder="Here can be your description">${Player.introduction}</textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                    <button type="button" class="btn btn-info btn-fill pull-right" id="setting-update">Update Profile</button>
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -202,16 +219,14 @@
                             <div class="content">
                                 <div class="author">
                                      <a href="#">
-                                    <img class="avatar border-gray" src="assets/img/faces/face-3.jpg" alt="..."/>
+                                    <img class="avatar border-gray" src="" alt="..."/>
 
-                                      <h4 class="title">Mike Andrew<br />
-                                         <small>michael24</small>
+                                      <h4 class="title" id="setting-card-name">${Player.name}<br />
+                                         <small>${Player.id}</small>
                                       </h4>
                                     </a>
                                 </div>
-                                <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
+                                <p class="description text-center" id="setting-card-intro"> ${Player.introduction}
                                 </p>
                             </div>
                             <hr>
@@ -252,17 +267,34 @@
     <!--  Notifications Plugin    -->
     <script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
 	
 	<script src="<c:url value='/resources/js/script.js'/>"></script>
 
 	<script type="text/javascript">
-    	$(document).ready(function(){
-    		
+		$(function(){
+    		/*프로필 수정*/
+    		$("#setting-update").on("click",function(){
+    			if($("#setting-password").val()!=$("#setting-confirm").val()){
+    				alert("비밀번호가 일치하지 않습니다.");
+    				return;
+    			}
+    			
+    			$.ajax({
+    				url:"profileUpdate",
+    				data:$("#setting-form").serialize(),
+    				type:"post",
+    				success:function(result){
+    					$("#setting-card-name").text($("#setting-name").val());
+    					$("#setting-card-intro").text($("textarea").val());
+    					alert(result);
+    				},
+    				error:function(){
+    					console.log("프로필수정 오류");
+    				}
+    			}) 
+    		})
     	});
 	</script>
 

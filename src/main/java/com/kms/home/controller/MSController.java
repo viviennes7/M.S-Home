@@ -21,8 +21,8 @@ public class MSController {
 	/**
 	 * TEST
 	 * */
-	/*@RequestMapping("{url}")
-	public void call(HttpSession session) {}*/
+	@RequestMapping("{url}")
+	public void call(HttpSession session) {}
 	
 	/**
 	 * 로그인페이지이동
@@ -35,12 +35,11 @@ public class MSController {
 	/**
 	 * 로그인
 	 * */
-	@RequestMapping(value="main", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="login", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String login(String username, String userpass, HttpSession session){
 		session.setAttribute("player", username);
 		return service.login(username, userpass);
-		
 	}
 	
 	/**
@@ -56,7 +55,24 @@ public class MSController {
 	 * Setting
 	 * */
 	@RequestMapping("setting")
-	public ModelAndView setting(){
-		return null;
+	public ModelAndView setting(HttpSession session){
+		ModelAndView modelAndView = new ModelAndView("setting");
+		PlayerDTO playerDTO = service.setting((String)session.getAttribute("player"));
+		modelAndView.addObject("Player", playerDTO);
+		return modelAndView;  
+	} 
+	
+	/**
+	 * 프로필 수정
+	 * */
+	
+	//여기서 리턴안하고 ajax는 못쓰나??
+	@RequestMapping(value="profileUpdate", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String profileUpdate(PlayerDTO dto){
+		System.out.println("입장!");
+		System.out.println(dto);
+		service.profileUpdate(dto);
+		return "프로필이 수정되었습니다.";
 	}
 }

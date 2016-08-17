@@ -74,7 +74,7 @@
                        	<label class="sr-only" for="form-password">Password</label>
                        	<input type="password" name="userpass" placeholder="Password" class="form-password form-control" id="form-password">
                        </div>
-                       <button type="submit" class="btn" id="index-login">Sign in!</button>
+                       <button type="button" class="btn" id="index-login">Sign in!</button>
                        <button type="button" class="btn" data-target="#login-modal" data-toggle="modal">Sign up!</button>
                    </form>
                   </div>
@@ -200,9 +200,8 @@
 				dataType:"text",
 				data:{"username":$("#form-username").val(), "userpass":$("#form-password").val()},
 				success:function(data){
-					alert(data);
 					if(data==="success"){
-						/* location.href="main"; */
+						 location.href="main"; 
 					}else{
 						alert("ID와 PASS를 확인해 주십시오.");						
 					}

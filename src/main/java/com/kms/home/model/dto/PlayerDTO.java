@@ -6,6 +6,8 @@ public class PlayerDTO {
 	private String id;
 	private String password;
 	private String birthdate;
+	private String url;
+	private String introduction;
 	
 	public PlayerDTO() {}
 	
@@ -21,14 +23,18 @@ public class PlayerDTO {
 		this.birthdate = birthdate;
 	}
 	
-	public PlayerDTO(String playSq, String name, String id, String password, String birthdate) {
+	public PlayerDTO(String playSq, String name, String id, String password, String birthdate, String url,
+			String introduction) {
+		super();
 		this.playSq = playSq;
 		this.name = name;
 		this.id = id;
 		this.password = password;
 		this.birthdate = birthdate;
+		this.url = url;
+		this.introduction = introduction;
 	}
-	
+
 	public String getPlaySq() {
 		return playSq;
 	}
@@ -53,17 +59,35 @@ public class PlayerDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getbirthdate() {
+
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setbirthdate(String birthdate) {
+
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 
 	@Override
 	public String toString() {
 		return "PlayerDTO [playSq=" + playSq + ", name=" + name + ", id=" + id + ", password=" + password
-				+ ", birthdate=" + birthdate + "]";
+				+ ", birthdate=" + birthdate + ", url=" + url + ", introduction=" + introduction + "]";
 	}
 	
 }

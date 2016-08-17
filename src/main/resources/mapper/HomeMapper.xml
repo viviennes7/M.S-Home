@@ -9,6 +9,8 @@
 	<result column="player_id" property="id"/>
 	<result column="player_password" property="password"/>
 	<result column="player_birthdate" property="birthdate"/>
+	<result column="player_url" property="url"/>
+	<result column="player_introduction" property="introduction"/>
 </resultMap>
 
 <insert id="join" parameterType="playerDTO" >
@@ -18,4 +20,12 @@
 <select id="login" parameterType="playerDTO" resultMap="player">
 	select * from player where player_id=#{id} and player_password=#{password}
 </select>
+
+<select id="setting" parameterType="String" resultMap="player">
+	select * from player where player_id=#{username}
+</select>
+
+<update id="profileUpdate" parameterType="playerDTO">
+	update player set player_name=#{name}, player_password=#{password}, player_birthdate=#{birthdate}, player_introduction=#{introduction}
+</update> 
 </mapper>

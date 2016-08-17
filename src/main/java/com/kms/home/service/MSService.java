@@ -35,5 +35,20 @@ public class MSService {
 			return "success";
 		}
 	}
+	/**
+	 * 사용자 프로필 조회
+	 * */
+	public PlayerDTO setting(String username) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		return dao.setting(username);
+	}
+	
+	/**
+	 * 사용자 프로필 수정
+	 * */
+	public void profileUpdate(PlayerDTO dto){
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		dao.profileUpdate(dto);
+	}
 	
 }
