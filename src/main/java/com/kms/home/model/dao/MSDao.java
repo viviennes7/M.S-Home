@@ -6,7 +6,7 @@ public interface MSDao {
 	
 	public PlayerDTO login(PlayerDTO dto);
 	
-	public PlayerDTO setting(String username);
+	public PlayerDTO setting(int playSq);
 	
 	public int profileUpdate(PlayerDTO dto);
 }

@@ -26,21 +26,21 @@ public class MSService {
 	/**
 	 * 로그인
 	 * */
-	public String login(String username, String userpass){
+	public int login(String username, String userpass){
 		MSDao dao=sqlSession.getMapper(MSDao.class);
 		PlayerDTO playerDTO = dao.login(new PlayerDTO(username, userpass));
 		if(playerDTO==null){
-			return "fail";
+			return -1;
 		}else{
-			return "success";
+			return playerDTO.getPlaySq();
 		}
 	}
 	/**
 	 * 사용자 프로필 조회
 	 * */
-	public PlayerDTO setting(String username) {
+	public PlayerDTO setting(int playSq) {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
-		return dao.setting(username);
+		return dao.setting(playSq);
 	}
 	
 	/**

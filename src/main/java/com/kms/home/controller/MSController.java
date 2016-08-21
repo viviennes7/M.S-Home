@@ -38,8 +38,14 @@ public class MSController {
 	@RequestMapping(value="login", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String login(String username, String userpass, HttpSession session){
-		session.setAttribute("player", username);
-		return service.login(username, userpass);
+		int Sq = service.login(username, userpass);
+		session.setAttribute("player", Sq);
+		System.out.println(Sq);
+		if(Sq!=-1){
+			return "success";
+		}else{
+			return "fail";
+		}
 	}
 	
 	/**
@@ -57,7 +63,7 @@ public class MSController {
 	@RequestMapping("setting")
 	public ModelAndView setting(HttpSession session){
 		ModelAndView modelAndView = new ModelAndView("setting");
-		PlayerDTO playerDTO = service.setting((String)session.getAttribute("player"));
+		PlayerDTO playerDTO = service.setting((int)session.getAttribute("player"));
 		modelAndView.addObject("Player", playerDTO);
 		return modelAndView;  
 	} 
@@ -70,8 +76,6 @@ public class MSController {
 	@RequestMapping(value="profileUpdate", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String profileUpdate(PlayerDTO dto){
-		System.out.println("입장!");
-		System.out.println(dto);
 		service.profileUpdate(dto);
 		return "프로필이 수정되었습니다.";
 	}

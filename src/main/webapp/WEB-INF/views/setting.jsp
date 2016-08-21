@@ -156,7 +156,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Email address</label>
-                                                <input type="email" name="id" class="form-control" placeholder="Email" value="${Player.id}" disabled>
+                                                <input type="email" name="id" id="setting-email" class="form-control" placeholder="${Player.id}" value="${Player.id}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" name="name" id="setting-name" class="form-control" placeholder="Company" value="${Player.name}">
+                                                <input type="text" name="name" id="setting-name" class="form-control" placeholder="${Player.name}" value="${Player.name}">
                                             </div>
                                         </div>
                                     </div>
@@ -191,7 +191,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>BirthDate</label>
-                                                <input type="date" name="birthdate" class="form-control" placeholder="Home Address" value="${Player.birthdate}">
+                                                <input type="date" name="birthdate" class="form-control" value="${Player.birthdate}">
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" name="introduction" id="setting-intro" class="form-control" placeholder="Here can be your description">${Player.introduction}</textarea>
+                                                <textarea rows="5" name="introduction" id="setting-intro" class="form-control" placeholder="${Player.introduction}">${Player.introduction}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -234,7 +234,6 @@
                                 <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
                                 <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
                                 <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-
                             </div>
                         </div>
                     </div>
@@ -242,10 +241,7 @@
                 </div>
             </div>
         </div>
-
-
         <footer class="footer">
-            
                 <p class="copyright pull-right">
                     &copy;<a href="mailto:viviennes7@naver.com">Kim Min-soo</a> Since 2016.07.25 
                 </p>
@@ -281,12 +277,14 @@
     				return;
     			}
     			
+    			/*${Player.name}<br />
+                                         <small>${Player.id}</small>*/
     			$.ajax({
     				url:"profileUpdate",
     				data:$("#setting-form").serialize(),
     				type:"post",
     				success:function(result){
-    					$("#setting-card-name").text($("#setting-name").val());
+    					$("#setting-card-name").html($("#setting-name").val()+"<br><small>"+$("#setting-email").val()+"</small>");
     					$("#setting-card-intro").text($("textarea").val());
     					alert(result);
     				},

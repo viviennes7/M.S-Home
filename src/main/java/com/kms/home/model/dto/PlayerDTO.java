@@ -1,7 +1,7 @@
 package com.kms.home.model.dto;
 
 public class PlayerDTO {
-	private String playSq;
+	private int playSq;
 	private String name;
 	private String id;
 	private String password;
@@ -23,7 +23,7 @@ public class PlayerDTO {
 		this.birthdate = birthdate;
 	}
 	
-	public PlayerDTO(String playSq, String name, String id, String password, String birthdate, String url,
+	public PlayerDTO(int playSq, String name, String id, String password, String birthdate, String url,
 			String introduction) {
 		super();
 		this.playSq = playSq;
@@ -35,10 +35,10 @@ public class PlayerDTO {
 		this.introduction = introduction;
 	}
 
-	public String getPlaySq() {
+	public int getPlaySq() {
 		return playSq;
 	}
-	public void setPlaySq(String playSq) {
+	public void setPlaySq(int playSq) {
 		this.playSq = playSq;
 	}
 	public String getName() {

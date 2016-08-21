@@ -21,8 +21,8 @@
 	select * from player where player_id=#{id} and player_password=#{password}
 </select>
 
-<select id="setting" parameterType="String" resultMap="player">
-	select * from player where player_id=#{username}
+<select id="setting" parameterType="int" resultMap="player">
+	select * from player where player_sq=#{playSq}
 </select>
 
 <update id="profileUpdate" parameterType="playerDTO">
