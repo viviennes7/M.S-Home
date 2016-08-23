@@ -147,9 +147,9 @@
     			<div class="row">
     			<div class="col-md-10 col-md-offset-1">
 	                <div class="embed-responsive embed-responsive-16by9">
-					  	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Nveuarzlq40"></iframe>
+					  	<iframe frameborder="0" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="https://www.youtube.com/embed/FTEV7fg1vao"></iframe>
 					</div>
-					</div>
+				</div>
 				</div>
             </div>
         </div>

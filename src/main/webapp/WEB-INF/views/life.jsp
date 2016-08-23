@@ -200,8 +200,15 @@
 	<script type="text/javascript">
     	$(document).ready(function(){
     		
+			/*모바일일경우*/
+    		/* if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    			 // some code..
+    			 alert("모바일입니다.");
+   			} */
+
+    		
     		/*POST클릭*/
-    		$("#life-write").on("click",function(){
+    		/* $("#life-write").on("click",function(){
     			$.ajax({
     				url:"lifePost",
     				type:"post",
@@ -212,21 +219,22 @@
     					console.log("POST 실패");
     				}
     			})
-    		})
+    		}) */
     		
     		$("#life-upload").fileinput({
     		    uploadUrl: "imageUpload",  
     		    allowedFileExtensions: ["jpg", "png", "gif"],
     		    minImageWidth: 50,
     		    minImageHeight: 50,
-    		    fileActionSettings:{"showUpload":false,"showZoom":false}
+    		    fileActionSettings:{"showUpload":false,"showZoom":false},
+    		    maxFileCount:1
     		});
     		
     		/*업로드 클릭*/
-    		$(".fileinput-upload-button").on("click",function(){
+    		/* $(".fileinput-upload-button").on("click",function(){
 				var param1='${boardSq}';
 				console.log("하하 : " + param1);
-    		});
+    		}); */
     	});
 	</script>
 

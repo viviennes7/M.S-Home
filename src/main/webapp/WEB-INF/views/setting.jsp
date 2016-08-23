@@ -22,15 +22,18 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<c:url value='/resources/css/light-bootstrap-dashboard.css'/>" rel="stylesheet"/>
-
+	
+	<link href="<c:url value='/resources/css/fileinput.css'/>" rel="stylesheet" media="all"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
 	
 	<style type="text/css">
 		#ms-board-search{margin-top:10px;}
+		#setting-profile-img, #setting-bg-img{cursor: pointer;}
 	</style>
 </head>
 <body>
@@ -100,7 +103,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Setting</a>
+                    <a class="navbar-brand" href='<c:url value="/setting"/>'>Setting</a>
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
@@ -214,17 +217,15 @@
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                                <img src='<c:url value="/resources/save/${Player.bgUrl}"/>' id="setting-bg-img"/>
                             </div>
                             <div class="content">
                                 <div class="author">
-                                     <a href="#">
-                                    <img class="avatar border-gray" src="" alt="..."/>
+                                    <img class="avatar border-gray" id="setting-profile-img"src='<c:url value="/resources/save/${Player.url}"/>'/>
 
                                       <h4 class="title" id="setting-card-name">${Player.name}<br />
                                          <small>${Player.id}</small>
                                       </h4>
-                                    </a>
                                 </div>
                                 <p class="description text-center" id="setting-card-intro"> ${Player.introduction}
                                 </p>
@@ -240,6 +241,7 @@
 
                 </div>
             </div>
+            
         </div>
         <footer class="footer">
                 <p class="copyright pull-right">
@@ -247,6 +249,42 @@
                 </p>
             </div>
         </footer>
+
+		<!-- Profile Img Modal -->
+		<div id="setting-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Profile Image</h4>
+		      </div>
+		      <div class="modal-body">
+                     <!-- MINIMUM IMAGE DIMENSIONS -->
+					<input type="file"  id="setting-upload" name="inputdim1[]" multiple class="file-loading" accept="image/*">
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- Background Img Modal -->
+		<div id="setting-bg-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Background Image</h4>
+		      </div>
+		      <div class="modal-body">
+                     <!-- MINIMUM IMAGE DIMENSIONS -->
+					<input type="file"  id="setting-bg-upload" name="inputdim1[]" multiple class="file-loading" accept="image/*">
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
 </div>
 
@@ -266,19 +304,19 @@
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
 	
+	<script src="<c:url value='/resources/js/fileinput.js'/>"></script>
+	
 	<script src="<c:url value='/resources/js/script.js'/>"></script>
 
 	<script type="text/javascript">
 		$(function(){
+			
     		/*프로필 수정*/
     		$("#setting-update").on("click",function(){
     			if($("#setting-password").val()!=$("#setting-confirm").val()){
     				alert("비밀번호가 일치하지 않습니다.");
     				return;
     			}
-    			
-    			/*${Player.name}<br />
-                                         <small>${Player.id}</small>*/
     			$.ajax({
     				url:"profileUpdate",
     				data:$("#setting-form").serialize(),
@@ -293,7 +331,69 @@
     				}
     			}) 
     		})
+    		
+    		/*프로필사진 수정*/
+    		$("#setting-profile-img").on("click",function(){
+    			 /* if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  			     } */
+   				$("#setting-modal").appendTo("body").modal("show");
+    		});
+    		
+    		$("#setting-upload").fileinput({ 
+    		    uploadUrl: "profileImgUpdate",  
+    		    allowedFileExtensions: ["jpg", "png", "gif"],
+    		    minImageWidth: 50,
+    		    minImageHeight: 50,
+    		    fileActionSettings:{"showUpload":false,"showZoom":false},
+    		    maxFileCount:1
+    		}).on('fileuploaded', function(){
+    			$('#setting-upload').fileinput('clear').fileinput('enable');
+    			$("#setting-modal").modal("hide");
+
+    			$.ajax({
+    				url:"profileImgSelect",
+    				type:"post",
+    				data:{"flag":1},
+    				success:function(src){
+    					$("#setting-profile-img").attr("src","/home/resources/save/"+src);
+						
+    				},
+    				error:function(){
+    					console.log("프사조회 오류");
+    				}
+					    				
+    			})
+    		});
+    		
+    		/*배경사진 수정*/
+    		$("#setting-bg-img").on("click",function(){
+    			$("#setting-bg-modal").appendTo("body").modal("show");
+    		});
+    		
+    		$("#setting-bg-upload").fileinput({ 
+    		    uploadUrl: "backgroundImgUpdate",  
+    		    allowedFileExtensions: ["jpg", "png", "gif"],
+    		    minImageWidth: 50,
+    		    minImageHeight: 50,
+    		    fileActionSettings:{"showUpload":false,"showZoom":false},
+    		    maxFileCount:1
+    		}).on('fileuploaded', function(){
+    			$('#setting-bg-upload').fileinput('clear').fileinput('enable');
+    			$("#setting-bg-modal").modal("hide");
+
+    			$.ajax({
+    				url:"profileImgSelect",
+    				type:"post", 
+    				data:{"flag":2},
+    				success:function(src){
+    					$("#setting-bg-img").attr("src","/home/resources/save/"+src);
+    				},
+    				error:function(){
+    					console.log("프사조회 오류");
+    				}
+    			})
+    		});
+    		
     	});
 	</script>
-
 </html>

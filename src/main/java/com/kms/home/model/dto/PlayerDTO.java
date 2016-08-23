@@ -8,14 +8,19 @@ public class PlayerDTO {
 	private String birthdate;
 	private String url;
 	private String introduction;
+	private String bgUrl;
 	
 	public PlayerDTO() {}
-	
+	/**
+	 * 로그인
+	 * */
 	public PlayerDTO(String id, String password){
 		this.id = id;
 		this.password = password;
 	}
-	
+	/**
+	 * 회원가입
+	 * */
 	public PlayerDTO( String name, String id, String password, String birthdate) {
 		this.name = name;
 		this.id = id;
@@ -24,7 +29,7 @@ public class PlayerDTO {
 	}
 	
 	public PlayerDTO(int playSq, String name, String id, String password, String birthdate, String url,
-			String introduction) {
+			String introduction,String bgUrl) {
 		super();
 		this.playSq = playSq;
 		this.name = name;
@@ -33,6 +38,7 @@ public class PlayerDTO {
 		this.birthdate = birthdate;
 		this.url = url;
 		this.introduction = introduction;
+		this.bgUrl = bgUrl;
 	}
 
 	public int getPlaySq() {
@@ -84,10 +90,19 @@ public class PlayerDTO {
 		this.introduction = introduction;
 	}
 
+	public String getBgUrl() {
+		return bgUrl;
+	}
+
+	public void setBgUrl(String bgUrl) {
+		this.bgUrl = bgUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "PlayerDTO [playSq=" + playSq + ", name=" + name + ", id=" + id + ", password=" + password
-				+ ", birthdate=" + birthdate + ", url=" + url + ", introduction=" + introduction + "]";
+				+ ", birthdate=" + birthdate + ", url=" + url + ", introduction=" + introduction + ", bgUrl=" + bgUrl
+				+ "]";
 	}
 	
 }

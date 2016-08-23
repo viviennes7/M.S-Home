@@ -143,7 +143,110 @@
 
 
         <div class="content">
+        	<button type="button" class="btn btn-primary btn-fill" id="visitor-write" >POST</button><br><br>
             <div class="container-fluid">
+                <div class="row">
+                	<div class="col-md-3">
+						<div class="card card-user">
+                            <div class="image">
+                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
+
+                                      <h4 class="title" id="setting-card-name">bbb<br />
+                                         <small>bbb</small>
+                                      </h4>
+                                </div>
+                                <p class="description text-center" id="setting-card-intro"> bbb
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                            </div>
+                        </div>                	
+                	</div>
+                
+                	<div class="col-md-3">
+                		<div class="card card-user">
+                            <div class="image">
+                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
+
+                                      <h4 class="title" id="setting-card-name">aaa<br />
+                                         <small>aaa</small>
+                                      </h4>
+                                </div>
+                                <p class="description text-center" id="setting-card-intro"> aaa
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                            </div>
+                        </div>
+                	</div>
+                
+                	<div class="col-md-3">
+                		<div class="card card-user">
+                            <div class="image">
+                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
+
+                                      <h4 class="title" id="setting-card-name">zzz<br />
+                                         <small>zzz</small>
+                                      </h4>
+                                </div>
+                                <p class="description text-center" id="setting-card-intro"> zzz
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                            </div>
+                        </div>
+                	</div>
+                	<div class="col-md-3">
+                		<div class="card card-user">
+                            <div class="image">
+                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
+
+                                      <h4 class="title" id="setting-card-name">zzz<br />
+                                         <small>zzz</small>
+                                      </h4>
+                                </div>
+                                <p class="description text-center" id="setting-card-intro"> zzz
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
+                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
+                            </div>
+                        </div>
+                	</div>
+                </div>
+                
+                
                 
             </div>
         </div>
@@ -156,7 +259,28 @@
                 </p>
             </div>
         </footer>
-
+        
+		<!-- Modal -->
+		<div id="visitor-modal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Record</h4>
+		      </div>
+		      <div class="modal-body">
+                  <input type="text" id="subject" class="form-control" placeholder="제목"><br>
+                  <textarea rows="5" class="form-control"></textarea>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="life-save">Save</button>
+		        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 </div>
 
 
@@ -182,7 +306,9 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		
+    		$("#visitor-write").on("click",function(){
+  				$("#visitor-modal").appendTo("body").modal("show");
+   			});
     	});
 	</script>
 

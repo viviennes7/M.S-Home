@@ -18,7 +18,8 @@ public class FileUtils {
 
 	
     public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
-    	String filePath = request.getServletContext().getRealPath("/save/");
+    	
+    	String filePath = request.getServletContext().getRealPath("/resources/save/");
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
          
@@ -46,7 +47,6 @@ public class FileUtils {
                  
                 file = new File(filePath + storedFileName);
                 
-                System.out.println(filePath + storedFileName);
                 multipartFile.transferTo(file);
                  
                 listMap = new HashMap<String,Object>();

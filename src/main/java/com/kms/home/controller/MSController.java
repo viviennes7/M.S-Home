@@ -48,6 +48,7 @@ public class MSController {
 	@ResponseBody
 	public String login(String username, String userpass, HttpSession session){
 		int Sq = service.login(username, userpass);
+		session.setMaxInactiveInterval(1800);
 		session.setAttribute("player", Sq);
 		if(Sq!=-1){
 			return "success";
@@ -89,6 +90,71 @@ public class MSController {
 	}
 	
 	/**
+	 * 프로필 사진 업로드
+	 * */
+	@RequestMapping("profileImgUpdate")
+	@ResponseBody
+	public String profileImgUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
+		while(iterator.hasNext()){
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			if(multipartFile.isEmpty() == false){
+				System.out.println("------------- file start -------------");
+				System.out.println("name : "+multipartFile.getName());
+				System.out.println("filename : "+multipartFile.getOriginalFilename());
+				System.out.println("size : "+multipartFile.getSize());
+				System.out.println("-------------- file end --------------\n");
+			}
+		}
+		service.profileImgUpdate(commandMap.getMap(), multipartHttpServletRequest,1);
+		return "{\"result\":true}";
+	}
+	
+	/**
+	 * 프로필,배경사진 조회
+	 * */
+	
+	@RequestMapping("profileImgSelect")
+	@ResponseBody
+	public String profileImgSelect(HttpSession session, int flag){
+		return service.profileImgSelect((int)session.getAttribute("player"),flag);
+	}
+	
+	/**
+	 * 배경사진 업로드
+	 * */
+	@RequestMapping("backgroundImgUpdate")
+	@ResponseBody
+	public String backgroundImgUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
+		while(iterator.hasNext()){
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			if(multipartFile.isEmpty() == false){
+				System.out.println("------------- file start -------------");
+				System.out.println("name : "+multipartFile.getName());
+				System.out.println("filename : "+multipartFile.getOriginalFilename());
+				System.out.println("size : "+multipartFile.getSize());
+				System.out.println("-------------- file end --------------\n");
+			}
+		}
+		service.profileImgUpdate(commandMap.getMap(), multipartHttpServletRequest,2);
+		return "{\"result\":true}";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
 	 * Post버튼 클릭
 	 * (SQ)
 	 * */
@@ -101,27 +167,4 @@ public class MSController {
 	}
 	
 	
-	/**
-	 * life 사진 업로드
-	 * */
-	@RequestMapping("imageUpload")
-	@ResponseBody
-	public String imageUpload(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception{
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-	    Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-	    MultipartFile multipartFile = null;
-	    while(iterator.hasNext()){
-	        multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-	        if(multipartFile.isEmpty() == false){
-	            System.out.println("------------- file start -------------");
-	            System.out.println("name : "+multipartFile.getName());
-	            System.out.println("filename : "+multipartFile.getOriginalFilename());
-	            System.out.println("size : "+multipartFile.getSize());
-	            System.out.println("-------------- file end --------------\n");
-	        }
-	    }
-		
-	    service.imageUpload(commandMap.getMap(), multipartHttpServletRequest, (int)request.getSession().getAttribute("boardSq"));
-		return "{\"result\":true}";
-	}
 }
