@@ -28,4 +28,11 @@
 <update id="profileUpdate" parameterType="playerDTO">
 	update player set player_name=#{name}, player_password=#{password}, player_birthdate=#{birthdate}, player_introduction=#{introduction}
 </update> 
+
+<select id="lifePost" resultType="int">
+	select life_board_sq.nextval from dual
+</select>
 </mapper>
+
+
+

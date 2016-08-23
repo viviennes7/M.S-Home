@@ -144,10 +144,15 @@
 
         <div class="content">
             <div class="container-fluid">
-                
+    			<div class="row">
+    			<div class="col-md-10 col-md-offset-1">
+	                <div class="embed-responsive embed-responsive-16by9">
+					  	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Nveuarzlq40"></iframe>
+					</div>
+					</div>
+				</div>
             </div>
         </div>
-
 
         <footer class="footer">
             

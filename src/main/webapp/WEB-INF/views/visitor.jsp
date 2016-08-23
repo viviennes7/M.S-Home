@@ -50,7 +50,7 @@
             </div>
 
             <ul class="nav" id="ms-nav">
-                <li class="active">
+                <li>
                     <a href='<c:url value="/main"/>'>
                         <i class="pe-7s-user"></i>
                         <p>Profile</p>
@@ -68,7 +68,7 @@
                         <p>Portfolio</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href='<c:url value="/visitor"/>'>
                         <i class="pe-7s-users"></i>
                         <p>Visitor</p>
@@ -100,7 +100,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Profile</a>
+                    <a class="navbar-brand" href="#">Visitor</a>
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">

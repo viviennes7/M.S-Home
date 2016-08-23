@@ -166,21 +166,18 @@
 			        <h4 class="modal-title">Upload</h4>
 			      </div>
 			      <div class="modal-body">
-                      <input type="text" id="subject" class="form-control" placeholder="제목">
+                      <input type="text" id="subject" class="form-control" placeholder="제목"><br>
                       <!-- MINIMUM IMAGE DIMENSIONS -->
-						<input id="input-dim-1" name="inputdim1[]" type="file" multiple class="file-loading" accept="image/*">
+						<input type="file"  id="life-upload" name="inputdim1[]" multiple class="file-loading" accept="image/*">
 			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal">Save</button>
+			     <!--  <div class="modal-footer">
+			        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="life-save">Save</button>
 			        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
-			      </div>
+			      </div> -->
 			    </div>
-			
 			  </div>
 		</div>
-        
 	</div>
-
 </body>
 
     <!--   Core JS Files   -->
@@ -202,11 +199,33 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		$("#input-dim-1").fileinput({
-    		    uploadUrl: "/file-upload-batch/2",
+    		
+    		/*POST클릭*/
+    		$("#life-write").on("click",function(){
+    			$.ajax({
+    				url:"lifePost",
+    				type:"post",
+    				success:function(sq){
+    					console.log(sq);
+    				},
+    				error:function(){
+    					console.log("POST 실패");
+    				}
+    			})
+    		})
+    		
+    		$("#life-upload").fileinput({
+    		    uploadUrl: "imageUpload",  
     		    allowedFileExtensions: ["jpg", "png", "gif"],
     		    minImageWidth: 50,
-    		    minImageHeight: 50
+    		    minImageHeight: 50,
+    		    fileActionSettings:{"showUpload":false,"showZoom":false}
+    		});
+    		
+    		/*업로드 클릭*/
+    		$(".fileinput-upload-button").on("click",function(){
+				var param1='${boardSq}';
+				console.log("하하 : " + param1);
     		});
     	});
 	</script>

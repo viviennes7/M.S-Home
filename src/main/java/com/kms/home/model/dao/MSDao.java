@@ -9,4 +9,6 @@ public interface MSDao {
 	public PlayerDTO setting(int playSq);
 	
 	public int profileUpdate(PlayerDTO dto);
+	
+	public int lifePost();
 }
