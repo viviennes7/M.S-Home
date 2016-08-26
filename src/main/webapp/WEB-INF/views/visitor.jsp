@@ -145,7 +145,7 @@
         <div class="content" >
         	<button type="button" class="btn btn-primary btn-fill" id="visitor-write" >POST</button><br><br>
             <div class="container-fluid" id="visitor-container">
-            <div class="row">
+            <!-- <div class="row"> -->
 	            <c:forEach items="${visitors}" var="visitor" varStatus="index"> 
 	            	<div class="col-md-3">
 							<div class="card card-user">
@@ -156,7 +156,7 @@
 	                                <div class="author">
 	                                    <img class="avatar border-gray" src='<c:url value="/resources/save/${visitor.playerDTO.url }"/>'/>
 	
-	                                      <h4 class="title">${visitor.playerDTO.id}<br />
+	                                      <h4 class="title">${visitor.playerDTO.name}<br />
 	                                         <small>${visitor.subject}</small>
 	                                      </h4>
 	                                </div>
@@ -170,7 +170,7 @@
 	                        </div>                	
 	                	</div>
 	            </c:forEach>
-	           </div>
+	          <!--  </div> -->
             </div>
         </div>
         <footer class="footer">
@@ -235,15 +235,28 @@
     			$.ajax({
     				url:"visitorInsert",
     				type:"post",
-    				dataType:"text",
+    				dataType:"json",
     				data:$("#visitor-modal-form").serialize(),
     				success:function(data){
     					console.log(data);
+    					str="";
+    					str+="<div class='col-md-3'>";
+						str+="<div class='card card-user'>";
+						str+="<div class='image'>";
+						str+="<img src='resources/save/"+data.playerDTO.bgUrl+"'/>";
+						str+="</div>";
+						str+="<div class='content'>";
+						str+="<div class='author'>";
+						str+="<img class='avatar border-gray' src='resources/save/"+data.playerDTO.url+"'/>";
+						str+="<h4 class='title'>"+data.playerDTO.name+"<br/>";
+						str+="<small>"+data.subject+"</small></h4></div>";
+						str+="<p class='description text-center'>"+data.content+"</p></div>";
+						str+="<hr><div class='text-right'>"+data.time+"</div></div></div>";
+						$("#visitor-container").prepend(str);
     				},
     				error:function(){
     					console.log("방명록쓰기 오류");
     				}
-    				
     			})
     		})
     		
@@ -252,42 +265,50 @@
     		/*스크롤 페이징*/
     		$("#visitor-scroll-page").scroll(function() {
 		    	if($(this).scrollTop() + $(this).innerHeight() +1 >= $(this)[0].scrollHeight) {
-		    		pageLoaded++
-					$.ajax({
-						url:"visitorSelect",
-						type:"post",
-						dataType:"json",
-						data:"page="+pageLoaded,
-						success:function(data){
-							console.log("길이 : " + data.length);
-							if(data.length==0){ 
-								pageLoaded--
-								return;
-							}
-							var str="<div class='row'>";
-							$.each(data,function(index,item){
-								str+="<div class='col-md-3'>";
-								str+="<div class='card card-user'>";
-								str+="<div class='image'>";
-								str+="<img src='/resources/'/>";
-								str+="</div>";
-								str+="<div class='content'>";
-								str+="<div class='author'>";
-								str+="<img class='avatar border-gray' src=''/>";
-								str+="<h4 class='title'>${visitor.playerDTO.id}<br />";
-								str+="<small>${visitor.subject}</small></h4></div>";
-								str+="<p class='description text-center'> ${visitor.content }</p></div>";
-								str+="<hr><div class='text-right'>${visitor.time }</div></div></div>";
-							})
-							str+="</div>";
-							$("#visitor-container").append(str);
-						},
-						error:function(){
-							console.log("스크롤 페이징 오류");
-						}
-					})    		    	
+		    		visitorScroll();
     		    } 
     		});
+    		
+    		/*스크롤페이징*/
+    		var visitorScroll = function(){
+    			pageLoaded++
+				$.ajax({
+					url:"visitorSelect",
+					type:"post",
+					dataType:"json",
+					data:"page="+pageLoaded,
+					success:function(data){
+						console.log(data);
+						if(data.length==0){ 
+							pageLoaded--
+							return;
+						}
+						/* var str="<div class='row'>"; */
+						var str="";
+						$.each(data,function(index,item){
+							str+="<div class='col-md-3'>";
+							str+="<div class='card card-user'>";
+							str+="<div class='image'>";
+							str+="<img src='resources/save/"+item.playerDTO.bgUrl+"'/>";
+							str+="</div>";
+							str+="<div class='content'>";
+							str+="<div class='author'>";
+							str+="<img class='avatar border-gray' src='resources/save/"+item.playerDTO.url+"'/>";
+							str+="<h4 class='title'>"+item.playerDTO.name+"<br/>";
+							str+="<small>"+item.subject+"</small></h4></div>";
+							str+="<p class='description text-center'>"+item.content+"</p></div>";
+							str+="<hr><div class='text-right'>"+item.time+"</div></div></div>";
+						})
+						/* str+="</div>"; */
+						$("#visitor-container").append(str);
+					},
+					error:function(){
+						console.log("스크롤 페이징 오류");
+					}
+				})    		
+    		}
+    		
+    		visitorScroll();
     		
     		
     	})

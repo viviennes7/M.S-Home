@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.storeconfig.GlobalNamingResourcesSF;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -156,7 +157,9 @@ public class MSController {
 	@ResponseBody
 	public String visitorInsert(VisitorDTO visitor,HttpSession session){
 		visitor.setPlaySq((int)session.getAttribute("player"));
-		return service.visitorInsert(visitor);
+		Gson gson = new Gson();
+		String json=gson.toJson(service.visitorInsert(visitor));
+		return json;
 		
 	}
 	
@@ -173,7 +176,7 @@ public class MSController {
 	}
 	
 	/**
-	 * 방명록 조회(최초)
+	 * 방명록 스크롤 페이징
 	 * */
 	@RequestMapping(value="visitorSelect", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody

@@ -54,6 +54,10 @@ public interface MSDao {
 	
 	public int visitorInsert(VisitorDTO visitorDTO);
 	
+	/**
+	 * 방금 쓴 방명록 조회
+	 * */
+	public VisitorDTO visitorSelectOne();
 	
 	/**
 	 * 방명록 조회

@@ -97,12 +97,12 @@ public class MSService {
 	/**
 	 * 방명록 쓰기
 	 * */
-	public String visitorInsert(VisitorDTO visitor) {
+	public VisitorDTO visitorInsert(VisitorDTO visitor) {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		if(dao.visitorInsert(visitor)==1){
-			return "success";
+			return dao.visitorSelectOne();
 		}else{
-			return "fail";
+			return null;
 		}
 	}
 	
