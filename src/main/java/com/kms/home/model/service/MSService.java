@@ -1,5 +1,6 @@
 package com.kms.home.model.service;
 
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kms.home.model.dao.MSDao;
 import com.kms.home.model.dto.PlayerDTO;
+import com.kms.home.model.dto.VisitorDTO;
 import com.kms.home.util.FileUtils;
 @Service
 public class MSService {
@@ -81,7 +83,7 @@ public class MSService {
 	
 	
 	/**
-	 * 프로필 사진 조회
+	 * 프로필or배경 사진 조회
 	 * */
 	public String profileImgSelect(int playSq,int flag) {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
@@ -91,6 +93,36 @@ public class MSService {
 			return dao.backgroundImgSelect(playSq);
 		}
 	}
+	
+	/**
+	 * 방명록 쓰기
+	 * */
+	public String visitorInsert(VisitorDTO visitor) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		if(dao.visitorInsert(visitor)==1){
+			return "success";
+		}else{
+			return "fail";
+		}
+	}
+	
+	/**
+	 * 방명록조회
+	 * */
+	public List<VisitorDTO> visitorSelect(int page) {
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("start", page*4-3);
+		map.put("end", page*4);
+
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		return dao.visitorSelect(map);
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -106,6 +138,8 @@ public class MSService {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		return dao.lifePost();
 	}
+
+
 
 	
 	

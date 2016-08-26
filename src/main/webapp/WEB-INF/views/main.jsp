@@ -74,12 +74,12 @@
                         <p>Visitor</p>
                     </a>
                 </li>
-                <li>
+                <%-- <li>
                     <a href='<c:url value="/maps"/>'>
                         <i class="pe-7s-map-marker"></i>
                         <p>Maps</p>
                     </a>
-                </li>
+                </li> --%>
                 <li>
                     <a href='<c:url value="/setting"/>'>
                         <i class="pe-7s-settings"></i>

@@ -50,7 +50,7 @@
             </div>
 
             <ul class="nav" id="ms-nav">
-                <li class="active">
+                <li>
                     <a href='<c:url value="/main"/>'>
                         <i class="pe-7s-user"></i>
                         <p>Profile</p>
@@ -62,7 +62,7 @@
                         <p>Life</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href='<c:url value="/portfolio"/>'>
                         <i class="pe-7s-note2"></i>
                         <p>Portfolio</p>
@@ -74,12 +74,12 @@
                         <p>Visitor</p>
                     </a>
                 </li>
-                <li>
+                <%-- <li>
                     <a href='<c:url value="/maps"/>'>
                         <i class="pe-7s-map-marker"></i>
                         <p>Maps</p>
                     </a>
-                </li>
+                </li> --%>
                 <li>
                     <a href='<c:url value="/setting"/>'>
                         <i class="pe-7s-settings"></i>

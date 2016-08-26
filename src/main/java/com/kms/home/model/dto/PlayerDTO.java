@@ -9,8 +9,10 @@ public class PlayerDTO {
 	private String url;
 	private String introduction;
 	private String bgUrl;
+	/*private VisitorDTO visitorDTO;*/
 	
 	public PlayerDTO() {}
+	
 	/**
 	 * 로그인
 	 * */
@@ -104,5 +106,9 @@ public class PlayerDTO {
 				+ ", birthdate=" + birthdate + ", url=" + url + ", introduction=" + introduction + ", bgUrl=" + bgUrl
 				+ "]";
 	}
+
+	
+	
+	
 	
 }

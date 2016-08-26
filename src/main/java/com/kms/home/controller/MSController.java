@@ -1,6 +1,7 @@
 package com.kms.home.controller;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kms.home.model.dto.PlayerDTO;
+import com.kms.home.model.dto.VisitorDTO;
 import com.kms.home.model.service.MSService;
 import com.kms.home.util.CommandMap;
 
@@ -32,6 +35,7 @@ public class MSController {
 	 * */
 	@RequestMapping("{url}")
 	public void call(HttpSession session) {}
+	
 	
 	/**
 	 * 로그인페이지이동
@@ -145,7 +149,42 @@ public class MSController {
 		return "{\"result\":true}";
 	}
 	
+	/**
+	 * 방명록쓰기
+	 * */
+	@RequestMapping(value="visitorInsert", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String visitorInsert(VisitorDTO visitor,HttpSession session){
+		visitor.setPlaySq((int)session.getAttribute("player"));
+		return service.visitorInsert(visitor);
+		
+	}
 	
+	
+	/**
+	 * 방명록 조회(최초)
+	 * */
+	@RequestMapping(value="visitor", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	public ModelAndView visitorFirst(){
+		List<VisitorDTO> visitor = service.visitorSelect(1);
+		ModelAndView mv = new ModelAndView("visitor");
+		mv.addObject("visitors", visitor);
+		return mv;
+	}
+	
+	/**
+	 * 방명록 조회(최초)
+	 * */
+	@RequestMapping(value="visitorSelect", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String visitorSelect(int page){
+		List<VisitorDTO> visitor = service.visitorSelect(page);
+		System.out.println("페이지 : " + page);
+		Gson gson = new Gson();
+		String json = gson.toJson(visitor);
+		System.out.println(json);
+		return json;
+	}
 	
 	
 	

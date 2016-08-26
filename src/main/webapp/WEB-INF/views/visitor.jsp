@@ -74,12 +74,12 @@
                         <p>Visitor</p>
                     </a>
                 </li>
-                <li>
+                <%-- <li>
                     <a href='<c:url value="/maps"/>'>
                         <i class="pe-7s-map-marker"></i>
                         <p>Maps</p>
                     </a>
-                </li>
+                </li> --%>
                 <li>
                     <a href='<c:url value="/setting"/>'>
                         <i class="pe-7s-settings"></i>
@@ -90,7 +90,7 @@
     	</div>
     </div>
 
-    <div class="main-panel">
+    <div class="main-panel" id="visitor-scroll-page">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
             	<div class="navbar-header">
@@ -142,116 +142,37 @@
         </nav>
 
 
-        <div class="content">
+        <div class="content" >
         	<button type="button" class="btn btn-primary btn-fill" id="visitor-write" >POST</button><br><br>
-            <div class="container-fluid">
-                <div class="row">
-                	<div class="col-md-3">
-						<div class="card card-user">
-                            <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
-                            </div>
-                            <div class="content">
-                                <div class="author">
-                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
-
-                                      <h4 class="title" id="setting-card-name">bbb<br />
-                                         <small>bbb</small>
-                                      </h4>
-                                </div>
-                                <p class="description text-center" id="setting-card-intro"> bbb
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-                            </div>
-                        </div>                	
-                	</div>
-                
-                	<div class="col-md-3">
-                		<div class="card card-user">
-                            <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
-                            </div>
-                            <div class="content">
-                                <div class="author">
-                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
-
-                                      <h4 class="title" id="setting-card-name">aaa<br />
-                                         <small>aaa</small>
-                                      </h4>
-                                </div>
-                                <p class="description text-center" id="setting-card-intro"> aaa
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-                            </div>
-                        </div>
-                	</div>
-                
-                	<div class="col-md-3">
-                		<div class="card card-user">
-                            <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
-                            </div>
-                            <div class="content">
-                                <div class="author">
-                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
-
-                                      <h4 class="title" id="setting-card-name">zzz<br />
-                                         <small>zzz</small>
-                                      </h4>
-                                </div>
-                                <p class="description text-center" id="setting-card-intro"> zzz
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-                            </div>
-                        </div>
-                	</div>
-                	<div class="col-md-3">
-                		<div class="card card-user">
-                            <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
-                            </div>
-                            <div class="content">
-                                <div class="author">
-                                    <img class="avatar border-gray" id="setting-profileImg"src='<c:url value="/resources/save/${Player.url}"/>'/>
-
-                                      <h4 class="title" id="setting-card-name">zzz<br />
-                                         <small>zzz</small>
-                                      </h4>
-                                </div>
-                                <p class="description text-center" id="setting-card-intro"> zzz
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-                            </div>
-                        </div>
-                	</div>
-                </div>
-                
-                
-                
+            <div class="container-fluid" id="visitor-container">
+            <div class="row">
+	            <c:forEach items="${visitors}" var="visitor" varStatus="index"> 
+	            	<div class="col-md-3">
+							<div class="card card-user">
+	                            <div class="image">
+	                                <img src='<c:url value="/resources/save/${visitor.playerDTO.bgUrl }"/>'/>
+	                            </div>
+	                            <div class="content">
+	                                <div class="author">
+	                                    <img class="avatar border-gray" src='<c:url value="/resources/save/${visitor.playerDTO.url }"/>'/>
+	
+	                                      <h4 class="title">${visitor.playerDTO.id}<br />
+	                                         <small>${visitor.subject}</small>
+	                                      </h4>
+	                                </div>
+	                                <p class="description text-center" > ${visitor.content }
+	                                </p>
+	                            </div>
+	                            <hr>
+	                            <div class="text-right">
+									${visitor.time }
+	                            </div>
+	                        </div>                	
+	                	</div>
+	            </c:forEach>
+	           </div>
             </div>
         </div>
-
-
         <footer class="footer">
             
                 <p class="copyright pull-right">
@@ -259,7 +180,6 @@
                 </p>
             </div>
         </footer>
-        
 		<!-- Modal -->
 		<div id="visitor-modal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
@@ -271,11 +191,13 @@
 		        <h4 class="modal-title">Record</h4>
 		      </div>
 		      <div class="modal-body">
-                  <input type="text" id="subject" class="form-control" placeholder="제목"><br>
-                  <textarea rows="5" class="form-control"></textarea>
+		      	<form id="visitor-modal-form">
+                  <input type="text" id="visitor-subject" name="subject" class="form-control" placeholder="제목"><br>
+                  <textarea rows="5" name="content" class="form-control" placeholder="내용을 입력해 주세"></textarea>
+                </form>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="life-save">Save</button>
+		        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="visitor-save">Save</button>
 		        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
@@ -296,9 +218,6 @@
     <!--  Notifications Plugin    -->
     <script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
 	
@@ -309,7 +228,69 @@
     		$("#visitor-write").on("click",function(){
   				$("#visitor-modal").appendTo("body").modal("show");
    			});
-    	});
-	</script>
-
+    		
+    		
+    		/*방명록쓰기*/
+    		$("#visitor-save").on("click",function(){
+    			$.ajax({
+    				url:"visitorInsert",
+    				type:"post",
+    				dataType:"text",
+    				data:$("#visitor-modal-form").serialize(),
+    				success:function(data){
+    					console.log(data);
+    				},
+    				error:function(){
+    					console.log("방명록쓰기 오류");
+    				}
+    				
+    			})
+    		})
+    		
+    		var pageLoaded = 1; //현재 페이지
+    		
+    		/*스크롤 페이징*/
+    		$("#visitor-scroll-page").scroll(function() {
+		    	if($(this).scrollTop() + $(this).innerHeight() +1 >= $(this)[0].scrollHeight) {
+		    		pageLoaded++
+					$.ajax({
+						url:"visitorSelect",
+						type:"post",
+						dataType:"json",
+						data:"page="+pageLoaded,
+						success:function(data){
+							console.log("길이 : " + data.length);
+							if(data.length==0){ 
+								pageLoaded--
+								return;
+							}
+							var str="<div class='row'>";
+							$.each(data,function(index,item){
+								str+="<div class='col-md-3'>";
+								str+="<div class='card card-user'>";
+								str+="<div class='image'>";
+								str+="<img src='/resources/'/>";
+								str+="</div>";
+								str+="<div class='content'>";
+								str+="<div class='author'>";
+								str+="<img class='avatar border-gray' src=''/>";
+								str+="<h4 class='title'>${visitor.playerDTO.id}<br />";
+								str+="<small>${visitor.subject}</small></h4></div>";
+								str+="<p class='description text-center'> ${visitor.content }</p></div>";
+								str+="<hr><div class='text-right'>${visitor.time }</div></div></div>";
+							})
+							str+="</div>";
+							$("#visitor-container").append(str);
+						},
+						error:function(){
+							console.log("스크롤 페이징 오류");
+						}
+					})    		    	
+    		    } 
+    		});
+    		
+    		
+    	})
+ 	</script>
+    		
 </html>

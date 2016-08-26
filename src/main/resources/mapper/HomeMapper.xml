@@ -14,6 +14,23 @@
 	<result column="player_bg_url" property="bgUrl"/>
 </resultMap>
 
+<resultMap type="visitorDTO" id="visitor">
+	<id column="visitor_sq" property="visitorSq"/> 
+	<result column="visitor_subject" property="subject"/>
+	<result column="visitor_content" property="content"/>
+	<result column="visitor_time" property="time"/>
+	<association property="playerDTO" javaType="playerDTO">
+		<id column="player_sq" property="playSq"/>
+		<result column="player_name" property="name"/>
+		<result column="player_id" property="id"/>
+		<result column="player_password" property="password"/>
+		<result column="player_birthdate" property="birthdate"/>
+		<result column="player_url" property="url"/>
+		<result column="player_introduction" property="introduction"/>
+		<result column="player_bg_url" property="bgUrl"/>
+	</association>
+</resultMap>
+
 <!-- 회원가입 -->
 <insert id="join" parameterType="playerDTO" >
 	insert into player(PLAYER_SQ, PLAYER_NAME, PLAYER_ID, PLAYER_PASSWORD, PLAYER_BIRTHDATE) values(player_sq.nextval, #{name}, #{id}, #{password}, #{birthdate} )
@@ -54,6 +71,27 @@
 <select id="backgroundImgSelect" parameterType="int" resultType="String">
 	select player_bg_url from player where player_sq=${value}
 </select>
+
+
+<!-- 방명록 쓰기 -->
+<insert id="visitorInsert" parameterType="visitorDTO">
+	insert into visitor(visitor_sq, player_sq, visitor_subject, visitor_content) values(visitor_sq.nextval,#{playSq},#{subject},#{content})
+</insert>
+
+
+
+<!-- 방명록 조회 -->
+<select id="visitorSelect" parameterType="hashmap" resultMap="visitor">
+	select * from 
+	( select rownum as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
+	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq) 
+	WHERE rnum<![CDATA[ > ]]>= #{start} AND rnum <![CDATA[ < ]]>= #{end} order by visitor_sq desc
+</select>
+
+
+
+
+
 
 
 
