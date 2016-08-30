@@ -22,7 +22,8 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<c:url value='/resources/css/light-bootstrap-dashboard.css'/>" rel="stylesheet"/>
-
+	
+	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -71,7 +72,16 @@
                 <li class="active">
                     <a href='<c:url value="/visitor"/>'>
                         <i class="pe-7s-users"></i>
-                        <p>Visitor</p>
+                        <p >Visitor</p>
+                        <!-- <div class="dropup"> -->
+                       	<span class="caret" style="float:right"></span>
+                       	<!-- </div> -->
+                    </a>
+                </li>
+                
+                <li id="visitor-write">
+                    <a href='#'>
+                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
                     </a>
                 </li>
                 <%-- <li>
@@ -100,7 +110,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Visitor</a>
+                    <a class="navbar-brand" href='<c:url value="/visitor"/>'>Visitor</a>
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
@@ -143,7 +153,7 @@
 
 
         <div class="content" >
-        	<button type="button" class="btn btn-primary btn-fill" id="visitor-write" >POST</button><br><br>
+        	<!-- <button type="button" class="btn btn-primary btn-fill" id="visitor-write" >POST</button><br><br> -->
             <div class="container-fluid" id="visitor-container">
             <!-- <div class="row"> -->
 	            <c:forEach items="${visitors}" var="visitor" varStatus="index"> 
@@ -193,7 +203,7 @@
 		      <div class="modal-body">
 		      	<form id="visitor-modal-form">
                   <input type="text" id="visitor-subject" name="subject" class="form-control" placeholder="제목"><br>
-                  <textarea rows="5" name="content" class="form-control" placeholder="내용을 입력해 주세"></textarea>
+                  <textarea rows="5" name="content" class="form-control" placeholder="방명록"></textarea>
                 </form>
 		      </div>
 		      <div class="modal-footer">
@@ -201,6 +211,7 @@
 		        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
+		    
 		  </div>
 		</div>
 </div>
@@ -227,6 +238,7 @@
     	$(document).ready(function(){
     		$("#visitor-write").on("click",function(){
   				$("#visitor-modal").appendTo("body").modal("show");
+  				return false;
    			});
     		
     		
@@ -260,7 +272,8 @@
     			})
     		})
     		
-    		var pageLoaded = 1; //현재 페이지
+    		//현재 페이지
+    		var pageLoaded = 1; 
     		
     		/*스크롤 페이징*/
     		$("#visitor-scroll-page").scroll(function() {

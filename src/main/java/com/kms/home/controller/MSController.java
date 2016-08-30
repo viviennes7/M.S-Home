@@ -182,7 +182,6 @@ public class MSController {
 	@ResponseBody
 	public String visitorSelect(int page){
 		List<VisitorDTO> visitor = service.visitorSelect(page);
-		System.out.println("페이지 : " + page);
 		Gson gson = new Gson();
 		String json = gson.toJson(visitor);
 		System.out.println(json);

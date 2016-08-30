@@ -22,7 +22,8 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<c:url value='/resources/css/light-bootstrap-dashboard.css'/>" rel="stylesheet"/>
-
+	
+	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -163,7 +164,6 @@
         </footer>
 
 </div>
-
 
 </body>
 

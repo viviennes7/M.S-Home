@@ -22,21 +22,18 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<c:url value='/resources/css/light-bootstrap-dashboard.css'/>" rel="stylesheet"/>
-    
-    <link href="<c:url value='/resources/css/fileinput.css'/>" rel="stylesheet" media="all"/>
 
 	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet"/>
-
+	
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
 	
 	<style type="text/css">
 		
 	</style>
-</head> 
+</head>
 <body>
 
 <div class="wrapper">
@@ -60,18 +57,25 @@
                         <p>Profile</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href='<c:url value="/life"/>'>
                         <i class="pe-7s-science"></i>
                         <p>Life</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href='<c:url value="/portfolio"/>'>
                         <i class="pe-7s-note2"></i>
-                        <p>Portfolio</p>
+                        <p>Portfolio</p><span class="caret" style="float:right"></span>
                     </a>
                 </li>
+                
+                <li id="portfolio-write" class="active">
+                    <a href='<c:url value="/portfolioWrite"/>'>
+                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
+                    </a>
+                </li>
+                
                 <li>
                     <a href='<c:url value="/visitor"/>'>
                         <i class="pe-7s-users"></i>
@@ -104,7 +108,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Life</a>
+                    <a class="navbar-brand" href='<c:url value="/portfolio"/>'>Portfolio</a>
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
@@ -122,7 +126,7 @@
                               </ul>
                         </li>
                         <li>
-                           <a href="">
+                            <a href="">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -138,47 +142,124 @@
 
 
         <div class="content">
-        <button type="button" class="btn btn-primary btn-fill" id="life-write" data-toggle="modal" data-target="#uploadModal">POST</button><br><br>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6">
-                    </div> 
-                    
-                    <div class="col-md-6">
-                    	</div>
-                    </div>
-                </div>
+	    			<div class="col-md-12">
+	    				<div style="background-color: white; padding: 15px; border-radius: 8px">
+	    					<div class="container-fluid">
+	    						<div class="row">
+	    							<div class="col-md-12">
+	               						<label>제목</label>
+										<input type="text" class="form-control" id="" name="" placeholder="제목"><br>
+									</div>
+								</div>
+								
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>소제목1</label>
+	               					</div>
+               					</div>
+								<div class="row">
+	               					<div class="col-sm-3">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+								</div><br>
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>소제목2</label>
+	               					</div>
+               					</div>
+								<div class="row">
+	               					<div class="col-sm-3">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+								</div><br>
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>소제목3</label>
+	               					</div>
+               					</div>
+								<div class="row">
+	               					<div class="col-sm-3">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+								</div><br>
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>소제목4</label>
+	               					</div>
+               					</div>
+								<div class="row">
+	               					<div class="col-sm-3">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+								</div><br>
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>소제목5</label>
+	               					</div>
+               					</div>
+								<div class="row">
+	               					<div class="col-sm-3">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" id="" name="" placeholder="제목">
+									</div>
+								</div><br>
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>내용</label>
+	               					</div>
+               					</div>
+               					
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="form-control" rows="80" >
+												
+											</textarea>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+	    				</div>
+	    			</div>
+    			</div>
             </div>
+        </div>
+
+
         <footer class="footer">
+            
                 <p class="copyright pull-right">
                     &copy;<a href="mailto:viviennes7@naver.com">Kim Min-soo</a> Since 2016.07.25 
                 </p>
             </div>
         </footer>
-        
-        <!-- Modal -->
-			<div id="uploadModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Upload</h4>
-			      </div>
-			      <div class="modal-body">
-                      <input type="text" id="subject" class="form-control" placeholder="제목"><br>
-                      <!-- MINIMUM IMAGE DIMENSIONS -->
-						<input type="file"  id="life-upload" name="inputdim1[]" multiple class="file-loading" accept="image/*">
-			      </div>
-			     <!--  <div class="modal-footer">
-			        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="life-save">Save</button>
-			        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
-			      </div> -->
-			    </div>
-			  </div>
-		</div>
-	</div>
+
+</div>
+
+
 </body>
 
     <!--   Core JS Files   -->
@@ -191,51 +272,17 @@
     <!--  Notifications Plugin    -->
     <script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
 
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
-	
-	<script src="<c:url value='/resources/js/fileinput.js'/>"></script>
 	
 	<script src="<c:url value='/resources/js/script.js'/>"></script>
 
 	<script type="text/javascript">
     	$(document).ready(function(){
     		
-			/*모바일일경우*/
-    		/* if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    			 // some code..
-    			 alert("모바일입니다.");
-   			} */
-
-    		
-    		/*POST클릭*/
-    		/* $("#life-write").on("click",function(){
-    			$.ajax({
-    				url:"lifePost",
-    				type:"post",
-    				success:function(sq){
-    					console.log(sq);
-    				},
-    				error:function(){
-    					console.log("POST 실패");
-    				}
-    			})
-    		}) */
-    		
-    		$("#life-upload").fileinput({
-    		    uploadUrl: "imageUpload",  
-    		    allowedFileExtensions: ["jpg", "png", "gif"],
-    		    minImageWidth: 50,
-    		    minImageHeight: 50,
-    		    fileActionSettings:{"showUpload":false,"showZoom":false},
-    		    maxFileCount:1
-    		});
-    		
-    		/*업로드 클릭*/
-    		/* $(".fileinput-upload-button").on("click",function(){
-				var param1='${boardSq}';
-				console.log("하하 : " + param1);
-    		}); */
     	});
 	</script>
 
