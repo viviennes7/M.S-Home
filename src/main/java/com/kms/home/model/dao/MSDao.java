@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.kms.home.model.dto.PlayerDTO;
+import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
 import com.sun.org.apache.bcel.internal.classfile.Visitor;
+import com.sun.xml.internal.ws.wsdl.writer.document.Port;
 public interface MSDao {
 	/**
 	 * 회원가입
@@ -63,6 +65,24 @@ public interface MSDao {
 	 * 방명록 조회
 	 * */
 	public List<VisitorDTO> visitorSelect(Map<String, Integer> map);
+	
+	/**
+	 * 포트폴리오 조회
+	 * */
+	public List<PortfolioDTO> portfolio();
+	
+	/**
+	 * 포트폴리오 저장
+	 * */
+	public int portfolioSave(PortfolioDTO dto);
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

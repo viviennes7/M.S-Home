@@ -19,7 +19,7 @@ public class FileUtils {
 	
     public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
     	
-    	String filePath = request.getServletContext().getRealPath("/resources/save/");
+    	String filePath = request.getServletContext().getRealPath("/resources/img/");
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
          

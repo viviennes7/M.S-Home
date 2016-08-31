@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kms.home.model.dao.MSDao;
 import com.kms.home.model.dto.PlayerDTO;
+import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
 import com.kms.home.util.FileUtils;
 @Service
@@ -119,8 +120,27 @@ public class MSService {
 		
 	}
 	
+	/**
+	 * 포트폴리오 조회
+	 * */
+	public List<PortfolioDTO> portfolio() {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		System.out.println("사이즈 : " + dao.portfolio().size());
+		for(PortfolioDTO dto:dao.portfolio()){
+			System.out.println(dto);
+		}
+		
+		return dao.portfolio();
+	}
 	
 	
+	/**
+	 * 포트폴리오 저장
+	 * */
+	public void portfolioSave(PortfolioDTO dto) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		System.out.println("결과 : " + dao.portfolioSave(dto));
+	}
 	
 	
 	

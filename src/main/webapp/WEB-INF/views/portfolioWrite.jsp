@@ -30,6 +30,16 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
 	
+	
+	<!-- Froala -->
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css' rel="stylesheet"/>
+	<link href='<c:url value="/resources/css/froala/froala_editor.css"/>' rel="stylesheet"/>
+	<link href='<c:url value="/resources/css/froala/froala_style.css"/>' rel="stylesheet"/>
+	<link href='<c:url value="/resources/css/froala/code_view.css"/>' rel="stylesheet"/>
+	<link href='<c:url value="/resources/css/froala/image.css"/>' rel="stylesheet"/>
+	<link href='<c:url value="/resources/css/froala/image_manager.css"/>' rel="stylesheet"/>
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css' rel="stylesheet"/>	
+	
 	<style type="text/css">
 		
 	</style>
@@ -147,10 +157,12 @@
 	    			<div class="col-md-12">
 	    				<div style="background-color: white; padding: 15px; border-radius: 8px">
 	    					<div class="container-fluid">
+	    					  
+	    					  <form action="portfolioSave" enctype="multipart/form-data" method="post">
 	    						<div class="row">
 	    							<div class="col-md-12">
 	               						<label>제목</label>
-										<input type="text" class="form-control" id="" name="" placeholder="제목"><br>
+										<input type="text" class="form-control" name="subject" placeholder="제목"><br>
 									</div>
 								</div>
 								
@@ -161,11 +173,8 @@
 	               					</div>
                					</div>
 								<div class="row">
-	               					<div class="col-sm-3">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
-									</div>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
+	               					<div class="col-md-12">
+										<input type="text" class="form-control" name="strapline1" placeholder="ex)팀명 : 대한민국">
 									</div>
 								</div><br>
 								
@@ -175,11 +184,8 @@
 	               					</div>
                					</div>
 								<div class="row">
-	               					<div class="col-sm-3">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
-									</div>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
+	               					<div class="col-md-12">
+										<input type="text" class="form-control" name="strapline2" placeholder="ex)팀원 : 홍길동">
 									</div>
 								</div><br>
 								
@@ -189,11 +195,8 @@
 	               					</div>
                					</div>
 								<div class="row">
-	               					<div class="col-sm-3">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
-									</div>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
+	               					<div class="col-md-12">
+										<input type="text" class="form-control" name="strapline3" placeholder="ex)프로젝트명 : 고조선">
 									</div>
 								</div><br>
 								
@@ -203,11 +206,8 @@
 	               					</div>
                					</div>
 								<div class="row">
-	               					<div class="col-sm-3">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
-									</div>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
+	               					<div class="col-md-12">
+										<input type="text" class="form-control" name="strapline4" placeholder="ex)프로젝트기간 : 2016.01.01~2017.01.01">
 									</div>
 								</div><br>
 								
@@ -217,11 +217,8 @@
 	               					</div>
                					</div>
 								<div class="row">
-	               					<div class="col-sm-3">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
-									</div>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" id="" name="" placeholder="제목">
+	               					<div class="col-md-12">
+										<input type="text" class="form-control" name="strapline5" placeholder="ex)프로젝트소개 : API에 손쉽게 접근 가능">
 									</div>
 								</div><br>
 								
@@ -233,14 +230,36 @@
                					
 								<div class="row">
 									<div class="col-md-12">
-										<div class="form-group">
-											<textarea class="form-control" rows="80" >
-												
-											</textarea>
-										</div>
+   										 <textarea id='edit' name="content"></textarea>
 									</div>
-								</div>
+								</div><br>
 								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>배경사진</label>
+	               					</div>
+               					</div>
+								<div class="row">
+									<div class="col-md-12">
+										<input type="file" class="form-control" name="img">
+									</div>
+								</div><br>
+								
+								<div class="row">
+	               					<div class="col-md-12">
+	               						<label>자료</label>
+	               					</div>
+               					</div>
+								<div class="row">
+									<div class="col-md-12">
+										<input type="file" class="form-control" name="file">
+									</div>
+								</div><br><br>
+								
+								<div class="row" style="text-align: center">
+									 <input type="submit" class="btn btn-default btn-fill" data-dismiss="modal" id="visitor-save" value="Save">
+								</div>
+					     	  </form>
 							</div>
 	    				</div>
 	    			</div>
@@ -272,17 +291,36 @@
     <!--  Notifications Plugin    -->
     <script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
 
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
 	
+	
+	<!-- froala -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+	<script src="<c:url value='/resources/js/froala/froala_editor.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/code_beautifier.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/code_view.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/draggable.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/font_size.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/font_family.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/paragraph_style.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/lists.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/image.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/link.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/video.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/froala/image_manager.min.js'/>"></script>
+	
+	
+	
 	<script src="<c:url value='/resources/js/script.js'/>"></script>
+
+
+
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		
+    		$('#edit').froalaEditor()
     	});
 	</script>
 

@@ -143,36 +143,52 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-	    			<div class="col-md-6">
-	    				<div class="card">
-		   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/img/zuplay.png"/>' alt="Card image cap">
-		    				<h4 class="card-title text-center" >ZuPlay</h4>
-		    		 		<div class="card-block">
-							<label>프로젝트명 : ZuPlay</label><br>
-							<label>팀명 : C.E.O(Creation Experience Opportunity)</label><br>
-	    					<label>팀원 : 김민수,이석범,김경원,박효승,문정하</label><br>
-	    					<label>기간 : 2016.06.07~2016.07.18</label><br>
-	    					<label>소개 : 주식에 Gamification(게임화)을 접목시켜 재미있게 주식거래를 하는 서비스</label>
-	    					</div>
-	    				</div>
-	    				
-	    			</div>
-	    			
-	    			<div class="col-md-6">
-	    				<div class="card">
-		   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/save/21bfdf2892a64272bedf1190b2bfffe1.jpg"/>' alt="Card image cap">
-		    				<h4 class="card-title text-center" >M.S Home</h4>
-		    		 		<div class="card-block">
-							<label>프로젝트명 : M.S Home </label><br>
-	    					<label>팀원 : 김민수</label><br>
-	    					<label>기간 : 2015.08.16~2016.09.02</label><br><br>
-	    					<p class="card-text"></p>
-	    					</div>
-	    				</div>
-	    				
-	    			</div>
+            
+            	<c:forEach items="${portfolio}" var="portfolio">
+            		<div class="col-md-6">
+    				<div class="card">
+	   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/portFolioImg/${portfolio.img}"/>'>
+	    				<h4 class="card-title text-center" >${portfolio.subject}</h4>
+	    		 		<div class="card-block">
+						<label>${portfolio.strapline1}</label><br>
+						<label>${portfolio.strapline2}</label><br>
+    					<label>${portfolio.strapline3}</label><br>
+    					<label>${portfolio.strapline4}</label><br>
+    					<label>${portfolio.strapline5}</label>
+    					</div>
+    				</div>
+    				
     			</div>
+            	
+            	</c:forEach>
+            	
+    			<%-- <div class="col-md-6">
+    				<div class="card">
+	   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/img/zuplay.png"/>' alt="Card image cap">
+	    				<h4 class="card-title text-center" >ZuPlay</h4>
+	    		 		<div class="card-block">
+						<label>프로젝트명 : ZuPlay</label><br>
+						<label>팀명 : C.E.O(Creation Experience Opportunity)</label><br>
+    					<label>팀원 : 김민수,이석범,김경원,박효승,문정하</label><br>
+    					<label>기간 : 2016.06.07~2016.07.18</label><br>
+    					<label>소개 : 주식에 Gamification(게임화)을 접목시켜 재미있게 주식거래를 하는 서비스</label>
+    					</div>
+    				</div>
+    				
+    			</div>
+    			
+    			<div class="col-md-6">
+    				<div class="card">
+	   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/save/21bfdf2892a64272bedf1190b2bfffe1.jpg"/>' alt="Card image cap">
+	    				<h4 class="card-title text-center" >M.S Home</h4>
+	    		 		<div class="card-block">
+						<label>프로젝트명 : M.S Home </label><br>
+    					<label>팀원 : 김민수</label><br>
+    					<label>기간 : 2015.08.16~2016.09.02</label><br><br>
+    					<p class="card-text"></p>
+    					</div>
+    				</div>
+    			</div> --%>
             </div>
         </div>
 

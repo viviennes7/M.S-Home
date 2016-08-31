@@ -1,17 +1,19 @@
 package com.kms.home.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.storeconfig.GlobalNamingResourcesSF;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -19,9 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.kms.home.model.dto.PlayerDTO;
+import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
 import com.kms.home.model.service.MSService;
 import com.kms.home.util.CommandMap;
+import com.kms.home.util.CommonUtils;
 
 @Controller
 public class MSController {
@@ -188,8 +192,59 @@ public class MSController {
 		return json;
 	}
 	
+	/**
+	 * 포트폴리오 조회
+	 * */
+	@RequestMapping(value="portfolio")
+	public ModelAndView protfolio(){
+		
+		return new ModelAndView("portfolio", "portfolio", service.portfolio());
+	}
 	
 	
+	/**
+	 * 포트폴리오 저장
+	 * */
+	@RequestMapping(value="portfolioSave", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
+	public String portfolioSave(@RequestParam(value="img") MultipartFile img,@RequestParam(value="file") MultipartFile file,MultipartHttpServletRequest multi, HttpServletRequest request){
+		String imgPath =request.getServletContext().getRealPath("/resources/portFolioImg/");
+		String imgFileName = img.getOriginalFilename();
+		String imgOriginalFileExtension = imgFileName.substring(imgFileName.lastIndexOf("."));
+        String imgStoredFileName = CommonUtils.getRandomString() + imgOriginalFileExtension;
+		
+		try{
+			img.transferTo(new File(imgPath+"/" +imgStoredFileName ));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		System.out.println("imgName : " + imgStoredFileName);
+		
+		
+		String filePath =request.getServletContext().getRealPath("/resources/portFolioFile/");
+		String fileFileName = file.getOriginalFilename();
+		String fileOriginalFileExtension = fileFileName.substring(fileFileName.lastIndexOf("."));
+        String fileStoredFileName = CommonUtils.getRandomString() + fileOriginalFileExtension;
+		
+		try{
+			file.transferTo(new File(filePath+"/" +fileStoredFileName ));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
+		System.out.println("fileName : " + fileStoredFileName);
+		
+		
+		PortfolioDTO dto = new PortfolioDTO(multi.getParameter("subject"), multi.getParameter("strapline1"), 
+				multi.getParameter("strapline2"), multi.getParameter("strapline3"), multi.getParameter("strapline4"), 
+				multi.getParameter("strapline5"), multi.getParameter("content"), imgStoredFileName, fileStoredFileName);
+		
+		System.out.println(dto);
+		
+		service.portfolioSave(dto);
+		
+		return "redirect:portfolio";
+	}
 	
 	
 	
