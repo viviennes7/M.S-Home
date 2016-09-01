@@ -66,15 +66,20 @@
                 <li class="active">
                     <a href='<c:url value="/portfolio"/>'>
                         <i class="pe-7s-note2"></i>
-                        <p>Portfolio</p><span class="caret" style="float:right"></span>
+                        <p>Portfolio</p>
+                        <c:if test="${sessionScope.player==2}">
+                        	<span class="caret" style="float:right"></span>
+                        </c:if>
                     </a>
                 </li>
-                
-                <li id="portfolio-write">
-                    <a href='<c:url value="/portfolioWrite"/>'>
-                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
-                    </a>
-                </li>
+				
+				<c:if test="${sessionScope.player==2}">
+	                <li id="portfolio-write">
+	                    <a href='<c:url value="/portfolioWrite"/>'>
+	                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
+	                    </a>
+	                </li>
+                </c:if>
                 
                 <li>
                     <a href='<c:url value="/visitor"/>'>
@@ -112,7 +117,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
-                		<li class="dropdown">
+                		<!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-globe"></i>
                                     <b class="caret"></b>
@@ -124,14 +129,14 @@
                                 <li><a href="#">test 3</a></li>
                                 <li><a href="#">test 4</a></li>
                               </ul>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="">
+                            <a href="#">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href='<c:url value="logout"/>'>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -144,21 +149,26 @@
         <div class="content">
             <div class="container-fluid">
             
-            	<c:forEach items="${portfolio}" var="portfolio">
+            	<c:forEach items="${portfolio}" var="portfolio" varStatus="status">
+            		<c:if test="${status.count/2==1}" >
+            			<div class="row">
+            		</c:if>
             		<div class="col-md-6">
-    				<div class="card">
-	   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/portFolioImg/${portfolio.img}"/>'>
-	    				<h4 class="card-title text-center" >${portfolio.subject}</h4>
-	    		 		<div class="card-block">
-						<label>${portfolio.strapline1}</label><br>
-						<label>${portfolio.strapline2}</label><br>
-    					<label>${portfolio.strapline3}</label><br>
-    					<label>${portfolio.strapline4}</label><br>
-    					<label>${portfolio.strapline5}</label>
-    					</div>
+	    				<div class="card">
+		   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/portFolioImg/${portfolio.img}"/>'>
+		    				<h4 class="card-title text-center" ><a href='<c:url value="portfolioRead?portfolioSq=${portfolio.portfolioSq}"/>'>${portfolio.subject}</a></h4>
+		    		 		<div class="card-block">
+							<label>${portfolio.strapline1}</label><br>
+							<label>${portfolio.strapline2}</label><br>
+	    					<label>${portfolio.strapline3}</label><br>
+	    					<label>${portfolio.strapline4}</label><br>
+	    					<label>${portfolio.strapline5}</label>
+	    					</div>
+	    				</div>
     				</div>
-    				
-    			</div>
+    				<c:if test="${status.count/2==1}" >
+            			</div>
+            		</c:if>
             	
             	</c:forEach>
             	
@@ -201,34 +211,7 @@
             </div>
         </footer>
 		
-		<!-- Modal -->
-		<div id="portfolio-modal" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
-		
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		    
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Protfolio</h4>
-		      </div>
-		      <div class="modal-body">
-		      
-		      	<div class="form-group"> 
-					<label for="" class="control-label">제목 : </label>
-					<input type="text" class="form-control" id="" name="" placeholder="">
-				</div>
-					<input type="text" class="form-control" id="" name="" placeholder="">
-					<input type="text" class="form-control" id="" name="" placeholder="">
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="portfolio-save">Save</button>
-		        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		    
-		  </div>
-		</div>
+		<jsp:include page="personalInfo.jsp"/>
 </div>
 
 

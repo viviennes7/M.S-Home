@@ -8,7 +8,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +29,6 @@ import com.kms.home.util.CommonUtils;
 @Controller
 public class MSController {
 	
-	private Logger log = Logger.getLogger(this.getClass());
-	
 	@Autowired
 	MSService service;
 	
@@ -39,7 +36,7 @@ public class MSController {
 	 * TEST
 	 * */
 	@RequestMapping("{url}")
-	public void call(HttpSession session) {}
+	public void call() {}
 	
 	
 	/**
@@ -55,7 +52,7 @@ public class MSController {
 	 * */
 	@RequestMapping(value="login", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String login(String username, String userpass, HttpSession session){
+	public String login(HttpSession session, String username, String userpass){
 		int Sq = service.login(username, userpass);
 		session.setMaxInactiveInterval(1800);
 		session.setAttribute("player", Sq);
@@ -75,6 +72,16 @@ public class MSController {
 		return service.join(dto);
 	}
 	
+	
+	/**
+	 * 로그아웃
+	 * */
+	@RequestMapping("logout")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	/**
 	 * Setting
 	 * */
@@ -89,11 +96,11 @@ public class MSController {
 	/**
 	 * 프로필 수정
 	 * */
-	
 	//여기서 리턴안하고 ajax는 못쓰나??
 	@RequestMapping(value="profileUpdate", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String profileUpdate(PlayerDTO dto){
+	public String profileUpdate(PlayerDTO dto ,HttpSession session ){
+		dto.setPlaySq((int)session.getAttribute("player"));
 		service.profileUpdate(dto);
 		return "프로필이 수정되었습니다.";
 	}
@@ -159,7 +166,7 @@ public class MSController {
 	 * */
 	@RequestMapping(value="visitorInsert", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String visitorInsert(VisitorDTO visitor,HttpSession session){
+	public String visitorInsert(HttpSession session, VisitorDTO visitor){
 		visitor.setPlaySq((int)session.getAttribute("player"));
 		Gson gson = new Gson();
 		String json=gson.toJson(service.visitorInsert(visitor));
@@ -209,30 +216,38 @@ public class MSController {
 	public String portfolioSave(@RequestParam(value="img") MultipartFile img,@RequestParam(value="file") MultipartFile file,MultipartHttpServletRequest multi, HttpServletRequest request){
 		String imgPath =request.getServletContext().getRealPath("/resources/portFolioImg/");
 		String imgFileName = img.getOriginalFilename();
-		String imgOriginalFileExtension = imgFileName.substring(imgFileName.lastIndexOf("."));
-        String imgStoredFileName = CommonUtils.getRandomString() + imgOriginalFileExtension;
+		String imgStoredFileName=null;
+		System.out.println("파일 : " + imgFileName);
 		
-		try{
-			img.transferTo(new File(imgPath+"/" +imgStoredFileName ));
-		}catch(IOException e){
-			e.printStackTrace();
+		
+		if(imgFileName!=""){
+			String imgOriginalFileExtension = imgFileName.substring(imgFileName.lastIndexOf("."));
+	        imgStoredFileName = CommonUtils.getRandomString() + imgOriginalFileExtension;
+			
+			try{
+				img.transferTo(new File(imgPath+"/" +imgStoredFileName ));
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+			System.out.println("imgName : " + imgStoredFileName);
 		}
-		
-		System.out.println("imgName : " + imgStoredFileName);
 		
 		
 		String filePath =request.getServletContext().getRealPath("/resources/portFolioFile/");
 		String fileFileName = file.getOriginalFilename();
-		String fileOriginalFileExtension = fileFileName.substring(fileFileName.lastIndexOf("."));
-        String fileStoredFileName = CommonUtils.getRandomString() + fileOriginalFileExtension;
+		String fileStoredFileName=null;
 		
-		try{
-			file.transferTo(new File(filePath+"/" +fileStoredFileName ));
-		}catch(IOException e){
-			e.printStackTrace();
+		if(fileFileName!=""){
+			String fileOriginalFileExtension = fileFileName.substring(fileFileName.lastIndexOf("."));
+	        fileStoredFileName = CommonUtils.getRandomString() + fileOriginalFileExtension;
+			
+			try{
+				file.transferTo(new File(filePath+"/" +fileStoredFileName ));
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+			System.out.println("fileName : " + fileStoredFileName);
 		}
-		
-		System.out.println("fileName : " + fileStoredFileName);
 		
 		
 		PortfolioDTO dto = new PortfolioDTO(multi.getParameter("subject"), multi.getParameter("strapline1"), 
@@ -248,19 +263,31 @@ public class MSController {
 	
 	
 	
+	/**
+	 * 포트폴리오 상세보기
+	 * */
+	@RequestMapping("portfolioRead")
+	public ModelAndView portfolioRead(int portfolioSq){
+		return new ModelAndView("portfolioRead", "portfolio", service.portfolioRead(portfolioSq));
+	}
 	
 	
 	/**
-	 * Post버튼 클릭
-	 * (SQ)
+	 * Life 글쓰기
+	 * @throws Exception 
 	 * */
-	@RequestMapping("lifePost")
+	/*@RequestMapping(value="imageUpload", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String lifePost(HttpServletRequest request){
-		int sq = service.lifePost();
-		request.getSession().setAttribute("boardSq", sq);
-		return "success";
+	public String imageUpload(HttpServletRequest request) throws Exception{
+		
+		System.out.println("시작");
+		System.out.println("제목 : " + request.getParameter("value"));
+		
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
+		
+		
+		return "{\"confirm\":\"success\"}";
 	}
-	
+	*/
 	
 }

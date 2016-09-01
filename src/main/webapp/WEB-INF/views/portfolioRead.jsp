@@ -22,9 +22,9 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="<c:url value='/resources/css/light-bootstrap-dashboard.css'/>" rel="stylesheet"/>
-	
-	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet"/>
 
+	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet"/>
+	
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -51,7 +51,7 @@
             </div>
 
             <ul class="nav" id="ms-nav">
-                <li class="active">
+                <li>
                     <a href='<c:url value="/main"/>'>
                         <i class="pe-7s-user"></i>
                         <p>Profile</p>
@@ -63,12 +63,19 @@
                         <p>Life</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href='<c:url value="/portfolio"/>'>
                         <i class="pe-7s-note2"></i>
-                        <p>Portfolio</p>
+                        <p>Portfolio</p><span class="caret" style="float:right"></span>
                     </a>
                 </li>
+                
+                <li id="portfolio-write">
+                    <a href='<c:url value="/portfolioWrite"/>'>
+                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
+                    </a>
+                </li>
+                
                 <li>
                     <a href='<c:url value="/visitor"/>'>
                         <i class="pe-7s-users"></i>
@@ -101,7 +108,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<c:url value='main'/>">Profile</a>
+                    <a class="navbar-brand" href='<c:url value="/portfolio"/>'>Portfolio</a>
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
@@ -119,7 +126,7 @@
                               </ul>
                         </li> -->
                         <li>
-                        	<a href="#">
+                            <a href="#">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -128,44 +135,30 @@
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
                         </li>
-                   	 	<!-- <li>
-	                			<input type="text" class="form-control" placeholder="search" id="ms-board-search">
-	                		</li>
-	                		<li>
-	                           <a href="">
-	                                <i class="fa fa-search"></i>
-	                            </a>
-	                        </li> -->
                 	</ul>
-                 	   
                 </div>
             </div>
         </nav>
 
 
         <div class="content">
+       	 <div style="background-color: white; padding: 15px; border-radius: 8px">
             <div class="container-fluid">
-    			<div class="row">
-    			<div class="col-md-10 col-md-offset-1">
-	                <div class="embed-responsive embed-responsive-16by9">
-					  	<iframe frameborder="0" allowfullscreen="allowfullscreen" class="embed-responsive-item" src="https://www.youtube.com/embed/FTEV7fg1vao"></iframe>
-					</div>
-				</div>
-				</div>
+		         ${portfolio.content}
             </div>
+          </div>
         </div>
 
+
         <footer class="footer">
-            
                 <p class="copyright pull-right">
                     &copy;<a href="mailto:viviennes7@naver.com">Kim Min-soo</a> Since 2016.07.25 
                 </p>
             </div>
         </footer>
 		<jsp:include page="personalInfo.jsp"/>
-		
-			
 </div>
+
 
 </body>
 
@@ -179,6 +172,9 @@
     <!--  Notifications Plugin    -->
     <script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
 
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
 	
@@ -186,12 +182,10 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		/* $(".fa-info-circle").parent().on("click",function(){
-    			$("#about_me").modal("show");
-    			return false;
-    		}) */
-    		
-    		$(".")
+    		/* $("#portfolio-write").on("click",function(){
+  				$("#portfolio-modal").appendTo("body").modal("show");
+  				return false;
+   			}); */
     	});
 	</script>
 

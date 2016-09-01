@@ -1,17 +1,14 @@
 package com.kms.home.model.service;
 
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kms.home.model.dao.MSDao;
@@ -125,11 +122,6 @@ public class MSService {
 	 * */
 	public List<PortfolioDTO> portfolio() {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
-		System.out.println("사이즈 : " + dao.portfolio().size());
-		for(PortfolioDTO dto:dao.portfolio()){
-			System.out.println(dto);
-		}
-		
 		return dao.portfolio();
 	}
 	
@@ -139,24 +131,29 @@ public class MSService {
 	 * */
 	public void portfolioSave(PortfolioDTO dto) {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
-		System.out.println("결과 : " + dao.portfolioSave(dto));
+		dao.portfolioSave(dto);
+	}
+	
+	/**
+	 * 포트폴리오 상세보기
+	 * */
+	public PortfolioDTO portfolioRead(int protfolioSq) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		return dao.portfolioRead(protfolioSq);
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	/**
-	 * Post버튼 클릭
-	 * (SQ)
+	 * Life 글쓰기
+	 * @throws Exception 
 	 * */
-	@ResponseBody
-	public int lifePost(){
-		MSDao dao = sqlSession.getMapper(MSDao.class);
-		return dao.lifePost();
+	public void imageUpload(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		 /*List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		 System.out.println("출발!");
+		 for(Map<String,Object> maps:list){
+			 System.out.println("이름 : " + maps.get("ORIGINAL_FILE_NAME"));
+		 }*/
+		 
 	}
 
 

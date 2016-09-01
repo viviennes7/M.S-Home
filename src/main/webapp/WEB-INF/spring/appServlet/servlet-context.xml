@@ -30,6 +30,30 @@
 	<!-- AOP 어노테이션사용 -->
 	<aop:aspectj-autoproxy/>
 	
+	
+	<!-- 익셉션 -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				
+				<beans:prop key="java.lang.reflect.UndeclaredThrowableException">
+					index
+				</beans:prop>
+				
+				<beans:prop key="com.kosta.zuplay.exception.LoginException">
+					index
+				</beans:prop>
+				<!--  <beans:prop key="java.lang.Exception">
+					errorView 에러뷰 생기면 일로!
+				</beans:prop>	 -->		
+				
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	
+	
+	
+	
 	<!-- 파일업로드 -->
 	<beans:bean
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"

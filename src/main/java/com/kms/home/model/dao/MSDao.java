@@ -76,7 +76,10 @@ public interface MSDao {
 	 * */
 	public int portfolioSave(PortfolioDTO dto);
 	
-	
+	/**
+	 * 포트폴리오 상세보기
+	 * */
+	public PortfolioDTO portfolioRead(int portfolioSq);
 	
 	
 	

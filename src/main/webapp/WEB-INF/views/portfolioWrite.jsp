@@ -122,7 +122,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
-                		<li class="dropdown">
+                		<!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-globe"></i>
                                     <b class="caret"></b>
@@ -134,14 +134,14 @@
                                 <li><a href="#">test 3</a></li>
                                 <li><a href="#">test 4</a></li>
                               </ul>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="">
+                            <a href="#">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href='<c:url value="logout"/>'>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -275,7 +275,8 @@
                 </p>
             </div>
         </footer>
-
+		
+		<jsp:include page="personalInfo.jsp"/>
 </div>
 
 

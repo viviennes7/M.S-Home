@@ -109,7 +109,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
-                		<li class="dropdown">
+                		<!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-globe"></i>
                                     <b class="caret"></b>
@@ -121,14 +121,14 @@
                                 <li><a href="#">test 3</a></li>
                                 <li><a href="#">test 4</a></li>
                               </ul>
-                        </li>
+                        </li> -->
                         <li>
-                           <a href="">
+                           <a href="#">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href='<c:url value="logout"/>'>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -219,11 +219,11 @@
                     <div class="col-md-4">
                         <div class="card card-user">
                             <div class="image">
-                                <img src='<c:url value="/resources/save/${Player.bgUrl}"/>' id="setting-bg-img"/>
+                                <img src='<c:url value="/resources/settingImg/${Player.bgUrl}"/>' id="setting-bg-img"/>
                             </div>
                             <div class="content">
                                 <div class="author">
-                                    <img class="avatar border-gray" id="setting-profile-img"src='<c:url value="/resources/save/${Player.url}"/>'/>
+                                    <img class="avatar border-gray" id="setting-profile-img"src='<c:url value="/resources/settingImg/${Player.url}"/>'/>
 
                                       <h4 class="title" id="setting-card-name">${Player.name}<br />
                                          <small>${Player.id}</small>
@@ -287,7 +287,8 @@
 		    </div>
 		  </div>
 		</div>
-
+		
+		<jsp:include page="personalInfo.jsp"/>
 </div>
 
 
@@ -326,7 +327,15 @@
     				success:function(result){
     					$("#setting-card-name").html($("#setting-name").val()+"<br><small>"+$("#setting-email").val()+"</small>");
     					$("#setting-card-intro").text($("textarea").val());
-    					alert(result);
+    					$.notify({
+    						// options
+    						icon: 'glyphicon glyphicon-bell',
+    						message: '프로필이 수정되었습니다.' 
+    					},{
+    						// settings
+    						type: 'success'
+    					});
+    					
     				},
     				error:function(){
     					console.log("프로필수정 오류");
@@ -357,13 +366,12 @@
     				type:"post",
     				data:{"flag":1},
     				success:function(src){
-    					$("#setting-profile-img").attr("src","/home/resources/save/"+src);
+    					$("#setting-profile-img").attr("src","/home/resources/settingImg/"+src);
 						
     				},
     				error:function(){
     					console.log("프사조회 오류");
     				}
-					    				
     			})
     		});
     		
@@ -388,7 +396,7 @@
     				type:"post", 
     				data:{"flag":2},
     				success:function(src){
-    					$("#setting-bg-img").attr("src","/home/resources/save/"+src);
+    					$("#setting-bg-img").attr("src","/home/resources/settingImg/"+src);
     				},
     				error:function(){
     					console.log("프사조회 오류");

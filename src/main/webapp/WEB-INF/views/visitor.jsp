@@ -114,7 +114,7 @@
                 </div>
                 <div class="collapse navbar-collapse">
                 	<ul class="nav navbar-nav navbar-right">
-                		<li class="dropdown">
+                		<!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-globe"></i>
                                     <b class="caret"></b>
@@ -126,14 +126,14 @@
                                 <li><a href="#">test 3</a></li>
                                 <li><a href="#">test 4</a></li>
                               </ul>
-                        </li>
+                        </li> -->
                         <li>
-                           <a href="">
+                           <a href="#">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href='<c:url value="logout"/>'>
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -160,11 +160,11 @@
 	            	<div class="col-md-3">
 							<div class="card card-user">
 	                            <div class="image">
-	                                <img src='<c:url value="/resources/save/${visitor.playerDTO.bgUrl }"/>'/>
+	                                <img src='<c:url value="/resources/settingImg/${visitor.playerDTO.bgUrl }"/>'/>
 	                            </div>
 	                            <div class="content">
 	                                <div class="author">
-	                                    <img class="avatar border-gray" src='<c:url value="/resources/save/${visitor.playerDTO.url }"/>'/>
+	                                    <img class="avatar border-gray" src='<c:url value="/resources/settingImg/${visitor.playerDTO.url }"/>'/>
 	
 	                                      <h4 class="title">${visitor.playerDTO.name}<br />
 	                                         <small>${visitor.subject}</small>
@@ -214,6 +214,8 @@
 		    
 		  </div>
 		</div>
+		
+		<jsp:include page="personalInfo.jsp"/>
 </div>
 
 
@@ -255,11 +257,11 @@
     					str+="<div class='col-md-3'>";
 						str+="<div class='card card-user'>";
 						str+="<div class='image'>";
-						str+="<img src='resources/save/"+data.playerDTO.bgUrl+"'/>";
+						str+="<img src='resources/settingImg/"+data.playerDTO.bgUrl+"'/>";
 						str+="</div>";
 						str+="<div class='content'>";
 						str+="<div class='author'>";
-						str+="<img class='avatar border-gray' src='resources/save/"+data.playerDTO.url+"'/>";
+						str+="<img class='avatar border-gray' src='resources/settingImg/"+data.playerDTO.url+"'/>";
 						str+="<h4 class='title'>"+data.playerDTO.name+"<br/>";
 						str+="<small>"+data.subject+"</small></h4></div>";
 						str+="<p class='description text-center'>"+data.content+"</p></div>";
@@ -302,11 +304,11 @@
 							str+="<div class='col-md-3'>";
 							str+="<div class='card card-user'>";
 							str+="<div class='image'>";
-							str+="<img src='resources/save/"+item.playerDTO.bgUrl+"'/>";
+							str+="<img src='resources/settingImg/"+item.playerDTO.bgUrl+"'/>";
 							str+="</div>";
 							str+="<div class='content'>";
 							str+="<div class='author'>";
-							str+="<img class='avatar border-gray' src='resources/save/"+item.playerDTO.url+"'/>";
+							str+="<img class='avatar border-gray' src='resources/settingImg/"+item.playerDTO.url+"'/>";
 							str+="<h4 class='title'>"+item.playerDTO.name+"<br/>";
 							str+="<small>"+item.subject+"</small></h4></div>";
 							str+="<p class='description text-center'>"+item.content+"</p></div>";
