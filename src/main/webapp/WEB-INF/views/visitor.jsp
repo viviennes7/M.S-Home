@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 
-                <li id="visitor-write">
+                <li id="visitor-write" >
                     <a href='#'>
                         <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
                     </a>
@@ -128,7 +128,7 @@
                               </ul>
                         </li> -->
                         <li>
-                           <a href="#">
+                           <a href="#" id="personal-info">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -156,7 +156,7 @@
         	<!-- <button type="button" class="btn btn-primary btn-fill" id="visitor-write" >POST</button><br><br> -->
             <div class="container-fluid" id="visitor-container">
             <!-- <div class="row"> -->
-	            <c:forEach items="${visitors}" var="visitor" varStatus="index"> 
+	            <%-- <c:forEach items="${visitors}" var="visitor" varStatus="index"> 
 	            	<div class="col-md-3">
 							<div class="card card-user">
 	                            <div class="image">
@@ -174,12 +174,19 @@
 	                                </p>
 	                            </div>
 	                            <hr>
-	                            <div class="text-right">
+	                            
+	                            <c:if test="${sessionScope.player==2 }">
+		                            <div class="text-right">
+		                            	<button type="button" class="close" id='visitordel-${visitor.visitorSq}'>&times;</button>
+		                            </div>
+	                            </c:if>
+	                            
+	                            <div class="text-left">
 									${visitor.time }
 	                            </div>
 	                        </div>                	
 	                	</div>
-	            </c:forEach>
+	            </c:forEach> --%>
 	          <!--  </div> -->
             </div>
         </div>
@@ -238,10 +245,15 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		$("#visitor-write").on("click",function(){
+    		
+    		var playerSq= "${sessionScope.player}"; 
+    		console.log("SQ : " + playerSq)
+    		
+    		/*모달띄우기*/
+    		$(document).on("click","#visitor-write",function(){ 
   				$("#visitor-modal").appendTo("body").modal("show");
   				return false;
-   			});
+    		});
     		
     		
     		/*방명록쓰기*/
@@ -265,7 +277,7 @@
 						str+="<h4 class='title'>"+data.playerDTO.name+"<br/>";
 						str+="<small>"+data.subject+"</small></h4></div>";
 						str+="<p class='description text-center'>"+data.content+"</p></div>";
-						str+="<hr><div class='text-right'>"+data.time+"</div></div></div>";
+						str+="<hr><div class='text-right'><button type='button' class='close visitor-delete' id='visitordel-"+data.visitorSq+"'>&times;</button></div><div class='text-left'>"+ data.time +"</div></div></div>";
 						$("#visitor-container").prepend(str);
     				},
     				error:function(){
@@ -275,7 +287,7 @@
     		})
     		
     		//현재 페이지
-    		var pageLoaded = 1; 
+    		var pageLoaded = 0; 
     		
     		/*스크롤 페이징*/
     		$("#visitor-scroll-page").scroll(function() {
@@ -311,8 +323,14 @@
 							str+="<img class='avatar border-gray' src='resources/settingImg/"+item.playerDTO.url+"'/>";
 							str+="<h4 class='title'>"+item.playerDTO.name+"<br/>";
 							str+="<small>"+item.subject+"</small></h4></div>";
-							str+="<p class='description text-center'>"+item.content+"</p></div>";
-							str+="<hr><div class='text-right'>"+item.time+"</div></div></div>";
+							str+="<p class='description text-center'>"+item.content+"</p></div><hr>";
+							if(playerSq==item.playerDTO.playSq){							
+								str+="<div class='text-right'><button type='button' class='close visitor-delete' value='"+item.visitorSq+"'>&times;</button></div>";
+							}
+							str+="<div class='text-left'>"+item.time +"</div></div></div>";
+							
+							/* str+="<hr><div class='text-right'><button type='button' class='close' id='visitordel-"+item.visitorSq+"'>&times;</button></div><div class='text-left'>"+item.time +"</div></div></div>"; */
+							
 						})
 						/* str+="</div>"; */
 						$("#visitor-container").append(str);
@@ -322,10 +340,28 @@
 					}
 				})    		
     		}
-    		
     		visitorScroll();
+    		setTimeout(function() {
+    			visitorScroll();
+    		},20)
     		
     		
+    		
+    		/*방명록 삭제*/
+    		$(document).on("click",".visitor-delete",function(){
+    			
+    			$.ajax({
+    				url:"visitorDel",
+    				type:"post",
+					data:"visitorSq="+$(this).attr("value"),
+					success:function(data){
+						console.log($(this));
+					},
+					error:function(){
+						console.log("방명록삭제 오류")
+					}
+    			})
+    		})
     	})
  	</script>
     		

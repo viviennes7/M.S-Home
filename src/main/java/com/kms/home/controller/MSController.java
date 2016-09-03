@@ -54,7 +54,7 @@ public class MSController {
 	@ResponseBody
 	public String login(HttpSession session, String username, String userpass){
 		int Sq = service.login(username, userpass);
-		session.setMaxInactiveInterval(1800);
+		session.setMaxInactiveInterval(5000);
 		session.setAttribute("player", Sq);
 		if(Sq!=-1){
 			return "success";
@@ -81,6 +81,22 @@ public class MSController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	/**
+	 * 메인 창
+	 * */
+/*	@RequestMapping(value = "main",method = RequestMethod.POST, produces="text/plain;charset=UTF-8" )
+	public void Main(HttpSession session){
+		System.out.println("메인!");
+	}*/
+	
+	
+	/**
+	 * 라이프 창
+	 * */
+	/*@RequestMapping("life")
+	public void life(HttpSession session){}
+	*/
 	
 	/**
 	 * Setting
@@ -110,7 +126,7 @@ public class MSController {
 	 * */
 	@RequestMapping("profileImgUpdate")
 	@ResponseBody
-	public String profileImgUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception{
+	public String profileImgUpdate(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
@@ -134,7 +150,7 @@ public class MSController {
 	
 	@RequestMapping("profileImgSelect")
 	@ResponseBody
-	public String profileImgSelect(HttpSession session, int flag){
+	public String profileImgSelect(int flag ,HttpSession session){
 		return service.profileImgSelect((int)session.getAttribute("player"),flag);
 	}
 	
@@ -143,7 +159,7 @@ public class MSController {
 	 * */
 	@RequestMapping("backgroundImgUpdate")
 	@ResponseBody
-	public String backgroundImgUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception{
+	public String backgroundImgUpdate(CommandMap commandMap, HttpServletRequest request ,HttpSession session) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
@@ -166,7 +182,7 @@ public class MSController {
 	 * */
 	@RequestMapping(value="visitorInsert", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String visitorInsert(HttpSession session, VisitorDTO visitor){
+	public String visitorInsert(VisitorDTO visitor, HttpSession session){
 		visitor.setPlaySq((int)session.getAttribute("player"));
 		Gson gson = new Gson();
 		String json=gson.toJson(service.visitorInsert(visitor));
@@ -174,12 +190,22 @@ public class MSController {
 		
 	}
 	
+	/**
+	 * 방명록삭제
+	 * */
+	@RequestMapping("visitorDel")
+	@ResponseBody
+	public String visitorDel(int visitorSq){
+		System.out.println("Sq : " + visitorSq);
+		return "success";
+	}
+	
 	
 	/**
 	 * 방명록 조회(최초)
 	 * */
 	@RequestMapping(value="visitor", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
-	public ModelAndView visitorFirst(){
+	public ModelAndView visitorFirst(HttpSession session){
 		List<VisitorDTO> visitor = service.visitorSelect(1);
 		ModelAndView mv = new ModelAndView("visitor");
 		mv.addObject("visitors", visitor);
@@ -191,7 +217,7 @@ public class MSController {
 	 * */
 	@RequestMapping(value="visitorSelect", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String visitorSelect(int page){
+	public String visitorSelect(int page,HttpSession session){
 		List<VisitorDTO> visitor = service.visitorSelect(page);
 		Gson gson = new Gson();
 		String json = gson.toJson(visitor);
@@ -203,7 +229,7 @@ public class MSController {
 	 * 포트폴리오 조회
 	 * */
 	@RequestMapping(value="portfolio")
-	public ModelAndView protfolio(){
+	public ModelAndView protfolio(HttpSession session){
 		
 		return new ModelAndView("portfolio", "portfolio", service.portfolio());
 	}
@@ -213,7 +239,7 @@ public class MSController {
 	 * 포트폴리오 저장
 	 * */
 	@RequestMapping(value="portfolioSave", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String portfolioSave(@RequestParam(value="img") MultipartFile img,@RequestParam(value="file") MultipartFile file,MultipartHttpServletRequest multi, HttpServletRequest request){
+	public String portfolioSave(@RequestParam(value="img") MultipartFile img,@RequestParam(value="file") MultipartFile file,MultipartHttpServletRequest multi, HttpServletRequest request ,HttpSession session){
 		String imgPath =request.getServletContext().getRealPath("/resources/portFolioImg/");
 		String imgFileName = img.getOriginalFilename();
 		String imgStoredFileName=null;
@@ -267,7 +293,7 @@ public class MSController {
 	 * 포트폴리오 상세보기
 	 * */
 	@RequestMapping("portfolioRead")
-	public ModelAndView portfolioRead(int portfolioSq){
+	public ModelAndView portfolioRead(int portfolioSq ,HttpSession session){
 		return new ModelAndView("portfolioRead", "portfolio", service.portfolioRead(portfolioSq));
 	}
 	

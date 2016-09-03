@@ -100,18 +100,19 @@
 <select id="visitorSelectOne" parameterType="hashmap" resultMap="visitor">
 	select * from 
 	( select rownum as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
-	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq) 
-	WHERE rnum=1 order by visitor_sq desc
+	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq order by visitor_sq desc) 
+	WHERE rnum=1
 </select>
 
 
 
 <!-- 방명록 조회 -->
+<!-- 만약에 이게 이상하게 작동하면 위에꺼 참조해서 할 것!(order by 자리) -->
 <select id="visitorSelect" parameterType="hashmap" resultMap="visitor">
 	select * from 
 	( select rownum as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
-	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq) 
-	WHERE rnum<![CDATA[ > ]]>= #{start} AND rnum <![CDATA[ < ]]>= #{end} order by visitor_sq desc
+	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq order by visitor_sq desc) 
+	WHERE rnum<![CDATA[ > ]]>= #{start} AND rnum <![CDATA[ < ]]>= #{end}
 </select>
 
 

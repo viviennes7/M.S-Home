@@ -131,7 +131,7 @@
                               </ul>
                         </li> -->
                         <li>
-                            <a href="#">
+                            <a href="#" id="personal-info">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>

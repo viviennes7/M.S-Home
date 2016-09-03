@@ -201,7 +201,12 @@
 				data:{"username":$("#form-username").val(), "userpass":$("#form-password").val()},
 				success:function(data){
 					if(data==="success"){
-						 location.href="main"; 
+						
+						//POST방식 전송
+						var form = document.createElement("form");
+					    form.setAttribute("method", "post");
+					    form.setAttribute("action", "main");
+					    form.submit();
 					}else{
 						alert("ID와 PASS를 확인해 주십시오.");						
 					}

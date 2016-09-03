@@ -145,7 +145,7 @@
                               </ul>
                         </li> -->
                         <li>
-                           <a href="#">
+                           <a href="#" id="personal-info">
                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -167,7 +167,7 @@
                     <div class="col-md-6">
                             <div class="card">
 	                            <div class="header">
-	                                <h4 class="title" style='text-align: center;'>여행사진!</h4>
+	                                <h4 class="title" style='text-align: center;'>KOSTA(education)</h4>
 	                            </div>
                             	
 								<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden; visibility: hidden;">
@@ -177,14 +177,41 @@
 							            <div style="position:absolute;display:block;background:url('<c:url value="resources/img/loading.gif"/>') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
 							        </div>
 							        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden;">
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="resources/img/backgrounds/1.jpg"/>' />
+							        	<div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/6.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="resources/img/backgrounds/2.jpg"/>' />
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/1.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="resources/img/sidebar-5.jpg"/>' />
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/2.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/3.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/4.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/5.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/7.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/8.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/9.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/10.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/11.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/12.jpg"/>' />
 							            </div>
 							            <a data-u="add" href="http://www.jssor.com/demos/different-size-photo-slider.slider" style="display:none">Different Size Photo Sldier</a>
 							        
@@ -200,7 +227,223 @@
                             </div>
                          </div> 
                          
+                         <div class="col-md-6">
+                            <div class="card">
+	                            <div class="header">
+	                                <h4 class="title" style='text-align: center;'>Cultere Life</h4>
+	                            </div>
+                            	
+								<div id="jssor_2" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden; visibility: hidden;">
+							        <!-- Loading Screen -->
+							        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+							            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+							            <div style="position:absolute;display:block;background:url('<c:url value="resources/img/loading.gif"/>') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+							        </div>
+							        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden;">
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/1.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/2.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/3.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/4.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/5.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/6.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/7.jpg"/>' />
+							            </div>
+							            <a data-u="add" href="http://www.jssor.com/demos/different-size-photo-slider.slider" style="display:none">Different Size Photo Sldier</a>
+							        
+							        </div>
+							        <!-- Bullet Navigator -->
+							        <div data-u="navigator" class="jssorb13" style="bottom:16px;right:16px;" data-autocenter="1">
+							            <!-- bullet navigator item prototype -->
+							            <div data-u="prototype" style="width:21px;height:21px;"></div>
+							        </div>
+							    </div>
+							
+							    <!-- #endregion Jssor Slider End -->
+                            </div>
+                         </div> 
+                         
+                         <div class="col-md-6">
+                            <div class="card">
+	                            <div class="header">
+	                                <h4 class="title" style='text-align: center;'>Sports</h4>
+	                            </div>
+                            	
+								<div id="jssor_3" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden; visibility: hidden;">
+							        <!-- Loading Screen -->
+							        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+							            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+							            <div style="position:absolute;display:block;background:url('<c:url value="resources/img/loading.gif"/>') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+							        </div>
+							        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden;">
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/sports/1.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/sports/2.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/sports/3.jpg"/>' />
+							            </div>
+							            <a data-u="add" href="http://www.jssor.com/demos/different-size-photo-slider.slider" style="display:none">Different Size Photo Sldier</a>
+							        
+							        </div>
+							        <!-- Bullet Navigator -->
+							        <div data-u="navigator" class="jssorb13" style="bottom:16px;right:16px;" data-autocenter="1">
+							            <!-- bullet navigator item prototype -->
+							            <div data-u="prototype" style="width:21px;height:21px;"></div>
+							        </div>
+							    </div>
+							
+							    <!-- #endregion Jssor Slider End -->
+                            </div>
+                         </div> 
+                         
+                         <div class="col-md-6">
+                            <div class="card">
+	                            <div class="header">
+	                                <h4 class="title" style='text-align: center;'>Travel</h4>
+	                            </div>
+                            	
+								<div id="jssor_4" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden; visibility: hidden;">
+							        <!-- Loading Screen -->
+							        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+							            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+							            <div style="position:absolute;display:block;background:url('<c:url value="resources/img/loading.gif"/>') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+							        </div>
+							        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden;">
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/1.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/2.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/3.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/4.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/5.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/6.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/7.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/8.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/9.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/10.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/11.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/12.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/13.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/travel/14.jpg"/>' />
+							            </div>
+							            
+							            <a data-u="add" href="http://www.jssor.com/demos/different-size-photo-slider.slider" style="display:none">Different Size Photo Sldier</a>
+							        
+							        </div>
+							        <!-- Bullet Navigator -->
+							        <div data-u="navigator" class="jssorb13" style="bottom:16px;right:16px;" data-autocenter="1">
+							            <!-- bullet navigator item prototype -->
+							            <div data-u="prototype" style="width:21px;height:21px;"></div>
+							        </div>
+							    </div>
+							
+							    <!-- #endregion Jssor Slider End -->
+                            </div>
+                         </div> 
+                         
+                         <div class="col-md-6">
+                            <div class="card">
+	                            <div class="header">
+	                                <h4 class="title" style='text-align: center;'>Friend</h4>
+	                            </div>
+                            	
+								<div id="jssor_5" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden; visibility: hidden;">
+							        <!-- Loading Screen -->
+							        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+							            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+							            <div style="position:absolute;display:block;background:url('<c:url value="resources/img/loading.gif"/>') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+							        </div>
+							        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden;">
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/1.jpg"/>' />
+							            </div>
+										<div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/2.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/3.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/4.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/5.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/6.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/7.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/8.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/9.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/10.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/friend/11.jpg"/>' />
+							            </div>
+							            
+							            <a data-u="add" href="http://www.jssor.com/demos/different-size-photo-slider.slider" style="display:none">Different Size Photo Sldier</a>
+							        
+							        </div>
+							        <!-- Bullet Navigator -->
+							        <div data-u="navigator" class="jssorb13" style="bottom:16px;right:16px;" data-autocenter="1">
+							            <!-- bullet navigator item prototype -->
+							            <div data-u="prototype" style="width:21px;height:21px;"></div>
+							        </div>
+							    </div>
+							
+							    <!-- #endregion Jssor Slider End -->
+                            </div>
+                         </div> 
+                         
             </div>
+         </div>
         <footer class="footer">
                 <p class="copyright pull-right">
                     &copy;<a href="mailto:viviennes7@naver.com">Kim Min-soo</a> Since 2016.07.25 
@@ -208,34 +451,8 @@
             </div>
         </footer>
         
-        <!-- Modal -->
-			<div id="uploadModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-			
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Upload</h4>
-			      </div>
-			      <div class="modal-body">
-                      <input type="text" id="life-subject" class="form-control" placeholder="제목"><br>
-                      <!-- MINIMUM IMAGE DIMENSIONS -->
-						<input type="file"  id="life-upload" name="inputdim1[]" multiple class="file-loading" accept="image/*">
-			      </div>
-			     <!--  <div class="modal-footer">
-			        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="life-save">Save</button>
-			        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
-			      </div> -->
-			    </div>
-			  </div>
-		</div>
-		
+</div>
 		<jsp:include page="personalInfo.jsp"/>
-		
-		
-		
-	</div>
 </body>
 
     <!--   Core JS Files   -->
@@ -362,6 +579,10 @@
     		}
     		
     		jssor(jssor_1);
+    		jssor(jssor_2);
+    		jssor(jssor_3);
+    		jssor(jssor_4);
+    		jssor(jssor_5);
     		
     		
     	});
