@@ -230,7 +230,7 @@
                          <div class="col-md-6">
                             <div class="card">
 	                            <div class="header">
-	                                <h4 class="title" style='text-align: center;'>Cultere Life</h4>
+	                                <h4 class="title" style='text-align: center;'>Culture Life</h4>
 	                            </div>
                             	
 								<div id="jssor_2" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 500px; overflow: hidden; visibility: hidden;">
@@ -244,6 +244,8 @@
 							                <img data-u="image" src='<c:url value="/resources/img/life/art/1.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/22.jpg"/>' />
+							            </div><div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/art/2.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
@@ -251,6 +253,12 @@
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/art/4.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/8.jpg"/>' />
+							            </div>
+							            <div style="display: none;">
+							                <img data-u="image" src='<c:url value="/resources/img/life/art/9.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/art/5.jpg"/>' />
@@ -545,7 +553,7 @@
                           ];
                           
                           var jssor_1_options = {
-                            $AutoPlay: false,
+                            $AutoPlay: true,
                             $FillMode: 5,
                             $SlideshowOptions: {
                               $Class: $JssorSlideshowRunner$,
@@ -584,6 +592,20 @@
     		jssor(jssor_4);
     		jssor(jssor_5);
     		
+    		
+    		$.notify({
+				// options
+				icon: 'glyphicon glyphicon-bell',
+				message: '이미지를 드래그하여 넘길 수 있습니다.' 
+			},{
+				// settings
+				type: 'info',
+				placement: {
+					from: "top",
+					align: "right"
+				},
+				timer: 5000
+			});
     		
     	});
 	</script>

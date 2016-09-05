@@ -329,7 +329,7 @@
     					$("#setting-card-intro").text($("textarea").val());
     					$.notify({
     						// options
-    						icon: 'glyphicon glyphicon-bell',
+    						icon: 'glyphicon glyphicon-ok-sign',
     						message: '프로필이 수정되었습니다.' 
     					},{
     						// settings
@@ -403,6 +403,22 @@
     				}
     			})
     		});
+    		
+    		
+    		/*노티피케이션*/
+    		$.notify({
+				// options
+				icon: 'glyphicon glyphicon-bell',
+				message: '프로필과 배경사진을 클릭해서<br> 원하는 사진으로 바꿀 수 있습니다.' 
+			},{
+				// settings
+				type: 'info',
+				placement: {
+					from: "top",
+					align: "right"
+				},
+				timer: 5000
+			});
     		
     	});
 	</script>

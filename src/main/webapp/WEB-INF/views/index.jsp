@@ -75,7 +75,7 @@
                        	<input type="password" name="userpass" placeholder="Password" class="form-password form-control" id="form-password">
                        </div>
                        <button type="button" class="btn" id="index-login">Sign in!</button>
-                       <button type="button" class="btn" data-target="#login-modal" data-toggle="modal">Sign up!</button>
+                       <button type="button" class="btn" data-target="#join-modal" data-toggle="modal">Sign up!</button>
                    </form>
                   </div>
                     </div>
@@ -83,15 +83,15 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3 social-login">
                     	<div class="social-login-buttons">
-                     	<a class="btn btn-link-2" href="#">
+                     	<a class="btn btn-link-2" href="https://www.facebook.com/minsu.kim.54584" target="_blank">
                      		<i class="fa fa-facebook"></i> Facebook
                      	</a>
-                     	<a class="btn btn-link-2" href="#">
+                     	<!-- <a class="btn btn-link-2" href="#">
                      		<i class="fa fa-twitter"></i> Twitter
                      	</a>
                      	<a class="btn btn-link-2" href="#">
                      		<i class="fa fa-google-plus"></i> Google Plus
-                     	</a>
+                     	</a> -->
                     	</div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
         
     </div>
 	<!-- 모달 -->
-	<div class="modal fade" id="login-modal" >
+	<div class="modal fade" id="join-modal" >
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <!-- header -->
@@ -162,6 +162,7 @@
 <script src="resources/js/bootstrap.js"></script>
 <script src="resources/js/jquery.backstretch.js"></script>
 <script src="resources/js/loginscripts.js"></script>
+<script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
 
 <!--[if lt IE 10]>	
     <script src="assets/js/placeholder.js"></script>
@@ -173,27 +174,79 @@
 		$("#join-btn").on("click",function(){
 			var email = $("#join-email").val();
 			
+			if($("#join-name").val()==""){
+				alert("이름을 입력해 주십시오.");
+				return
+			}
 			if(email.indexOf("@")===-1 && email.indexOf(".")===-1){
-				alert("이메일 형식을 확인해 주십시오.")
+				alert("이메일 형식을 확인해 주십시오.");
 				return;
 			}
+			if($("#join-pass")==""){
+				alert("비밀번호를 입력해 주십시오.");
+				return
+			}
+			if($("#join-confirm").val()==""){
+				alert("확인비밀번호를 입력해 주십시오.");
+				return
+			}
+			if($("#join-birthdate").val()==""){
+				alert("생년월일을 입력해 주십시오.");
+				return
+			}
+			if($("#join-pass").val()!=$("#join-confirm").val()){
+				alert("비밀번호가 일치하지 않습니다.");
+			}
 			
+			$.ajax({
+				url:"idCheck",
+				type:"post",
+				dataType:"text",
+				data:{"loginId":$("#join-email").val()},
+				success:function(result){
+					console.log("결과 :  " +result);
+					if(result=="success"){
+						join();
+					}else{
+						alert("이미 사용중인 이메일입니다.");
+					}
+				},
+				error:function(){
+					
+				}
+			})
+		})
+		
+		var join = function(){
 			$.ajax({
 				url:"join",
 				type:"post",
 				dataType:"text",
-				data:{"name" : $("#join-name").val(), "id" : email,"password" : $("#join-pass").val(), "birthdate" : $("#join-birthdate").val()},
+				data:{"name" : $("#join-name").val(), "id" : $("#join-email").val(),"password" : $("#join-pass").val(), "birthdate" : $("#join-birthdate").val()},
 				success:function(result){
-					alert("성공");
+					$("#join-modal").modal("hide");
+					$("#form-username").val( $("#join-email").val() );
+					$("#form-password").val( $("#join-pass").val() )
+					$(".form-horizontal input").val("");
 				},
 				error:function(err){
 					console.log("회원가입 에러");
 				}
 			})
-		})
+		}
 		
 		/*로그인*/
 		$("#index-login").on("click", function(){
+			login();
+		});
+		
+		$("#form-password").keyup(function(e) {
+		    if (e.keyCode == 13){
+		    	$(".login-form").submit();
+		    }
+		});
+		
+		var login = function(I){
 			$.ajax({
 				url:"login",
 				type:"post",
@@ -215,7 +268,7 @@
 					console.log("로그인 에러");
 				}
 			})
-		})
+		}
 		
 	})
 </script>

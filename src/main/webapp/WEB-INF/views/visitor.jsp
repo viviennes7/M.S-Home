@@ -208,20 +208,16 @@
 		        <h4 class="modal-title">Record</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<form id="visitor-modal-form">
                   <input type="text" id="visitor-subject" name="subject" class="form-control" placeholder="제목"><br>
-                  <textarea rows="5" name="content" class="form-control" placeholder="방명록"></textarea>
-                </form>
+                  <textarea rows="5" id="visitor-content" name="content" class="form-control" placeholder="방명록"></textarea>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-success btn-fill" data-dismiss="modal" id="visitor-save">Save</button>
+		        <button type="button" class="btn btn-success btn-fill" id="visitor-save">Save</button>
 		        <button type="button" class="btn btn-danger btn-fill" data-dismiss="modal">Close</button>
 		      </div>
 		    </div>
-		    
 		  </div>
 		</div>
-		
 		<jsp:include page="personalInfo.jsp"/>
 </div>
 
@@ -247,8 +243,7 @@
     	$(document).ready(function(){
     		
     		var playerSq= "${sessionScope.player}"; 
-    		console.log("SQ : " + playerSq)
-    		
+
     		/*모달띄우기*/
     		$(document).on("click","#visitor-write",function(){ 
   				$("#visitor-modal").appendTo("body").modal("show");
@@ -258,13 +253,24 @@
     		
     		/*방명록쓰기*/
     		$("#visitor-save").on("click",function(){
+    			console.log($("#visitor-subject").val());
+    			if($("#visitor-subject").val()==""){
+    				alert("제목을 입력해 주세요.");
+    				return
+    			}
+    			
+    			if($("#visitor-content").val()==""){
+    				$("#visitor-content").val(" ");
+    			}
+    			
+    			
+    			
     			$.ajax({
     				url:"visitorInsert",
     				type:"post",
     				dataType:"json",
-    				data:$("#visitor-modal-form").serialize(),
+    				data:{"subject":$("#visitor-subject").val() , "content":$("#visitor-content").val()}, 
     				success:function(data){
-    					console.log(data);
     					str="";
     					str+="<div class='col-md-3'>";
 						str+="<div class='card card-user'>";
@@ -279,6 +285,9 @@
 						str+="<p class='description text-center'>"+data.content+"</p></div>";
 						str+="<hr><div class='text-right'><button type='button' class='close visitor-delete' id='visitordel-"+data.visitorSq+"'>&times;</button></div><div class='text-left'>"+ data.time +"</div></div></div>";
 						$("#visitor-container").prepend(str);
+						$("#visitor-modal").modal("hide");
+						$("#visitor-subject").val("");
+						$("#visitor-content").val("");
     				},
     				error:function(){
     					console.log("방명록쓰기 오류");
@@ -291,7 +300,7 @@
     		
     		/*스크롤 페이징*/
     		$("#visitor-scroll-page").scroll(function() {
-		    	if($(this).scrollTop() + $(this).innerHeight() +1 >= $(this)[0].scrollHeight) {
+		    	if($(this).scrollTop() + $(this).innerHeight() +0.5 >= $(this)[0].scrollHeight) {
 		    		visitorScroll();
     		    } 
     		});
@@ -324,7 +333,7 @@
 							str+="<h4 class='title'>"+item.playerDTO.name+"<br/>";
 							str+="<small>"+item.subject+"</small></h4></div>";
 							str+="<p class='description text-center'>"+item.content+"</p></div><hr>";
-							if(playerSq==item.playerDTO.playSq){							
+							if(playerSq==item.playerDTO.playSq || playerSq==2){							
 								str+="<div class='text-right'><button type='button' class='close visitor-delete' value='"+item.visitorSq+"'>&times;</button></div>";
 							}
 							str+="<div class='text-left'>"+item.time +"</div></div></div>";
@@ -349,19 +358,23 @@
     		
     		/*방명록 삭제*/
     		$(document).on("click",".visitor-delete",function(){
-    			
-    			$.ajax({
-    				url:"visitorDel",
-    				type:"post",
-					data:"visitorSq="+$(this).attr("value"),
-					success:function(data){
-						console.log($(this));
-					},
-					error:function(){
-						console.log("방명록삭제 오류")
-					}
-    			})
+    			var visitor = $(this).parent().parent().parent()
+    			if(confirm("삭제하시겠습니까?")){
+	    			$.ajax({
+	    				url:"visitorDel",
+	    				type:"post",
+						data:"visitorSq="+$(this).attr("value"),
+						success:function(data){
+							visitor.remove();
+						},
+
+						error:function(){
+							console.log("방명록삭제 오류")
+						}
+	    			})
+    			}
     		})
+    		
     	})
  	</script>
     		

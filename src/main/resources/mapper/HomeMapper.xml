@@ -51,6 +51,11 @@
 	insert into player(PLAYER_SQ, PLAYER_NAME, PLAYER_ID, PLAYER_PASSWORD, PLAYER_BIRTHDATE) values(player_sq.nextval, #{name}, #{id}, #{password}, #{birthdate} )
 </insert>
 
+<!-- ID유효성 체크 -->
+<select id="idCheck" parameterType="String" resultMap="player">
+	select * from player where player_id=#{value}
+</select>
+
 <!-- 로그인  -->
 <select id="login" parameterType="playerDTO" resultMap="player">
 	select * from player where player_id=#{id} and player_password=#{password}
@@ -99,22 +104,24 @@
 <!-- 방금 쓴 방명록 조회 -->
 <select id="visitorSelectOne" parameterType="hashmap" resultMap="visitor">
 	select * from 
-	( select rownum as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
-	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq order by visitor_sq desc) 
+	( select row_number() over(order by visitor_sq desc) as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
+	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq) 
 	WHERE rnum=1
 </select>
 
 
-
 <!-- 방명록 조회 -->
-<!-- 만약에 이게 이상하게 작동하면 위에꺼 참조해서 할 것!(order by 자리) -->
 <select id="visitorSelect" parameterType="hashmap" resultMap="visitor">
 	select * from 
-	( select rownum as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
-	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq order by visitor_sq desc) 
+	( select row_number() over(order by visitor_sq desc) as rnum,visitor_sq,player.player_sq,visitor_subject, visitor_content, 
+	visitor_time,player_name,player_id,player_url,player_bg_url from visitor,player where visitor.player_sq = player.player_sq) 
 	WHERE rnum<![CDATA[ > ]]>= #{start} AND rnum <![CDATA[ < ]]>= #{end}
 </select>
 
+<!-- 방명록 삭제 -->
+<delete id="visitorDel" parameterType="int">
+	delete visitor where visitor_sq=${value}
+</delete>
 
 <!-- 포트폴리오 조회 -->
 <select id = "portfolio" resultMap="portfolio">

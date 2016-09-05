@@ -67,6 +67,11 @@ public interface MSDao {
 	public List<VisitorDTO> visitorSelect(Map<String, Integer> map);
 	
 	/**
+	 * 방명록 삭제
+	 * */
+	public int visitorDel(int visitorSq);
+	
+	/**
 	 * 포트폴리오 조회
 	 * */
 	public List<PortfolioDTO> portfolio();
@@ -80,14 +85,12 @@ public interface MSDao {
 	 * 포트폴리오 상세보기
 	 * */
 	public PortfolioDTO portfolioRead(int portfolioSq);
+
+	/**
+	 * ID유효성 체크
+	 * */
+	public PlayerDTO idCheck(String loginId);
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	public int lifePost();
 }

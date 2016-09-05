@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,8 +33,19 @@ public class MSService {
 	public String join(PlayerDTO dto){
 		MSDao dao=sqlSession.getMapper(MSDao.class);
 		int result = dao.join(dto);
-		System.out.println("서비스 : " + result);
 		return null;
+	}
+	
+	/**
+	 * ID 유효성 체크
+	 * */
+	public String idCheck(String loginId) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		if(dao.idCheck(loginId)==null){
+			return "success";
+		}else{
+			return "fail";
+		}
 	}
 	
 	/**
@@ -118,6 +130,15 @@ public class MSService {
 	}
 	
 	/**
+	 * 방명록 삭제
+	 * */
+	public void visitorDel(int visitorSq) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		dao.visitorDel(visitorSq);
+	}
+	
+	
+	/**
 	 * 포트폴리오 조회
 	 * */
 	public List<PortfolioDTO> portfolio() {
@@ -155,6 +176,10 @@ public class MSService {
 		 }*/
 		 
 	}
+	
+	
+
+	
 
 
 

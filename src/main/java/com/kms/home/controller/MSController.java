@@ -72,6 +72,15 @@ public class MSController {
 		return service.join(dto);
 	}
 	
+	/**
+	 * ID 유효성체크
+	 * */
+	@RequestMapping("idCheck")
+	@ResponseBody
+	public String idCheck(String loginId){
+		return service.idCheck(loginId);
+	}
+	
 	
 	/**
 	 * 로그아웃
@@ -196,7 +205,7 @@ public class MSController {
 	@RequestMapping("visitorDel")
 	@ResponseBody
 	public String visitorDel(int visitorSq){
-		System.out.println("Sq : " + visitorSq);
+		service.visitorDel(visitorSq);
 		return "success";
 	}
 	
@@ -221,7 +230,6 @@ public class MSController {
 		List<VisitorDTO> visitor = service.visitorSelect(page);
 		Gson gson = new Gson();
 		String json = gson.toJson(visitor);
-		System.out.println(json);
 		return json;
 	}
 	
@@ -243,7 +251,6 @@ public class MSController {
 		String imgPath =request.getServletContext().getRealPath("/resources/portFolioImg/");
 		String imgFileName = img.getOriginalFilename();
 		String imgStoredFileName=null;
-		System.out.println("파일 : " + imgFileName);
 		
 		
 		if(imgFileName!=""){
@@ -255,7 +262,6 @@ public class MSController {
 			}catch(IOException e){
 				e.printStackTrace();
 			}
-			System.out.println("imgName : " + imgStoredFileName);
 		}
 		
 		
@@ -272,15 +278,12 @@ public class MSController {
 			}catch(IOException e){
 				e.printStackTrace();
 			}
-			System.out.println("fileName : " + fileStoredFileName);
 		}
 		
 		
 		PortfolioDTO dto = new PortfolioDTO(multi.getParameter("subject"), multi.getParameter("strapline1"), 
 				multi.getParameter("strapline2"), multi.getParameter("strapline3"), multi.getParameter("strapline4"), 
 				multi.getParameter("strapline5"), multi.getParameter("content"), imgStoredFileName, fileStoredFileName);
-		
-		System.out.println(dto);
 		
 		service.portfolioSave(dto);
 		
