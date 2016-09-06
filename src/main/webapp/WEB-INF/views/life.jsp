@@ -32,6 +32,8 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
+	<link rel="shortcut icon" href="resources/icon/favicon.png">
+	
 	
 	<style type="text/css">
 		/* jssor slider bullet navigator skin 13 css */
