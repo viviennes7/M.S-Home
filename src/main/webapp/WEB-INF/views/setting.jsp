@@ -383,7 +383,7 @@
     		
     		$("#setting-bg-upload").fileinput({ 
     		    uploadUrl: "backgroundImgUpdate",  
-    		    allowedFileExtensions: ["jpg", "png", "gif"],
+    		    allowedFileExtensions: ["jpg", "png", "gif","jpeg"],
     		    minImageWidth: 50,
     		    minImageHeight: 50,
     		    fileActionSettings:{"showUpload":false,"showZoom":false},

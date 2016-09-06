@@ -33,6 +33,7 @@
 	
 	<style type="text/css">
 		#ms-board-search{margin-top:10px;}
+		.card .content{height:400px;}
 	</style>
 </head>
 <body>
@@ -264,7 +265,10 @@
     				$("#visitor-content").val(" ");
     			}
     			
-    			
+    			if($("#visitor-content").val().length>=200){
+    				alert("200자 이상은 쓸 수 없습니다.");
+    				return;
+    			}
     			
     			$.ajax({
     				url:"visitorInsert",
@@ -283,8 +287,10 @@
 						str+="<img class='avatar border-gray' src='resources/settingImg/"+data.playerDTO.url+"'/>";
 						str+="<h4 class='title'>"+data.playerDTO.name+"<br/>";
 						str+="<small>"+data.subject+"</small></h4></div>";
-						str+="<p class='description text-center'>"+data.content+"</p></div>";
-						str+="<hr><div class='text-right'><button type='button' class='close visitor-delete' id='visitordel-"+data.visitorSq+"'>&times;</button></div><div class='text-left'>"+ data.time +"</div></div></div>";
+						str+="<p class='description text-center'>"+data.content+"</p></div><hr>";
+						
+						str+="<div class='text-right'><button type='button' class='close visitor-delete' value='"+data.visitorSq+"'>&times;</button></div><div class='text-left'>"+ data.time +"</div></div></div>";
+						
 						$("#visitor-container").prepend(str);
 						$("#visitor-modal").modal("hide");
 						$("#visitor-subject").val("");
@@ -295,6 +301,18 @@
     				}
     			})
     		})
+    		
+    		$("#visitor-content").keydown(function(key){
+    			if(key.keyCode==8){
+    				return;
+    			}
+    			
+			    if($(this).val().length>=200){
+			    	alert("200자 이상은 쓸 수 없습니다.");
+			    	$(this).val($(this).val().slice(0,-1))
+			    }
+    		})
+    		
     		
     		//현재 페이지
     		var pageLoaded = 0; 
@@ -315,7 +333,6 @@
 					dataType:"json",
 					data:"page="+pageLoaded,
 					success:function(data){
-						console.log(data);
 						if(data.length==0){ 
 							pageLoaded--
 							return;

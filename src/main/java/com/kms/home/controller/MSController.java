@@ -56,6 +56,7 @@ public class MSController {
 		int Sq = service.login(username, userpass);
 		session.setMaxInactiveInterval(5000);
 		session.setAttribute("player", Sq);
+		System.out.println("로그인 : " + Sq+"/"+username);
 		if(Sq!=-1){
 			return "success";
 		}else{
