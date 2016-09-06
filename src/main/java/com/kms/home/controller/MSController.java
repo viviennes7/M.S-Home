@@ -94,18 +94,16 @@ public class MSController {
 	/**
 	 * 메인 창
 	 * */
-/*	@RequestMapping(value = "main",method = RequestMethod.POST, produces="text/plain;charset=UTF-8" )
-	public void Main(HttpSession session){
-		System.out.println("메인!");
-	}*/
+	@RequestMapping(value = "main")
+	public void Main(HttpSession session){}
 	
 	
 	/**
 	 * 라이프 창
 	 * */
-	/*@RequestMapping("life")
+	@RequestMapping("life")
 	public void life(HttpSession session){}
-	*/
+	
 	
 	/**
 	 * Setting

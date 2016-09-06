@@ -28,6 +28,7 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
 	
 	
@@ -41,7 +42,6 @@
 	<link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css' rel="stylesheet"/>	
 	
 	<style type="text/css">
-		
 	</style>
 </head>
 <body>
@@ -241,7 +241,7 @@
                					</div>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="file" class="form-control" name="img">
+										<input type="file" name="img" class="filestyle" data-iconName="glyphicon glyphicon-inbox">
 									</div>
 								</div><br>
 								
@@ -252,10 +252,9 @@
                					</div>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="file" class="form-control" name="file">
+										<input type="file" name="file" class="filestyle" data-iconName="glyphicon glyphicon-inbox">
 									</div>
 								</div><br><br>
-								
 								<div class="row" style="text-align: center">
 									 <input type="submit" class="btn btn-default btn-fill" data-dismiss="modal" id="visitor-save" value="Save">
 								</div>
@@ -295,6 +294,8 @@
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>
 	
+	<!-- 파일올리는 버튼-->
+	<script src="<c:url value='/resources/js/bootstrap-filestyle.js'/>"></script>
 	
 	<!-- froala -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
@@ -321,7 +322,8 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		$('#edit').froalaEditor()
+    		$('#edit').froalaEditor();
+    		$(":file").filestyle({iconName: "glyphicon-inbox"});
     	});
 	</script>
 

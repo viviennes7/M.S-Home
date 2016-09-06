@@ -147,6 +147,9 @@
 		         ${portfolio.content}
             </div>
           </div>
+          
+          <br><br>
+          <a href="<c:url value='/resources/portFolioFile/${portfolio.file }'/>">${portfolio.file }</a>
         </div>
 
 
