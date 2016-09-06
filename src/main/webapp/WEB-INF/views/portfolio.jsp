@@ -207,7 +207,7 @@
         <footer class="footer">
             
                 <p class="copyright pull-right">
-                    &copy;<a href="mailto:viviennes7@naver.com">Kim Min-soo</a> Since 2016.07.25 
+                    &copy;<a href="mailto:viviennes7@naver.com">Kim Min-soo</a> Since 2016.09.07 
                 </p>
             </div>
         </footer>
