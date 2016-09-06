@@ -277,11 +277,12 @@ public class MSController {
 				e.printStackTrace();
 			}
 		}
-		
+		//파일들은 null이면 안들어가서 꼼수썻는데 고쳐야돼!
+		if(fileStoredFileName==null) fileStoredFileName="null";
 		
 		PortfolioDTO dto = new PortfolioDTO(multi.getParameter("subject"), multi.getParameter("strapline1"), 
 				multi.getParameter("strapline2"), multi.getParameter("strapline3"), multi.getParameter("strapline4"), 
-				multi.getParameter("strapline5"), multi.getParameter("content"), imgStoredFileName, fileStoredFileName);
+				multi.getParameter("strapline5"), multi.getParameter("content"), imgStoredFileName, fileStoredFileName,fileFileName);
 		
 		service.portfolioSave(dto);
 		

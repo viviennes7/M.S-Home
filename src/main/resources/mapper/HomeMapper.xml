@@ -43,6 +43,7 @@
 	<result column="portfolio_content" property="content"/>
 	<result column="portfolio_img" property="img"/>
 	<result column="portfolio_file" property="file"/>
+	<result column="portfolio_origin_file" property="originFile"/>
 </resultMap>
 
 
@@ -125,14 +126,14 @@
 
 <!-- 포트폴리오 조회 -->
 <select id = "portfolio" resultMap="portfolio">
-	select * from portfolio
+	select * from portfolio order by portfolio_sq
 </select>
 
 <!-- 포트폴리오 저장 -->
 <insert id="portfolioSave" parameterType="portfolioDTO">
 	insert into portfolio(portfolio_sq,portfolio_subject,portfolio_strapline1,portfolio_strapline2,portfolio_strapline3,
-	       portfolio_strapline4,portfolio_strapline5,portfolio_content, portfolio_img, portfolio_file)
-	values(portfolio_sq.nextval,#{subject},#{strapline1},#{strapline2},#{strapline3},#{strapline4},#{strapline5},#{content},#{img},#{file})	       
+	       portfolio_strapline4,portfolio_strapline5,portfolio_content, portfolio_img, portfolio_file, portfolio_origin_file)
+	values(portfolio_sq.nextval,#{subject},#{strapline1},#{strapline2},#{strapline3},#{strapline4},#{strapline5},#{content},#{img},#{file},#{originFile})	       
 </insert>
 
 <!-- 포트폴리오 상세보기 -->

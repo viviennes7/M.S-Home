@@ -241,7 +241,7 @@
                					</div>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="file" name="img" class="filestyle" data-iconName="glyphicon glyphicon-inbox">
+										<input type="file" id="write-img" name="img" class="filestyle" data-iconName="glyphicon glyphicon-inbox">
 									</div>
 								</div><br>
 								
@@ -252,11 +252,11 @@
                					</div>
 								<div class="row">
 									<div class="col-md-12">
-										<input type="file" name="file" class="filestyle" data-iconName="glyphicon glyphicon-inbox">
+										<input type="file"  name="file" class="filestyle" data-iconName="glyphicon glyphicon-inbox">
 									</div>
 								</div><br><br>
 								<div class="row" style="text-align: center">
-									 <input type="submit" class="btn btn-default btn-fill" data-dismiss="modal" id="visitor-save" value="Save">
+									 <input type="submit" class="btn btn-default btn-fill" data-dismiss="modal" id="write-save" value="Save">
 								</div>
 					     	  </form>
 							</div>
@@ -324,6 +324,13 @@
     	$(document).ready(function(){
     		$('#edit').froalaEditor();
     		$(":file").filestyle({iconName: "glyphicon-inbox"});
+    		
+    		$("#write-save").on("click",function(){
+    			if($("#write-img").val()==""){
+    				alert("배경사진을 업로드 하여 주십시오.");
+    				return false;
+    			}
+    		})
     	});
 	</script>
 

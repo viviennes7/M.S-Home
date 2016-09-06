@@ -12,13 +12,13 @@ public class PortfolioDTO {
 	private String content;
 	private String img;
 	private String file;
+	private String originFile;
 	
 	public PortfolioDTO() {}
 	
-	
-	
-	public PortfolioDTO(String subject, String strapline1, String strapline2, String strapline3, String strapline4,
-			String strapline5, String content, String img, String file) {
+	public PortfolioDTO(String subject, String strapline1, String strapline2,
+			String strapline3, String strapline4, String strapline5, String content, String img, String file,
+			String originFile) {
 		super();
 		this.subject = subject;
 		this.strapline1 = strapline1;
@@ -29,12 +29,12 @@ public class PortfolioDTO {
 		this.content = content;
 		this.img = img;
 		this.file = file;
+		this.originFile = originFile;
 	}
 
-
-
 	public PortfolioDTO(int portfolioSq, int playerSq, String subject, String strapline1, String strapline2,
-			String strapline3, String strapline4, String strapline5, String content, String img, String file) {
+			String strapline3, String strapline4, String strapline5, String content, String img, String file,
+			String originFile) {
 		super();
 		this.portfolioSq = portfolioSq;
 		this.playerSq = playerSq;
@@ -47,9 +47,9 @@ public class PortfolioDTO {
 		this.content = content;
 		this.img = img;
 		this.file = file;
+		this.originFile = originFile;
 	}
-
-
+	
 	public int getPortfolioSq() {
 		return portfolioSq;
 	}
@@ -118,15 +118,19 @@ public class PortfolioDTO {
 		this.file = file;
 	}
 	
+	public String getOriginFile() {
+		return originFile;
+	}
+	public void setOriginFile(String originFile) {
+		this.originFile = originFile;
+	}
+	
 	@Override
 	public String toString() {
 		return "PortfolioDTO [portfolioSq=" + portfolioSq + ", playerSq=" + playerSq + ", subject=" + subject
 				+ ", strapline1=" + strapline1 + ", strapline2=" + strapline2 + ", strapline3=" + strapline3
 				+ ", strapline4=" + strapline4 + ", strapline5=" + strapline5 + ", content=" + content + ", img=" + img
-				+ ", file=" + file + "]";
+				+ ", file=" + file + ", originFile=" + originFile + "]";
 	}
-	
-	
-	
 	
 }
