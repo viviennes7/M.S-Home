@@ -29,7 +29,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
-	<link rel="shortcut icon" href="resources/icon/favicon.png">
+	<link rel="shortcut icon" href="resources/icon/favicon.ico">
 	
 	<style type="text/css">
 		#ms-board-search{margin-top:10px;}
@@ -175,9 +175,6 @@
 
     <!--  Notifications Plugin    -->
     <script src="<c:url value='/resources/js/bootstrap-notify.js'/>" ></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="<c:url value='/resources/js/light-bootstrap-dashboard.js'/>"></script>

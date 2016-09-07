@@ -32,7 +32,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
-	<link rel="shortcut icon" href="resources/icon/favicon.png">
+	<link rel="shortcut icon" href="resources/icon/favicon.ico">
 	
 	<style type="text/css">
 		#ms-board-search{margin-top:10px;}
@@ -233,12 +233,12 @@
                                 <p class="description text-center" id="setting-card-intro"> ${Player.introduction}
                                 </p>
                             </div>
-                            <hr>
+                            <!-- <hr>
                             <div class="text-center">
                                 <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
                                 <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
                                 <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -318,7 +318,16 @@
     		/*프로필 수정*/
     		$("#setting-update").on("click",function(){
     			if($("#setting-password").val()!=$("#setting-confirm").val()){
-    				alert("비밀번호가 일치하지 않습니다.");
+    				$.notify({
+						// options
+						icon: 'glyphicon glyphicon-remove-sign',
+						message: '비밀번호가 일치하지 않습니다.' 
+					},{
+						// settings
+						type: 'danger',
+						z_index: 3000
+					});
+    				return;
     				return;
     			}
     			$.ajax({

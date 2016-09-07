@@ -28,11 +28,11 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
-	<link rel="shortcut icon" href="resources/icon/favicon.png">
+	<link rel="shortcut icon" href="resources/icon/favicon.ico">
 	
 	<style type="text/css">
-		#ms-board-search{margin-top:10px;}
 		.card .content{height:400px;}
 	</style>
 </head>
@@ -257,18 +257,47 @@
     		$("#visitor-save").on("click",function(){
     			console.log($("#visitor-subject").val());
     			if($("#visitor-subject").val()==""){
-    				alert("제목을 입력해 주세요.");
-    				return
+    				$.notify({
+						// options
+						icon: 'glyphicon glyphicon-remove-sign',
+						message: '제목을 입력해 주세요.' 
+					},{
+						// settings
+						type: 'danger',
+						z_index: 3000
+					});
+    				return;
+    			}
+    			if($("#visitor-subject").val().length>=20){
+    				$.notify({
+						// options
+						icon: 'glyphicon glyphicon-remove-sign',
+						message: '제목을 20자 이상 쓸 수 없습니다.' 
+					},{
+						// settings
+						type: 'danger',
+						z_index: 3000
+					});
+    				return;
     			}
     			
     			if($("#visitor-content").val()==""){
     				$("#visitor-content").val(" ");
     			}
     			
-    			if($("#visitor-content").val().length>=200){
-    				alert("200자 이상은 쓸 수 없습니다.");
+    			if($("#visitor-content").val().length>=180){
+    				$.notify({
+						// options
+						icon: 'glyphicon glyphicon-remove-sign',
+						message: '내용을 180자 이상 쓸 수 없습니다.' 
+					},{
+						// settings
+						type: 'danger',
+						z_index: 3000
+					});
     				return;
     			}
+    			
     			
     			$.ajax({
     				url:"visitorInsert",
@@ -301,14 +330,23 @@
     				}
     			})
     		})
-    		
+
     		$("#visitor-content").keydown(function(key){
     			if(key.keyCode==8){
     				return;
     			}
     			
-			    if($(this).val().length>=200){
-			    	alert("200자 이상은 쓸 수 없습니다.");
+			    if($(this).val().length>=180){
+			    	$.notify({
+						// options
+						icon: 'glyphicon glyphicon-remove-sign',
+						message: '내용을 180자 이상 쓸 수 없습니다.' 
+					},{
+						// settings
+						type: 'danger',
+						z_index: 3000
+					});
+			    	
 			    	$(this).val($(this).val().slice(0,-1))
 			    }
     		})
