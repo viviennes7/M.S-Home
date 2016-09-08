@@ -49,7 +49,7 @@
 
 <!-- 회원가입 -->
 <insert id="join" parameterType="playerDTO" >
-	insert into player(PLAYER_SQ, PLAYER_NAME, PLAYER_ID, PLAYER_PASSWORD, PLAYER_BIRTHDATE) values(player_sq.nextval, #{name}, #{id}, #{password}, #{birthdate} )
+	insert into player(PLAYER_SQ, PLAYER_NAME, PLAYER_ID, PLAYER_PASSWORD) values(player_sq.nextval, #{name}, #{id}, #{password})
 </insert>
 
 <!-- ID유효성 체크 -->

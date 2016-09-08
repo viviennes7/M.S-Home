@@ -30,7 +30,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="<c:url value='/resources/css/pe-icon-7-stroke.css'/>"  rel="stylesheet" />
-	<link rel="shortcut icon" href="resources/icon/favicon.ico">
+	<link rel="shortcut icon" href="resources/icon/favicon.ico"/>
 	
 	<style type="text/css">
 		#ms-board-search{margin-top:10px;}
@@ -188,10 +188,29 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		/* $(".fa-info-circle").parent().on("click",function(){
-    			$("#about_me").modal("show");
-    			return false;
-    		}) */
+    		/*익스플로러버전 확인*/
+    		function msieversion(){
+    	      var ua = window.navigator.userAgent
+    	      var msie = ua.indexOf ( "MSIE " )
+    		
+    	      if ( msie > 0 )      // If Internet Explorer, return version number
+    	         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+    	      else                 // If another browser, return 0
+    	         return 0
+    	
+    	   }
+    		
+    		if(msieversion()<=9){
+    			$.notify({
+					// options
+					icon: 'glyphicon glyphicon-alert',
+					message: 'Exploer 10이상, Chrome에서 정상적으로 작동합니다.' 
+				},{
+					// settings
+					type: 'warning',
+					z_index:3000
+				});
+    		}
     	});
 	</script>
 

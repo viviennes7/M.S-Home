@@ -67,15 +67,20 @@
                 <li class="active">
                     <a href='<c:url value="/portfolio"/>'>
                         <i class="pe-7s-note2"></i>
-                        <p>Portfolio</p><span class="caret" style="float:right"></span>
+                        <p>Portfolio</p>
+                        <c:if test="${sessionScope.player==2}">
+                        	<span class="caret" style="float:right"></span>
+                        </c:if>
                     </a>
                 </li>
-                
-                <li id="portfolio-write">
-                    <a href='<c:url value="/portfolioWrite"/>'>
-                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
-                    </a>
-                </li>
+				
+				<c:if test="${sessionScope.player==2}">
+	                <li id="portfolio-write">
+	                    <a href='<c:url value="/portfolioWrite"/>'>
+	                        <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPost</p>
+	                    </a>
+	                </li>
+                </c:if>
                 
                 <li>
                     <a href='<c:url value="/visitor"/>'>

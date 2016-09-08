@@ -33,7 +33,6 @@
 </head>
 
 <body>
-
     <!-- Top content -->
     <div class="top-content">
     	
@@ -54,7 +53,7 @@
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                     	<div class="form-top">
                     		<div class="form-top-left">
-                    			<h3>Login to our site</h3>
+                    			<h3>Login</h3>
                         		<p>Enter your username and password to log on:</p>
                     		</div>
                     		<div class="form-top-right">
@@ -134,12 +133,12 @@
 				      <input type="password" class="form-control" id="join-confirm">
 				    </div>
 				  </div>
-				  <div class="form-group">
+				  <!-- <div class="form-group">
 				      <label for="join-birthdate" class="col-sm-2 control-label">BirthDate</label>
 				      <div class="col-sm-10">
 				      	<input type="date" class="form-control" id="join-birthdate">
 				      </div>
-				    </div>
+				    </div> -->
 				  
 				</form>
 	      </div>
@@ -167,6 +166,18 @@
 <script type="text/javascript">
 	$(function(){
 		
+		/*익스플로러버전 확인*/
+		function msieversion(){
+	      var ua = window.navigator.userAgent
+	      var msie = ua.indexOf ( "MSIE " )
+		
+	      if ( msie > 0 )      // If Internet Explorer, return version number
+	         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+	      else                 // If another browser, return 0
+	         return 0
+	
+	   }
+		
 		/*회원가입*/
 		$("#join-btn").on("click",function(){
 			var email = $("#join-email").val();
@@ -187,10 +198,10 @@
 				alert("확인비밀번호를 입력해 주십시오.");
 				return
 			}
-			if($("#join-birthdate").val()==""){
+			/* if($("#join-birthdate").val()==""){
 				alert("생년월일을 입력해 주십시오.");
 				return
-			}
+			} */
 			if($("#join-pass").val()!=$("#join-confirm").val()){
 				alert("비밀번호가 일치하지 않습니다.");
 			}
@@ -219,11 +230,11 @@
 				url:"join",
 				type:"post",
 				dataType:"text",
-				data:{"name" : $("#join-name").val(), "id" : $("#join-email").val(),"password" : $("#join-pass").val(), "birthdate" : $("#join-birthdate").val()},
+				data:{"name" : $("#join-name").val(), "id" : $("#join-email").val(),"password" : $("#join-pass").val()},
 				success:function(result){
 					$("#join-modal").modal("hide");
 					$("#form-username").val( $("#join-email").val() );
-					$("#form-password").val( $("#join-pass").val() )
+					$("#form-password").val( $("#join-pass").val() );
 					$(".form-horizontal input").val("");
 				},
 				error:function(err){
@@ -237,7 +248,16 @@
 			login();
 		});
 		
+		$("#form-username").val("TestEmail@naver.com");
+		$("#form-password").val("123123")
+		
 		$("#form-password").keyup(function(e) {
+		    if (e.keyCode == 13){
+		    	login();
+		    }
+		});
+		
+		$("#form-username").keyup(function(e) {
 		    if (e.keyCode == 13){
 		    	login();
 		    }
@@ -250,13 +270,14 @@
 				dataType:"text",
 				data:{"username":$("#form-username").val(), "userpass":$("#form-password").val()},
 				success:function(data){
-					if(data==="success"){
+				 	if(data==="success"){
 						
 						//POST방식 전송
-						var form = document.createElement("form");
+						/* var form = document.createElement("form");
 					    form.setAttribute("method", "post");
 					    form.setAttribute("action", "main");
-					    form.submit();
+					    form.submit(); */
+					    location.href="main";
 					}else{
 						alert("ID와 PASS를 확인해 주십시오.");						
 					}

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,6 +46,7 @@ public class MSController {
 	 * */
 	@RequestMapping({ "/", "index"})
 	public String index(){
+		
 		return "index";
 	}
 	
@@ -56,7 +59,14 @@ public class MSController {
 		int Sq = service.login(username, userpass);
 		session.setMaxInactiveInterval(5000);
 		session.setAttribute("player", Sq);
-		System.out.println("로그인 : " + Sq+"/"+username);
+		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+        String ip = req.getHeader("X-FORWARDED-FOR");
+        if (ip == null)
+            ip = req.getRemoteAddr();
+        
+        System.out.println("홈페이지 접속 IP : " + ip);
+        System.out.println("로그인 ID: " + username);
+        System.out.println("시간 : " + new java.text.SimpleDateFormat("hh:mm:ss").format(new java.util.Date()));
 		if(Sq!=-1){
 			return "success";
 		}else{

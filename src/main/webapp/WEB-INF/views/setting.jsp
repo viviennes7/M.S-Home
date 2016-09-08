@@ -294,7 +294,6 @@
 
 
 </body>
-
     <!--   Core JS Files   -->
     <script src="<c:url value='/resources/js/jquery-2.2.4.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/bootstrap.js'/>"></script>
@@ -413,6 +412,24 @@
     				}
     			})
     		});
+    		
+    		/*익스플로러버전 확인*/
+    		function msieversion(){
+    	      var ua = window.navigator.userAgent
+    	      var msie = ua.indexOf ( "MSIE " )
+    		
+    	      if ( msie > 0 )      // If Internet Explorer, return version number
+    	         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+    	      else                 // If another browser, return 0
+    	         return 11
+    	
+    	   }
+    		
+    		$(".fileinput-upload-button").on("click",function(){
+    			if(msieversion()<=9){
+    				alert("죄송하지만, Exploer 10이상, Chrome에서 작동합니다.");
+    			}
+    		})
     		
     		
     		/*노티피케이션*/

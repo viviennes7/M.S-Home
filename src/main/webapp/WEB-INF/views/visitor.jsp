@@ -324,6 +324,16 @@
 						$("#visitor-modal").modal("hide");
 						$("#visitor-subject").val("");
 						$("#visitor-content").val("");
+						
+						$.notify({
+							// options
+							icon: 'glyphicon glyphicon-erase',
+							message: '우측 하단의 \' x \'를 클릭하시면 글을 삭제할 수 있습니다.' 
+						},{
+							// settings
+							type: 'success',
+							z_index: 3000
+						});
     				},
     				error:function(){
     					console.log("방명록쓰기 오류");
