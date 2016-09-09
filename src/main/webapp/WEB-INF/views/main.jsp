@@ -196,7 +196,7 @@
     	      if ( msie > 0 )      // If Internet Explorer, return version number
     	         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
     	      else                 // If another browser, return 0
-    	         return 0
+    	         return 11
     	
     	   }
     		
@@ -204,10 +204,10 @@
     			$.notify({
 					// options
 					icon: 'glyphicon glyphicon-alert',
-					message: 'Exploer 10이상, Chrome에서 정상적으로 작동합니다.' 
+					message: '이 홈페이지는 <br>Exploer 10이상, Chrome에서 정상적으로 작동합니다.' 
 				},{
 					// settings
-					type: 'warning',
+					type: 'warning',	
 					z_index:3000
 				});
     		}

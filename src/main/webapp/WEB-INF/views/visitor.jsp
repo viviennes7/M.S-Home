@@ -418,7 +418,7 @@
     		visitorScroll();
     		setTimeout(function() {
     			visitorScroll();
-    		},20)
+    		},50)
     		
     		
     		
