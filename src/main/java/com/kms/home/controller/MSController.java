@@ -2,7 +2,6 @@ package com.kms.home.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -146,7 +145,7 @@ public class MSController {
 	@ResponseBody
 	public String profileImgUpdate(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		/*Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -157,7 +156,7 @@ public class MSController {
 				System.out.println("size : "+multipartFile.getSize());
 				System.out.println("-------------- file end --------------\n");
 			}
-		}
+		}*/
 		service.profileImgUpdate(commandMap.getMap(), multipartHttpServletRequest,1);
 		return "{\"result\":true}";
 	}
@@ -179,7 +178,7 @@ public class MSController {
 	@ResponseBody
 	public String backgroundImgUpdate(CommandMap commandMap, HttpServletRequest request ,HttpSession session) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		/*Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		MultipartFile multipartFile = null;
 		while(iterator.hasNext()){
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
@@ -190,7 +189,7 @@ public class MSController {
 				System.out.println("size : "+multipartFile.getSize());
 				System.out.println("-------------- file end --------------\n");
 			}
-		}
+		}*/
 		service.profileImgUpdate(commandMap.getMap(), multipartHttpServletRequest,2);
 		return "{\"result\":true}";
 	}
@@ -201,6 +200,8 @@ public class MSController {
 	@RequestMapping(value="visitorInsert", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String visitorInsert(VisitorDTO visitor, HttpSession session){
+		System.out.println("방명록 : " + visitor.getSubject()+"/"+visitor.getContent());
+		
 		visitor.setPlaySq((int)session.getAttribute("player"));
 		Gson gson = new Gson();
 		String json=gson.toJson(service.visitorInsert(visitor));
@@ -222,20 +223,20 @@ public class MSController {
 	/**
 	 * 방명록 조회(최초)
 	 * */
-	@RequestMapping(value="visitor", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
-	public ModelAndView visitorFirst(HttpSession session){
+	/*@RequestMapping(value="visitor", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	public  ModelAndView visitorFirst(HttpSession session){
 		List<VisitorDTO> visitor = service.visitorSelect(1);
 		ModelAndView mv = new ModelAndView("visitor");
 		mv.addObject("visitors", visitor);
 		return mv;
-	}
+	}*/
 	
 	/**
-	 * 방명록 스크롤 페이징
+	 * 방명록 조회 스크롤 페이징
 	 * */
 	@RequestMapping(value="visitorSelect", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String visitorSelect(int page,HttpSession session){
+	public synchronized  String visitorSelect(int page,HttpSession session){
 		List<VisitorDTO> visitor = service.visitorSelect(page);
 		Gson gson = new Gson();
 		String json = gson.toJson(visitor);

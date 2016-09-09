@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,6 +28,7 @@ public class MSService {
 	
 	/**
 	 * 회원가입
+	 * (result에 따라 리턴 깔끔하게 다시 할 것.)
 	 * */
 	public String join(PlayerDTO dto){
 		MSDao dao=sqlSession.getMapper(MSDao.class);

@@ -416,9 +416,10 @@
 				})    		
     		}
     		visitorScroll();
+    		
     		setTimeout(function() {
     			visitorScroll();
-    		},50)
+    		},100) 
     		
     		
     		
