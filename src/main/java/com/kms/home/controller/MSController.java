@@ -63,10 +63,10 @@ public class MSController {
         if (ip == null)
             ip = req.getRemoteAddr();
         
-        System.out.println("홈페이지 접속 IP : " + ip);
-        System.out.println("로그인 ID: " + username);
-        System.out.println("시간 : " + new java.text.SimpleDateFormat("hh:mm:ss").format(new java.util.Date()));
 		if(Sq!=-1){
+			System.out.println("홈페이지 접속 IP : " + ip);
+	        System.out.println("로그인 ID: " + username);
+	        System.out.println("시간 : " + new java.text.SimpleDateFormat("hh:mm:ss").format(new java.util.Date()));
 			return "success";
 		}else{
 			return "fail";
