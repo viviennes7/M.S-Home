@@ -387,7 +387,7 @@
 					data:"page="+pageLoaded,
 					success:function(data){
 						if(data.length==0){ 
-							pageLoaded--
+							pageLoaded--;
 							return;
 						}
 						/* var str="<div class='row'>"; */
@@ -441,7 +441,7 @@
 						},
 
 						error:function(){
-							console.log("방명록삭제 오류")
+							console.log("방명록삭제 오류");
 						}
 	    			})
     			}

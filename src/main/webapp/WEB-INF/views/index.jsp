@@ -168,13 +168,13 @@
 		
 		/*익스플로러버전 확인*/
 		function msieversion(){
-	      var ua = window.navigator.userAgent
-	      var msie = ua.indexOf ( "MSIE " )
+	      var ua = window.navigator.userAgent;
+	      var msie = ua.indexOf ( "MSIE " );
 		
 	      if ( msie > 0 )      // If Internet Explorer, return version number
-	         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )))
+	         return parseInt (ua.substring (msie+5, ua.indexOf (".", msie )));
 	      else                 // If another browser, return 0
-	         return 0
+	         return 0;
 	
 	   }
 		
@@ -184,7 +184,7 @@
 			
 			if($("#join-name").val()==""){
 				alert("이름을 입력해 주십시오.");
-				return
+				return;
 			}
 			if(email.indexOf("@")===-1 && email.indexOf(".")===-1){
 				alert("이메일 형식을 확인해 주십시오.");
@@ -192,11 +192,11 @@
 			}
 			if($("#join-pass")==""){
 				alert("비밀번호를 입력해 주십시오.");
-				return
+				return;
 			}
 			if($("#join-confirm").val()==""){
 				alert("확인비밀번호를 입력해 주십시오.");
-				return
+				return;
 			}
 			/* if($("#join-birthdate").val()==""){
 				alert("생년월일을 입력해 주십시오.");
@@ -219,9 +219,6 @@
 						alert("이미 사용중인 이메일입니다.");
 					}
 				},
-				error:function(){
-					
-				}
 			})
 		})
 		
@@ -249,7 +246,7 @@
 		});
 		
 		$("#form-username").val("TestEmail@naver.com");
-		$("#form-password").val("123123")
+		$("#form-password").val("123123");
 		
 		$("#form-password").keyup(function(e) {
 		    if (e.keyCode == 13){
@@ -271,12 +268,6 @@
 				data:{"username":$("#form-username").val(), "userpass":$("#form-password").val()},
 				success:function(data){
 				 	if(data==="success"){
-						
-						//POST방식 전송
-						/* var form = document.createElement("form");
-					    form.setAttribute("method", "post");
-					    form.setAttribute("action", "main");
-					    form.submit(); */
 					    location.href="main";
 					}else{
 						alert("ID와 PASS를 확인해 주십시오.");						
