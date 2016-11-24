@@ -160,7 +160,7 @@
           </div>
           
           <br><br>
-          <a target= "_blank" href="<c:url value='/resources/portFolioFile/${portfolio.file }'/>">${portfolio.originFile }</a>
+          <a target= "_blank" href="<c:url value='/resources/portFolioRead/${portfolio.file }'/>">${portfolio.originFile }</a>
         </div>
 
 

@@ -10,11 +10,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kms.home.model.dao.MSDao;
 import com.kms.home.model.dto.PlayerDTO;
 import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
+import com.kms.home.util.BCrypt;
 import com.kms.home.util.FileUtils;
 @Service
 public class MSService {
@@ -30,7 +32,8 @@ public class MSService {
 	 * 회원가입
 	 * (result에 따라 리턴 깔끔하게 다시 할 것.)
 	 * */
-	public String join(PlayerDTO dto){
+	public String join(PlayerDTO dto) throws Exception {
+		/*dto.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt(12)));*/
 		MSDao dao=sqlSession.getMapper(MSDao.class);
 		int result = dao.join(dto);
 		return null;
@@ -39,7 +42,7 @@ public class MSService {
 	/**
 	 * ID 유효성 체크
 	 * */
-	public String idCheck(String loginId) {
+	public String idCheck(String loginId) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		if(dao.idCheck(loginId)==null){
 			return "success";
@@ -51,7 +54,8 @@ public class MSService {
 	/**
 	 * 로그인
 	 * */
-	public int login(String username, String userpass){
+	public int login(String username, String userpass) throws Exception {
+		/*userpass = BCrypt.hashpw(userpass, BCrypt.gensalt(12));*/
 		MSDao dao=sqlSession.getMapper(MSDao.class);
 		PlayerDTO playerDTO = dao.login(new PlayerDTO(username, userpass));
 		if(playerDTO==null){
@@ -63,7 +67,7 @@ public class MSService {
 	/**
 	 * 사용자 프로필 조회
 	 * */
-	public PlayerDTO setting(int playSq) {
+	public PlayerDTO setting(int playSq) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		return dao.setting(playSq);
 	}
@@ -71,17 +75,20 @@ public class MSService {
 	/**
 	 * 사용자 프로필 수정
 	 * */
-	public void profileUpdate(PlayerDTO dto){
+	public void profileUpdate(PlayerDTO dto) throws Exception {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		dao.profileUpdate(dto);
 	}
 
 	/**
 	 * 프로필 사진 업로드
+	 * 
+	 * flag == 1 프로필사진
+	 * flag == 2 배경사진
 	 * */
 	@ResponseBody
-	public void profileImgUpdate(Map<String, Object> map, HttpServletRequest request,int flag)throws Exception{
-		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+	public void profileImgUpdate(HttpServletRequest request,int flag)throws Exception{
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(request,"settingImg");
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		list.get(0).put("playSq", request.getSession().getAttribute("player"));
 		if(flag==1){
@@ -95,7 +102,7 @@ public class MSService {
 	/**
 	 * 프로필or배경 사진 조회
 	 * */
-	public String profileImgSelect(int playSq,int flag) {
+	public String profileImgSelect(int playSq,int flag) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		if(flag==1){
 			return dao.profileImgSelect(playSq);
@@ -107,7 +114,7 @@ public class MSService {
 	/**
 	 * 방명록 쓰기
 	 * */
-	public VisitorDTO visitorInsert(VisitorDTO visitor) {
+	public VisitorDTO visitorInsert(VisitorDTO visitor) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		if(dao.visitorInsert(visitor)==1){
 			return dao.visitorSelectOne();
@@ -119,7 +126,7 @@ public class MSService {
 	/**
 	 * 방명록조회
 	 * */
-	public List<VisitorDTO> visitorSelect(int page) {
+	public List<VisitorDTO> visitorSelect(int page) throws Exception  {
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		map.put("start", page*4-3);
 		map.put("end", page*4);
@@ -132,7 +139,7 @@ public class MSService {
 	/**
 	 * 방명록 삭제
 	 * */
-	public void visitorDel(int visitorSq) {
+	public void visitorDel(int visitorSq) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		dao.visitorDel(visitorSq);
 	}
@@ -141,7 +148,7 @@ public class MSService {
 	/**
 	 * 포트폴리오 조회
 	 * */
-	public List<PortfolioDTO> portfolio() {
+	public List<PortfolioDTO> portfolio() throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		return dao.portfolio();
 	}
@@ -149,8 +156,22 @@ public class MSService {
 	
 	/**
 	 * 포트폴리오 저장
+	 * @throws Exception 
 	 * */
-	public void portfolioSave(PortfolioDTO dto) {
+	public void portfolioSave(HttpServletRequest request, MultipartHttpServletRequest multi) throws Exception {
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(request,"portFolioRead");
+		
+		String img = list.get(0).get("STORED_FILE_NAME").toString();
+		String imgOrigin = list.get(0).get("ORIGINAL_FILE_NAME").toString();
+		String file = list.get(1).get("STORED_FILE_NAME").toString();
+		String fileOrigin = list.get(1).get("ORIGINAL_FILE_NAME").toString();
+		
+		//파일들은 null이면 안들어가서 꼼수썻는데 고쳐야돼!
+		if(file==null) file="null";
+		
+		PortfolioDTO dto = new PortfolioDTO(multi.getParameter("subject"), multi.getParameter("strapline1"), 
+		multi.getParameter("strapline2"), multi.getParameter("strapline3"), multi.getParameter("strapline4"), 
+		multi.getParameter("strapline5"), multi.getParameter("content"), img, file,fileOrigin);
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		dao.portfolioSave(dto);
 	}
@@ -158,7 +179,7 @@ public class MSService {
 	/**
 	 * 포트폴리오 상세보기
 	 * */
-	public PortfolioDTO portfolioRead(int protfolioSq) {
+	public PortfolioDTO portfolioRead(int protfolioSq) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
 		return dao.portfolioRead(protfolioSq);
 	}

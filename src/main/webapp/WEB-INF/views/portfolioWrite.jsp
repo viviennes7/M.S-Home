@@ -327,7 +327,13 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-    		$('#edit').froalaEditor();
+    		$('#edit').froalaEditor({
+    			 imageUploadURL: "portfolioBoardImg"
+    		});
+    		
+    		
+    		
+    		
     		$(":file").filestyle({iconName: "glyphicon-inbox"});
     		
     		$("#write-save").on("click",function(){

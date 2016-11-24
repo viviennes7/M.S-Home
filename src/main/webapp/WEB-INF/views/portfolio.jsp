@@ -161,7 +161,7 @@
             		</c:if>
             		<div class="col-md-6">
 	    				<div class="card">
-		   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/portFolioImg/${portfolio.img}"/>'>
+		   					<img class="card-img-top" style="height:400px; width:100%" src='<c:url value="/resources/portFolioRead/${portfolio.img}"/>'>
 		    				<h4 class="card-title text-center" ><a  href='<c:url value="portfolioRead?portfolioSq=${portfolio.portfolioSq}"/>'>${portfolio.subject}</a></h4>
 		    		 		<div class="card-block">
 							<label>${portfolio.strapline1}</label><br>

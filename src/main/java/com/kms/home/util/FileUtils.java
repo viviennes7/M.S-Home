@@ -17,9 +17,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileUtils {
 
 	
-    public List<Map<String,Object>> parseInsertFileInfo(Map<String,Object> map, HttpServletRequest request) throws Exception{
+    public List<Map<String,Object>> parseInsertFileInfo(HttpServletRequest request, String path) throws Exception{
     	
-    	String filePath = request.getServletContext().getRealPath("/resources/settingImg/");
+    	String filePath = request.getServletContext().getRealPath("/resources/"+path+"/");
         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
         Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
          
@@ -31,7 +31,6 @@ public class FileUtils {
         List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
         Map<String, Object> listMap = null; 
          
-        String boardIdx = (String)map.get("IDX");
          
         File file = new File(filePath);
         if(file.exists() == false){
@@ -50,11 +49,11 @@ public class FileUtils {
                 multipartFile.transferTo(file);
                  
                 listMap = new HashMap<String,Object>();
-                listMap.put("BOARD_IDX", boardIdx);
                 listMap.put("ORIGINAL_FILE_NAME", originalFileName);
                 listMap.put("STORED_FILE_NAME", storedFileName);
                 listMap.put("FILE_SIZE", multipartFile.getSize());
                 list.add(listMap);
+                
             }
         }
         return list;

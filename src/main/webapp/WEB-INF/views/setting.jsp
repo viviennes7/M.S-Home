@@ -379,7 +379,7 @@
     				type:"post",
     				data:{"flag":1},
     				success:function(src){
-    					$("#setting-profile-img").attr("src","/resources/settingImg/"+src);
+    					$("#setting-profile-img").attr("src","resources/settingImg/"+src);
 						
     				},
     				error:function(){
@@ -409,7 +409,7 @@
     				type:"post", 
     				data:{"flag":2},
     				success:function(src){
-    					$("#setting-bg-img").attr("src","/resources/settingImg/"+src);
+    					$("#setting-bg-img").attr("src","resources/settingImg/"+src);
     				},
     				error:function(){
     					console.log("프사조회 오류");

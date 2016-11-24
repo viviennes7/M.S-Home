@@ -1,8 +1,7 @@
 package com.kms.home.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,17 +20,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.kms.home.model.dto.PlayerDTO;
-import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
 import com.kms.home.model.service.MSService;
-import com.kms.home.util.CommandMap;
-import com.kms.home.util.CommonUtils;
+import com.kms.home.util.FileUtils;
 
 @Controller
 public class MSController {
 	
 	@Autowired
 	MSService service;
+	@Autowired
+	private FileUtils fileUtils;
+	
 	
 	/**
 	 * TEST
@@ -39,12 +39,11 @@ public class MSController {
 	@RequestMapping("{url}")
 	public void call() {}
 	
-	
 	/**
 	 * 로그인페이지이동
 	 * */
 	@RequestMapping({ "/", "index"})
-	public String index(){
+	public String index() throws Exception {
 		
 		return "index";
 	}
@@ -54,7 +53,7 @@ public class MSController {
 	 * */
 	@RequestMapping(value="login", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String login(HttpSession session, String username, String userpass){
+	public String login(HttpSession session, String username, String userpass) throws Exception {
 		int Sq = service.login(username, userpass);
 		session.setMaxInactiveInterval(5000);
 		session.setAttribute("player", Sq);
@@ -78,7 +77,7 @@ public class MSController {
 	 * */
 	@RequestMapping("join")
 	@ResponseBody
-	public String join(PlayerDTO dto){
+	public String join(PlayerDTO dto) throws Exception {
 		return service.join(dto);
 	}
 	
@@ -87,7 +86,7 @@ public class MSController {
 	 * */
 	@RequestMapping("idCheck")
 	@ResponseBody
-	public String idCheck(String loginId){
+	public String idCheck(String loginId) throws Exception {
 		return service.idCheck(loginId);
 	}
 	
@@ -96,7 +95,7 @@ public class MSController {
 	 * 로그아웃
 	 * */
 	@RequestMapping("logout")
-	public String logout(HttpSession session){
+	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 		return "redirect:/";
 	}
@@ -105,21 +104,21 @@ public class MSController {
 	 * 메인 창
 	 * */
 	@RequestMapping(value = "main")
-	public void Main(HttpSession session){}
+	public void Main(HttpSession session) throws Exception {}
 	
 	
 	/**
 	 * 라이프 창
 	 * */
 	@RequestMapping("life")
-	public void life(HttpSession session){}
+	public void life(HttpSession session) throws Exception {}
 	
 	
 	/**
 	 * Setting
 	 * */
 	@RequestMapping("setting")
-	public ModelAndView setting(HttpSession session){
+	public ModelAndView setting(HttpSession session) throws Exception {
 		ModelAndView modelAndView = new ModelAndView("setting");
 		PlayerDTO playerDTO = service.setting((int)session.getAttribute("player"));
 		modelAndView.addObject("Player", playerDTO);
@@ -132,7 +131,7 @@ public class MSController {
 	//여기서 리턴안하고 ajax는 못쓰나??
 	@RequestMapping(value="profileUpdate", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String profileUpdate(PlayerDTO dto ,HttpSession session ){
+	public String profileUpdate(PlayerDTO dto ,HttpSession session ) throws Exception {
 		dto.setPlaySq((int)session.getAttribute("player"));
 		service.profileUpdate(dto);
 		return "프로필이 수정되었습니다.";
@@ -143,21 +142,9 @@ public class MSController {
 	 * */
 	@RequestMapping("profileImgUpdate")
 	@ResponseBody
-	public String profileImgUpdate(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
+	public String profileImgUpdate(HttpServletRequest request,HttpSession session) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		/*Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		MultipartFile multipartFile = null;
-		while(iterator.hasNext()){
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			if(multipartFile.isEmpty() == false){
-				System.out.println("------------- file start -------------");
-				System.out.println("name : "+multipartFile.getName());
-				System.out.println("filename : "+multipartFile.getOriginalFilename());
-				System.out.println("size : "+multipartFile.getSize());
-				System.out.println("-------------- file end --------------\n");
-			}
-		}*/
-		service.profileImgUpdate(commandMap.getMap(), multipartHttpServletRequest,1);
+		service.profileImgUpdate(multipartHttpServletRequest, 1);
 		return "{\"result\":true}";
 	}
 	
@@ -167,7 +154,7 @@ public class MSController {
 	
 	@RequestMapping("profileImgSelect")
 	@ResponseBody
-	public String profileImgSelect(int flag ,HttpSession session){
+	public String profileImgSelect(int flag ,HttpSession session) throws Exception {
 		return service.profileImgSelect((int)session.getAttribute("player"),flag);
 	}
 	
@@ -176,21 +163,9 @@ public class MSController {
 	 * */
 	@RequestMapping("backgroundImgUpdate")
 	@ResponseBody
-	public String backgroundImgUpdate(CommandMap commandMap, HttpServletRequest request ,HttpSession session) throws Exception{
+	public String backgroundImgUpdate(HttpServletRequest request ,HttpSession session) throws Exception{
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		/*Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		MultipartFile multipartFile = null;
-		while(iterator.hasNext()){
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			if(multipartFile.isEmpty() == false){
-				System.out.println("------------- file start -------------");
-				System.out.println("name : "+multipartFile.getName());
-				System.out.println("filename : "+multipartFile.getOriginalFilename());
-				System.out.println("size : "+multipartFile.getSize());
-				System.out.println("-------------- file end --------------\n");
-			}
-		}*/
-		service.profileImgUpdate(commandMap.getMap(), multipartHttpServletRequest,2);
+		service.profileImgUpdate(multipartHttpServletRequest,2);
 		return "{\"result\":true}";
 	}
 	
@@ -199,7 +174,7 @@ public class MSController {
 	 * */
 	@RequestMapping(value="visitorInsert", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public String visitorInsert(VisitorDTO visitor, HttpSession session){
+	public String visitorInsert(VisitorDTO visitor, HttpSession session) throws Exception {
 		System.out.println("방명록 : " + visitor.getSubject()+"/"+visitor.getContent());
 		
 		visitor.setPlaySq((int)session.getAttribute("player"));
@@ -214,29 +189,18 @@ public class MSController {
 	 * */
 	@RequestMapping("visitorDel")
 	@ResponseBody
-	public String visitorDel(int visitorSq){
+	public String visitorDel(int visitorSq) throws Exception {
 		service.visitorDel(visitorSq);
 		return "success";
 	}
 	
 	
 	/**
-	 * 방명록 조회(최초)
-	 * */
-	/*@RequestMapping(value="visitor", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
-	public  ModelAndView visitorFirst(HttpSession session){
-		List<VisitorDTO> visitor = service.visitorSelect(1);
-		ModelAndView mv = new ModelAndView("visitor");
-		mv.addObject("visitors", visitor);
-		return mv;
-	}*/
-	
-	/**
 	 * 방명록 조회 스크롤 페이징
 	 * */
 	@RequestMapping(value="visitorSelect", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
-	public synchronized  String visitorSelect(int page,HttpSession session){
+	public synchronized  String visitorSelect(int page,HttpSession session) throws Exception {
 		List<VisitorDTO> visitor = service.visitorSelect(page);
 		Gson gson = new Gson();
 		String json = gson.toJson(visitor);
@@ -247,7 +211,7 @@ public class MSController {
 	 * 포트폴리오 조회
 	 * */
 	@RequestMapping(value="portfolio")
-	public ModelAndView protfolio(HttpSession session){
+	public ModelAndView protfolio(HttpSession session) throws Exception {
 		
 		return new ModelAndView("portfolio", "portfolio", service.portfolio());
 	}
@@ -255,59 +219,37 @@ public class MSController {
 	
 	/**
 	 * 포트폴리오 저장
+	 * @throws Exception 
 	 * */
 	@RequestMapping(value="portfolioSave", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	public String portfolioSave(@RequestParam(value="img") MultipartFile img,@RequestParam(value="file") MultipartFile file,MultipartHttpServletRequest multi, HttpServletRequest request ,HttpSession session){
-		String imgPath =request.getServletContext().getRealPath("/resources/portFolioImg/");
-		String imgFileName = img.getOriginalFilename();
-		String imgStoredFileName=null;
+	public String portfolioSave(
+			@RequestParam(value="img") MultipartFile img,
+			@RequestParam(value="file") MultipartFile file,
+			MultipartHttpServletRequest multi, 
+			HttpServletRequest request ,
+			HttpSession session ) throws Exception{
 		
-		
-		if(imgFileName!=""){
-			String imgOriginalFileExtension = imgFileName.substring(imgFileName.lastIndexOf("."));
-	        imgStoredFileName = CommonUtils.getRandomString() + imgOriginalFileExtension;
-			
-			try{
-				img.transferTo(new File(imgPath+"/" +imgStoredFileName ));
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		}
-		
-		
-		String filePath =request.getServletContext().getRealPath("/resources/portFolioFile/");
-		String fileFileName = file.getOriginalFilename();
-		String fileStoredFileName=null;
-		
-		if(fileFileName!=""){
-			String fileOriginalFileExtension = fileFileName.substring(fileFileName.lastIndexOf("."));
-	        fileStoredFileName = CommonUtils.getRandomString() + fileOriginalFileExtension;
-			
-			try{
-				file.transferTo(new File(filePath+"/" +fileStoredFileName ));
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		}
-		//파일들은 null이면 안들어가서 꼼수썻는데 고쳐야돼!
-		if(fileStoredFileName==null) fileStoredFileName="null";
-		
-		PortfolioDTO dto = new PortfolioDTO(multi.getParameter("subject"), multi.getParameter("strapline1"), 
-				multi.getParameter("strapline2"), multi.getParameter("strapline3"), multi.getParameter("strapline4"), 
-				multi.getParameter("strapline5"), multi.getParameter("content"), imgStoredFileName, fileStoredFileName,fileFileName);
-		
-		service.portfolioSave(dto);
-		
+		service.portfolioSave(request, multi);
 		return "redirect:portfolio";
 	}
 	
+	/**
+	 * 포트폴리오 게시판 이미지
+	 */
+	@RequestMapping("portfolioBoardImg")
+	@ResponseBody
+	public String portfolioBoardImg(HttpServletRequest request ,HttpSession session) throws Exception{
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(request,"portfolioBoardImg");
+		System.out.println("{ \"link\" : \"http://localhost/home/resources/portfolioBoardImg/"+list.get(0).get("STORED_FILE_NAME")+"\"}");	
+		return "{ \"link\" : \"http://localhost/home/resources/portfolioBoardImg/"+list.get(0).get("STORED_FILE_NAME")+"\"}";
+	}
 	
 	
 	/**
 	 * 포트폴리오 상세보기
 	 * */
 	@RequestMapping("portfolioRead")
-	public ModelAndView portfolioRead(int portfolioSq ,HttpSession session){
+	public ModelAndView portfolioRead(int portfolioSq ,HttpSession session) throws Exception {
 		return new ModelAndView("portfolioRead", "portfolio", service.portfolioRead(portfolioSq));
 	}
 	
