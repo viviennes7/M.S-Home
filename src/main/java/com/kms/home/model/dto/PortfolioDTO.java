@@ -13,6 +13,7 @@ public class PortfolioDTO {
 	private String img;
 	private String file;
 	private String originFile;
+	private String isUse;
 	
 	public PortfolioDTO() {}
 	
@@ -125,12 +126,20 @@ public class PortfolioDTO {
 		this.originFile = originFile;
 	}
 	
+	public String getIsUse() {
+		return isUse;
+	}
+
+	public void setIsUse(String isUse) {
+		this.isUse = isUse;
+	}
+
 	@Override
 	public String toString() {
 		return "PortfolioDTO [portfolioSq=" + portfolioSq + ", playerSq=" + playerSq + ", subject=" + subject
 				+ ", strapline1=" + strapline1 + ", strapline2=" + strapline2 + ", strapline3=" + strapline3
 				+ ", strapline4=" + strapline4 + ", strapline5=" + strapline5 + ", content=" + content + ", img=" + img
-				+ ", file=" + file + ", originFile=" + originFile + "]";
+				+ ", file=" + file + ", originFile=" + originFile + ", isUse=" + isUse + "]";
 	}
-	
+
 }

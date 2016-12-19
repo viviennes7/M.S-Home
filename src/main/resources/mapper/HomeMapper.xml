@@ -44,6 +44,7 @@
 	<result column="portfolio_img" property="img"/>
 	<result column="portfolio_file" property="file"/>
 	<result column="portfolio_origin_file" property="originFile"/>
+	<result column="portfolio_is_use" property="isUse"/>
 </resultMap>
 
 
@@ -126,7 +127,7 @@
 
 <!-- 포트폴리오 조회 -->
 <select id = "portfolio" resultMap="portfolio">
-	select * from portfolio order by portfolio_sq
+	select * from portfolio where portfolio_is_use='Y' order by portfolio_sq
 </select>
 
 <!-- 포트폴리오 저장 -->
@@ -142,11 +143,12 @@
 </select>
 
 
-
-
-
-
-
+<!-- 포트폴리오 삭제 -->
+<update id="portfolioDelete" parameterType="int">
+	update portfolio
+		set portfolio_is_use = 'N'
+			where portfolio_sq = #{value}
+</update>
 
 
 <select id="lifePost" resultType="int">

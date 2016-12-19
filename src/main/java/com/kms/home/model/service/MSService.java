@@ -179,11 +179,18 @@ public class MSService {
 	/**
 	 * 포트폴리오 상세보기
 	 * */
-	public PortfolioDTO portfolioRead(int protfolioSq) throws Exception  {
+	public PortfolioDTO portfolioRead(int portfolioSq) throws Exception  {
 		MSDao dao = sqlSession.getMapper(MSDao.class);
-		return dao.portfolioRead(protfolioSq);
+		return dao.portfolioRead(portfolioSq);
 	}
 	
+	/**
+	 * 포트폴리오 삭제
+	 * */
+	public void portfolioDelete(int portfolioSq) {
+		MSDao dao = sqlSession.getMapper(MSDao.class);
+		dao.portfolioDelete(portfolioSq);
+	}
 	
 	/**
 	 * Life 글쓰기

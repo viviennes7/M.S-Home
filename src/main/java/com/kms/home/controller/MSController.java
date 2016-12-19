@@ -253,6 +253,15 @@ public class MSController {
 		return new ModelAndView("portfolioRead", "portfolio", service.portfolioRead(portfolioSq));
 	}
 	
+	/**
+	 * 포트폴리오 삭제
+	 * */
+	@RequestMapping("portfolioDelete")
+	public String portfolioDelete(int portfolioSq , HttpSession session) throws Exception {
+		service.portfolioDelete(portfolioSq);
+		return "redirect:portfolio";
+	}
+	
 	
 	/**
 	 * Life 글쓰기

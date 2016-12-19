@@ -87,6 +87,11 @@ public interface MSDao {
 	public PortfolioDTO portfolioRead(int portfolioSq);
 
 	/**
+	 * 포트폴리오 삭제
+	 * */
+	public void portfolioDelete(int portfolioSq);
+
+	/**
 	 * ID유효성 체크
 	 * */
 	public PlayerDTO idCheck(String loginId);
