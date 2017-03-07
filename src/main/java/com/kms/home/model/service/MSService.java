@@ -16,7 +16,6 @@ import com.kms.home.model.dao.MSDao;
 import com.kms.home.model.dto.PlayerDTO;
 import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
-import com.kms.home.util.BCrypt;
 import com.kms.home.util.FileUtils;
 @Service
 public class MSService {
@@ -55,6 +54,9 @@ public class MSService {
 	 * 로그인
 	 * */
 	public int login(String username, String userpass) throws Exception {
+		
+		//비밀번호 암호화 추가하기
+		
 		/*userpass = BCrypt.hashpw(userpass, BCrypt.gensalt(12));*/
 		MSDao dao=sqlSession.getMapper(MSDao.class);
 		PlayerDTO playerDTO = dao.login(new PlayerDTO(username, userpass));

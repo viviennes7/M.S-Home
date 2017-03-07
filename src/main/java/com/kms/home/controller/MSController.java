@@ -57,11 +57,15 @@ public class MSController {
 		int Sq = service.login(username, userpass);
 		session.setMaxInactiveInterval(5000);
 		session.setAttribute("player", Sq);
+		
+		
+		//서비스 단으로 빼기
 		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
         String ip = req.getHeader("X-FORWARDED-FOR");
         if (ip == null)
             ip = req.getRemoteAddr();
         
+        //헤더에 담에서 주기
 		if(Sq!=-1){
 			System.out.println("홈페이지 접속 IP : " + ip);
 	        System.out.println("로그인 ID: " + username);
@@ -84,6 +88,8 @@ public class MSController {
 	/**
 	 * ID 유효성체크
 	 * */
+	
+	//URL 동사 명사순으로 변경
 	@RequestMapping("idCheck")
 	@ResponseBody
 	public String idCheck(String loginId) throws Exception {
