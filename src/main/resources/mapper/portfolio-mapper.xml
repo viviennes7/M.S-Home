@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kms.home.portfolio.dao.PortfolioDao">
+	
+	<resultMap type="portfolioDTO" id="portfolio">
+		<id column="portfolio_sq" property="portfolioSq"/>
+		<result column="player_sq" property="playerSq"/>
+		<result column="portfolio_subject" property="subject"/>
+		<result column="portfolio_strapline1" property="strapline1"/>
+		<result column="portfolio_strapline2" property="strapline2"/>
+		<result column="portfolio_strapline3" property="strapline3"/>
+		<result column="portfolio_strapline4" property="strapline4"/>
+		<result column="portfolio_strapline5" property="strapline5"/>
+		<result column="portfolio_content" property="content"/>
+		<result column="portfolio_img" property="img"/>
+		<result column="portfolio_file" property="file"/>
+		<result column="portfolio_origin_file" property="originFile"/>
+		<result column="portfolio_is_use" property="isUse"/>
+	</resultMap>
+
+
+	
+	<!-- 포트폴리오 조회 -->
+	<select id = "portfolio" resultMap="portfolio">
+		select * from portfolio where portfolio_is_use='Y' order by portfolio_sq
+	</select>
+	
+	<!-- 포트폴리오 저장 -->
+	<insert id="portfolioSave" parameterType="portfolioDTO">
+		insert into portfolio(portfolio_sq,portfolio_subject,portfolio_strapline1,portfolio_strapline2,portfolio_strapline3,
+		       portfolio_strapline4,portfolio_strapline5,portfolio_content, portfolio_img, portfolio_file, portfolio_origin_file)
+		values(portfolio_sq.nextval,#{subject},#{strapline1},#{strapline2},#{strapline3},#{strapline4},#{strapline5},#{content},#{img},#{file},#{originFile})	       
+	</insert>
+	
+	<!-- 포트폴리오 상세보기 -->
+	<select id="portfolioRead" parameterType="int" resultMap="portfolio">
+		select * from portfolio where portfolio_sq=${value}
+	</select>
+
+</mapper>
+
+
+
