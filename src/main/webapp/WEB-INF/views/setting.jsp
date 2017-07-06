@@ -176,7 +176,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" id="setting-password" name="password" class="form-control" placeholder="Password" value="${Player.password}">
+                                                <input type="password" id="setting-password" name="password" class="form-control" placeholder="Password" <c:if test="${Player.id eq 'TestEmail@naver.com'}">disabled</c:if> value="${Player.password}">
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Confirm</label>
-                                                <input type="password" id="setting-confirm" class="form-control" placeholder="Confirm" value="${Player.password}">
+                                                <input type="password" id="setting-confirm" class="form-control" placeholder="Confirm" <c:if test="${Player.id eq 'TestEmail@naver.com'}">disabled</c:if> value="${Player.password}">
                                             </div>
                                         </div>
                                     </div>
@@ -354,7 +354,7 @@
     					console.log("프로필수정 오류");
     				}
     			}) 
-    		})
+    		});
     		
     		/*프로필사진 수정*/
     		$("#setting-profile-img").on("click",function(){
