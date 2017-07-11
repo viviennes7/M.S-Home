@@ -268,6 +268,14 @@ public class MSController {
 		return "redirect:portfolio";
 	}
 	
+	/**
+	 * 수정하기버튼
+	 * */
+	@RequestMapping("portfolioUpdateView")
+	public ModelAndView portfolioUpdateView(int portfolioSq, HttpSession session) throws Exception{
+		return new ModelAndView("portfolioUpdateView", "portfolio", service.portfolioRead(portfolioSq));
+	}
+	
 	
 	/**
 	 * Life 글쓰기

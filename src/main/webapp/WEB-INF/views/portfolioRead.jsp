@@ -228,12 +228,15 @@
     		
     		$("#read-delete").on("click",function(){
     			var deleteCheck = confirm("삭제하시겠습니까?");
-    			console.log("포트폴리오 : ${portfolio.portfolioSq}")
     			if(deleteCheck){
-    				post_to_url("portfolioDelete", {"portfolioSq" : "${portfolio.portfolioSq}"})
+    				post_to_url("portfolioDelete", {"portfolioSq" : "${portfolio.portfolioSq}"});
     			}
-    			
-    		})
+    		});
+    		
+    		$("#read-modify").on("click",function(){
+   				post_to_url("portfolioUpdateView", {"portfolioSq" : "${portfolio.portfolioSq}"});
+    		});
+    		
     	});
 	</script>
 
