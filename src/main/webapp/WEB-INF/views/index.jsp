@@ -276,9 +276,9 @@
 				error:function(){
 					console.log("로그인 에러");
 				}
-			})
+			});
 		}
 		
-	})
+	});
 </script>
 </html>

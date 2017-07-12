@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.kms.home.model.dto.PlayerDTO;
+import com.kms.home.model.dto.PortfolioDTO;
 import com.kms.home.model.dto.VisitorDTO;
 import com.kms.home.model.service.MSService;
 import com.kms.home.util.FileUtils;
@@ -276,23 +277,12 @@ public class MSController {
 		return new ModelAndView("portfolioUpdateView", "portfolio", service.portfolioRead(portfolioSq));
 	}
 	
-	
 	/**
-	 * Life 글쓰기
-	 * @throws Exception 
+	 * 수정
 	 * */
-	/*@RequestMapping(value="imageUpload", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
-	@ResponseBody
-	public String imageUpload(HttpServletRequest request) throws Exception{
-		
-		System.out.println("시작");
-		System.out.println("제목 : " + request.getParameter("value"));
-		
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request;
-		
-		
-		return "{\"confirm\":\"success\"}";
+	@RequestMapping
+	public ModelAndView portfolioUpdate(PortfolioDTO portfolioDTO, HttpSession session){
+		return null;
 	}
-	*/
 	
 }
