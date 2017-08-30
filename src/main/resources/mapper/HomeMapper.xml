@@ -127,7 +127,7 @@
 
 <!-- 포트폴리오 조회 -->
 <select id = "portfolio" resultMap="portfolio">
-	select * from portfolio where portfolio_is_use='Y' order by portfolio_sq
+	select * from portfolio where portfolio_is_use='Y' order by portfolio_sq desc
 </select>
 
 <!-- 포트폴리오 저장 -->
