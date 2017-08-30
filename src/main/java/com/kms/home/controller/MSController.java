@@ -44,9 +44,9 @@ public class MSController {
 	 * 로그인페이지이동
 	 * */
 	@RequestMapping({ "/", "index"})
-	public String index() throws Exception {
+	public ModelAndView index() throws Exception {
 		
-		return "index";
+		return new ModelAndView("index");
 	}
 	
 	/**
@@ -102,23 +102,27 @@ public class MSController {
 	 * 로그아웃
 	 * */
 	@RequestMapping("logout")
-	public String logout(HttpSession session) throws Exception {
+	public ModelAndView logout(HttpSession session) throws Exception {
 		session.invalidate();
-		return "redirect:/";
+		return new ModelAndView("redirect:/");
 	}
 	
 	/**
 	 * 메인 창
 	 * */
 	@RequestMapping(value = "main")
-	public void Main(HttpSession session) throws Exception {}
+	public ModelAndView Main(HttpSession session) throws Exception {
+		return new ModelAndView("main");
+	}
 	
 	
 	/**
 	 * 라이프 창
 	 * */
 	@RequestMapping("life")
-	public void life(HttpSession session) throws Exception {}
+	public ModelAndView life(HttpSession session) throws Exception {
+		return new ModelAndView("/life");
+	}
 	
 	
 	/**
@@ -174,6 +178,11 @@ public class MSController {
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
 		service.profileImgUpdate(multipartHttpServletRequest,2);
 		return "{\"result\":true}";
+	}
+	
+	@RequestMapping("visitor")
+	public ModelAndView visitor(HttpSession session){
+		return new ModelAndView("visitor");
 	}
 	
 	/**

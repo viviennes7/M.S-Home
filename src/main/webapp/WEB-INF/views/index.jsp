@@ -245,8 +245,8 @@
 			login();
 		});
 		
-		/* $("#form-username").val("TestEmail@naver.com");
-		$("#form-password").val("123123"); */
+		$("#form-username").val("TestEmail@naver.com");
+		$("#form-password").val("123123");
 		
 		$("#form-password").keyup(function(e) {
 		    if (e.keyCode == 13){

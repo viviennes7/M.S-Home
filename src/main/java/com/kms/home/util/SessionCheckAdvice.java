@@ -1,12 +1,17 @@
 package com.kms.home.util;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Component
 @Aspect
@@ -16,19 +21,17 @@ public class SessionCheckAdvice {
 	@Pointcut("execution(public * com.kms.home.controller.*Controller.*(..,javax.servlet.http.HttpSession))")
 	public void pointCut() {}
 
-	@Before("pointCut()")
-	public void before(JoinPoint point) throws LoginException {
-		Object obj = point.getArgs()[0];
-		HttpSession session = null;
-		if (obj instanceof HttpSession) {
-			session = (HttpSession) obj;
-			if (session.getAttribute("player") == null) {
-				try {
-					throw new LoginException();
-				} catch (LoginException e) {
-					  throw new LoginException();
-				}
-			}
+	@Around("pointCut()")
+	public Object before(ProceedingJoinPoint point) throws Throwable {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("player") == null){
+			ModelAndView mv = new ModelAndView(new RedirectView("/"));
+			return mv;
+		}else{
+			Object output = point.proceed();
+			return output;
 		}
 	}
 }
