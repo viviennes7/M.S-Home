@@ -9,11 +9,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	 <!-- CSS -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="resources/css/bootstrap.css"> 
-    <link rel="stylesheet" href="resources/css/font-awesome.css"> 
-	<link rel="stylesheet" href="resources/css/form-elements.css">
-    <link rel="stylesheet" href="resources/css/loginstyle.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500" type="text/css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.css" type="text/css"> 
+    <link rel="stylesheet" href="<c:url value='/resources/css/font-awesome.css'/>" type="text/css"> 
+	<link rel="stylesheet" href="<c:url value='/resources/css/form-elements.css'/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value='/resources/css/loginstyle.css'/>" type="text/css">
 	
 	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
