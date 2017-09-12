@@ -199,19 +199,10 @@
 							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/2.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/3.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/4.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/5.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/7.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/8.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/kosta/9.jpg"/>' />
@@ -348,19 +339,10 @@
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/1.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/travel/2.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/3.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/travel/4.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/5.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/travel/6.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/7.jpg"/>' />
@@ -372,13 +354,7 @@
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/9.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/travel/10.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/11.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/travel/12.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/travel/13.jpg"/>' />
@@ -421,16 +397,7 @@
 							                <img data-u="image" src='<c:url value="/resources/img/life/friend/2.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/friend/3.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/friend/4.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/friend/5.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/friend/6.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/friend/7.jpg"/>' />
@@ -439,13 +406,7 @@
 							                <img data-u="image" src='<c:url value="/resources/img/life/friend/8.jpg"/>' />
 							            </div>
 							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/friend/9.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
 							                <img data-u="image" src='<c:url value="/resources/img/life/friend/10.jpg"/>' />
-							            </div>
-							            <div style="display: none;">
-							                <img data-u="image" src='<c:url value="/resources/img/life/friend/11.jpg"/>' />
 							            </div>
 							            
 							            <a data-u="add" href="http://www.jssor.com/demos/different-size-photo-slider.slider" style="display:none">Different Size Photo Sldier</a>
