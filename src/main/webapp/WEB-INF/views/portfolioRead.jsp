@@ -133,6 +133,11 @@
                               </ul>
                         </li> -->
                         <li>
+                           <a href="https://github.com/viviennes7" target="_blank">
+                               <i class="fa fa-github" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
                         	<a href='<c:url value="https://www.facebook.com/minsu.kim.54584"/>' target="_blank">
                                <i class="fa fa-facebook-square" aria-hidden="true"></i>
                             </a>
