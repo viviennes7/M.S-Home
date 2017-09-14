@@ -256,8 +256,8 @@ public class MSController {
 	@ResponseBody
 	public String portfolioBoardImg(HttpServletRequest request ,HttpSession session) throws Exception{
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(request,"portfolioBoardImg");
-		System.out.println("{ \"link\" : \"http://localhost/home/resources/portfolioBoardImg/"+list.get(0).get("STORED_FILE_NAME")+"\"}");	
-		return "{ \"link\" : \"http://localhost/home/resources/portfolioBoardImg/"+list.get(0).get("STORED_FILE_NAME")+"\"}";
+		System.out.println("{ \"link\" : \"http://mshome.o-r.kr/resources/portfolioBoardImg/"+list.get(0).get("STORED_FILE_NAME")+"\"}");	
+		return "{ \"link\" : \"http://mshome.o-r.kr/resources/portfolioBoardImg/"+list.get(0).get("STORED_FILE_NAME")+"\"}";
 	}
 	
 	
